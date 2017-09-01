@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "repository": "https://senthilROR@bitbucket.org/clouddatamanagement/yantra24x7_mp.git",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.7",
@@ -23,7 +23,7 @@
     "postupdate-deps": "bower update",
 
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1 ./app",
+    "start": "http-server -a 192.168.1.61 -p 8001 -c-1 ./app",
 
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
