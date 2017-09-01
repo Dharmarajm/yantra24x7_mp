@@ -28,7 +28,7 @@ angular.module('login', ['ngRoute'])
       $http
       ({
         method: 'post',
-        url: $rootScope.api_url+'users/login',
+        url: $rootScope.api_url+'user_login',
         data: login  
       })
       
@@ -37,12 +37,14 @@ angular.module('login', ['ngRoute'])
            
   alert('Welcome your login was successful'); 
       
-       // $state.go('/company_registration');
+       
        localStorage.setItem("tenant_id",data.tenant_id);
+       localStorage.setItem("tenant_name",data.tenant.tenant_name);
        localStorage.setItem("userid",data.id)
        localStorage.setItem("username",data.first_name);
        localStorage.setItem("role_id",data.role_id);
-       //alert( localStorage.getItem("tenant_id"));
+       localStorage.setItem("role_type_id",data.role_type_id);
+       localStorage.setItem("roletype_name",data.role_type.type_name);
        $scope.const();
          $window.location='/#!/dashboard'; 
         }else{      
