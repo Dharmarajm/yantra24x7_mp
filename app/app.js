@@ -5,10 +5,11 @@ angular.module('myApp', [
   'ngRoute',
   'login',
   'registrations',
-  'dashboard'/*,
+  'dashboard',
+  'user'/*,
   'alarms',
   'client',
-  'machine_reg',
+  
   'Maintanances', 
   'ngPercentDisplay',
   'machines',
@@ -48,31 +49,33 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     if (localStorage.getItem("tenant_id") !=null){
          
       $scope.CurrentDate = new Date();
-        $scope.tenant_id=localStorage.getItem("tenant_id");
+
+       $scope.tenant_id=localStorage.getItem("tenant_id");
        $scope.tenant_name=localStorage.getItem("tenant_name");
        $scope.user_id=localStorage.getItem("userid")
        $scope.user_name=localStorage.getItem("username");
        $scope.role_id=localStorage.getItem("role_id");
        $scope.role_type_id=localStorage.getItem("role_type_id");
        $scope.role_type_name=localStorage.getItem("roletype_name");
-
+        $scope.reference_id=localStorage.getItem("reference_id");
     }
     $scope.const=function(){
-        $scope.CurrentDate = new Date();
-        $scope.tenant_id=localStorage.getItem("tenant_id");
+      
+       $scope.tenant_id=localStorage.getItem("tenant_id");
        $scope.tenant_name=localStorage.getItem("tenant_name");
-       $scope.user_id=localStorage.getItem("userid")
+       $scope.user_id=localStorage.getItem("userid");
        $scope.user_name=localStorage.getItem("username");
        $scope.role_id=localStorage.getItem("role_id");
        $scope.role_type_id=localStorage.getItem("role_type_id");
        $scope.role_type_name=localStorage.getItem("roletype_name");
-
+       $scope.reference_id=localStorage.getItem("reference_id");
     }
+
  $scope.signout = function(){  
  // alert("hi");
 localStorage.clear();
-alert("Logout Successfully")
- $window.location="/#!/login"
+alert("Logout Successfully");
+ $window.location="/#!/login";
   }
 
 $scope.pageverification=function(url){

@@ -43,8 +43,9 @@ angular.module('login', ['ngRoute'])
        localStorage.setItem("userid",data.id)
        localStorage.setItem("username",data.first_name);
        localStorage.setItem("role_id",data.role_id);
-       localStorage.setItem("role_type_id",data.role_type_id);
-       localStorage.setItem("roletype_name",data.role_type.type_name);
+       localStorage.setItem("role_type_id",data.role.role_type_id);
+       localStorage.setItem("reference_id",data.role.reference_id);
+       localStorage.setItem("roletype_name",data.role.role_type.type_name);
        $scope.const();
          $window.location='/#!/dashboard'; 
         }else{      
