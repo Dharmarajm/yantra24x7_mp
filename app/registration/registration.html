@@ -53,14 +53,14 @@ display: none;
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">Phone Number 1<span style="color:red;">*</span></label>
+                  <label for="register-custom" class="label-custom">Phone Number 1<span style="color:red;">*</span></label>
                   <input id="register-phone_one" type="text" name="phone_one" ng-model="registration.phone_one" ng-pattern="/^(?:\d{10}|\w+@\w+\.\w{2,3})$/" ng-Required="true"><span ng-show="register.phone_one.$error.pattern" style="color: red;">Phone numbers should be 10 Numbers</span>
                   <span ng-show="register.phone_one.$error.text" style="color: red;">Phone numbers should be Numbers</span>
                 </div>
               </div>
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">Phone Number 2</label>
+                  <label for="register-custom" class="label-custom">Phone Number 2</label>
                   <input id="register-phone_two" type="text" name="phone_two" ng-model="registration.phone_two" ng-pattern="/^(?:\d{10}|\w+@\w+\.\w{2,3})$/"><span ng-show="register.phone_two.$error.pattern" style="color: red;">Phone numbers should be 10 Numbers</span>
                 </div>
               </div>
@@ -69,14 +69,14 @@ display: none;
             <div class="row">  
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">Company Name<span style="color: red;">*</span></label>
+                  <label for="register-custom" class="label-custom">Company Name<span style="color: red;">*</span></label>
                   <input id="register-tenant_name" type="text" name="tenant_name" ng-model="registration.tenant_name" ng-Required="true">
                 </div>
               </div>
 
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">Website</label>
+                  <label for="register-custom" class="label-custom">Website</label>
                   <input id="register-website" type="text" name="website" ng-model="registration.website">
                 </div>
               </div>
@@ -85,13 +85,13 @@ display: none;
             <div class="row">  
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">Brand Name</label>
+                  <label for="register-custom" class="label-custom">Brand Name</label>
                   <input id="register-brand_name" type="text" name="brand_name" ng-model="registration.brand_name">
                 </div>
               </div>
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">About Company</label>
+                  <label for="register-custom" class="label-custom">About Company</label>
                   <input id="register-about_company" type="text" name="about_company" ng-model="registration.about_company">
                 </div>
               </div>
@@ -100,13 +100,13 @@ display: none;
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">Address Line1</label>
+                  <label for="register-custom" class="label-custom">Address Line1</label>
                   <input id="register-address_one" type="text" name="address_one" ng-model="registration.address_one">
                 </div>
               </div>
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">Address Line2</label>
+                  <label for="register-custom" class="label-custom">Address Line2</label>
                   <input id="register-address_two" type="text" name="address_two" ng-model="registration.address_two">
                 </div>
               </div>
@@ -115,13 +115,13 @@ display: none;
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">City</label>
+                  <label for="register-custom" class="label-custom">City</label>
                   <input id="register-city" type="text" name="city" ng-model="registration.city">
                 </div>
               </div>
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">State</label>
+                  <label for="register-custom" class="label-custom">State</label>
                   <input id="register-state" type="text" name="state" ng-model="registration.state">
                 </div>
               </div>
@@ -130,13 +130,13 @@ display: none;
             <div class="row">
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">Country</label>
+                  <label for="register-custom" class="label-custom">Country</label>
                   <input id="register-country" type="text" name="country" ng-model="registration.country">
                 </div>
               </div>
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
-                  <label class="label-custom">Pincode</label>
+                  <label for="register-custom" class="label-custom">Pincode</label>
                   <input id="register-pincode" type="text" name="pincode" ng-model="registration.pincode" ng-minlength="6"><span ng-show="register.pincode.$error.minlength" style="color: red;">Pincode must be 6 digits</span>
                 </div>
               </div>

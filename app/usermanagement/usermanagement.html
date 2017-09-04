@@ -54,7 +54,9 @@
             </div>
         </section>
 
-       <div class="modal fade" id="exampleModalLabel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- modal -->
+       
+    <div class="modal fade" id="exampleModalLabel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -64,21 +66,26 @@
                     </button>
                 </div>
                 <div class="modal-body machine-registration">
-                    <form name="client">
+                    <form name="client" novalidate> 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>First Name</label>
+                                    <label for="client-custom" class="label-custom">First Name<span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" ng-model="userregistration.first_name" ng-Required="true" placeholder="First Name"><span ng-show="client.first_name.$error">Name is required.</span>
+                                        <input id="client-first_name" ng-blur="visitedEmail = true" type="text" name="first_name" class="form-control" ng-model="userregistration.first_name" ng-Required="true" placeholder="First Name">
                                     </div>
+                                    <!-- <div ng-show="client.first_name.$error.required">Name is required.</div> -->
+                                    <!-- <div ng-show="client.first_name.$dirty && client.first_name.$invalid && visitedEmail">
+                                    <span ng-show="client.first_name.$error.required">Invalid:Tell us  your email.</span> 
+                                   <span  ng-show="client.first_name.$error.email">Invalid:This is not a valid email.</span>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Last Name</label>
+                                    <label for="client-custom" class="label-custom">Last Name</label>
                                     <div class="input-group" >
-                                        <input type="text" class="form-control" ng-model="userregistration.last_name" ng-Required="true" placeholder="Last Name"  >
+                                        <input id="client-last_name" type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Last Name"  >
                                     </div>
                                 </div>
                             </div>
@@ -87,21 +94,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Email ID</label>
+                                    <label for="client-custom" class="label-custom">Email ID<span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input type="email" class="form-control" ng-model="userregistration.email" placeholder="Email"  ng-Required="true">
+                                        <input id="client-email" type="email" name="email" class="form-control" ng-model="userregistration.email" ng-pattern="emailFormat" ng-Required="true" placeholder="Email">
                                     </div>
-                                   <!--  <div role="alert">
-                                         <span class="error" ng-show="client.email.$error.email"> Not valid email!</span>
-                                    </div> -->
-                                </div>
+                                    <div ng-show="client.email.$error.pattern"></div>
+                                </div>   
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Password</label>
+                                    <label for="client-custom" class="label-custom">Password<span style="color: red;">*</span></label>
                                     <div class="input-group" >
-                                        <input type="password" class="form-control" ng-model="userregistration.password" ng-Required="true" autocomplete="off" placeholder="Password">
-                                    </div>
+                                        <input id="client-password" type="password" name="password" class="form-control" ng-model="userregistration.password" ng-minlength="8" ng-Required="true" autocomplete="off" placeholder="Password">
+                                    </div><br>
+                                    <div  ng-show="client.password.$error.minlength" style="color: red;">Password must be 8 Charaters</div>
                                 </div>
                             </div>
                         </div>
@@ -109,17 +115,17 @@
                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Phone Number 1</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" ng-model="userregistration.phone_one" ng-Required="true" placeholder="Phone Number">
+                                    <label for="client-custom" class="label-custom">Phone Number 2</label>
+                                    <div class="input-group" >
+                                        <input id="client-phone_one" type="text" name="phone_one" class="form-control" ng-model="userregistration.phone_one" ng-pattern="/^(?:\d{10}|\w+@\w+\.\w{2,3})$/" placeholder="Phone Number"><br><span ng-show="client.phone_one.$error.pattern" style="color: red;">Phone numbers should be 10 Numbers</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Phone Number 2</label>
+                                    <label for="client-custom" class="label-custom">Phone Number 2</label>
                                     <div class="input-group" >
-                                        <input type="text" class="form-control" ng-model="userregistration.phone_two" ng-Required="true" placeholder="Phone Number">
+                                        <input id="client-phone_two" type="text" name="phone_two" class="form-control" ng-model="userregistration.phone_two" ng-pattern="/^(?:\d{10}|\w+@\w+\.\w{2,3})$/" placeholder="Phone Number"><br><span ng-show="client.phone_two.$error.pattern" style="color: red;">Phone numbers should be 10 Numbers</span>
                                     </div>
                                 </div>
                             </div>
@@ -128,17 +134,17 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Aadhaar Card Number</label>
+                                    <label for="client-custom" class="label-custom">Aadhaar Card Number</label>
                                     <div class="input-grop">
-                                        <input type="text" class="form-control" ng-model="userregistration.adhar_card_no" ng-Required="true" placeholder="Aadhaar Card Number">
+                                        <input id="client-adhar_card_no" type="text" name="adhar_card_no" class="form-control" ng-model="userregistration.adhar_card_no" placeholder="Aadhaar Card Number">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Driving License Number</label>
+                                    <label for="client-custom" class="label-custom">Driving License Number</label>
                                     <div class="input-group" >
-                                        <input type="text" class="form-control" ng-model="userregistration.driving_license_no" ng-Required="true" placeholder="Driving License Number">
+                                        <input id="client-driving_license_no" type="text" name="driving_license_no" class="form-control" ng-model="userregistration.driving_license_no" placeholder="Driving License Number">
                                     </div>
                                 </div>
                             </div>
@@ -147,17 +153,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Account Number</label>
+                                    <label for="client-custom" class="label-custom">Account Number<span style="color: red;">*</span></label>
                                     <div class="input-grop">
-                                        <input type="text" class="form-control" ng-model="userregistration.acc_no" ng-Required="true" placeholder="Account Number">
+                                        <input id="client-acc_no" type="text" name="acc_no" class="form-control" ng-model="userregistration.acc_no" ng-Required="true" placeholder="Account Number"><br>
+                                        <span ng-show="client.acc_no.$error.required" style="color: red;">Account Number is required</span>
                                     </div>
+                                   <!--  <div ng-show="userregistration."> -->
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Account Name</label>
+                                    <label for="client-custom" class="label-custom">Account Name<span style="color: red;">*</span></label>
                                     <div class="input-group" >
-                                        <input type="text" class="form-control" ng-model="userregistration.acc_name" ng-Required="true" placeholder="Account Name">
+                                        <input id="client-acc_name" type="text" name="acc_name" class="form-control" ng-model="userregistration.acc_name" ng-Required="true" placeholder="Account Name"><br>
+                                        <span ng-show="client.acc_name.$error.required" style="color: red;">Account Name is required</span>
                                     </div>
                                 </div>
                             </div>
@@ -166,17 +175,18 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Bank Name</label>
+                                    <label for="client-custom" class="label-custom">Bank Name<span style="color: red;">*</span></label>
                                     <div class="input-grop">
-                                        <input type="text" class="form-control" ng-model="userregistration.bank_name" ng-Required="true" placeholder="Bank Name">
+                                        <input id="client-bank_name" type="text" name="bank_name" class="form-control" ng-model="userregistration.bank_name" ng-Required="true" placeholder="Bank Name"><br><span ng-show="client.bank_name.$error.required" style="color: red;">Bank Name is required</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Branch Name</label>
+                                    <label for="client-custom" class="label-custom">Branch Name<span style="color: red;">*</span></label>
                                     <div class="input-group" >
-                                        <input type="text" class="form-control" ng-model="userregistration.branch_name" ng-Required="true" placeholder="Branch Name">
+                                        <input id="client-branch_name" type="text" name="branch_name" class="form-control" ng-model="userregistration.branch_name" ng-Required="true" placeholder="Branch Name">
+                                        <span ng-show="client.branch_name.$error.required" style="color: red;">Branch Name is required</span>
                                     </div>
                                 </div>
                             </div>
@@ -185,17 +195,18 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>IFSC Code</label>
+                                    <label for="client-custom" class="label-custom">IFSC Code<span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" ng-model="userregistration.ifsc_code" ng-Required="true" placeholder="IFSC Code">
+                                        <input id="client-ifsc_code" type="text" name="ifsc_code" class="form-control" ng-model="userregistration.ifsc_code" ng-Required="true" placeholder="IFSC Code">
+                                        <span ng-show="client.ifsc_code.$error.required" style="color: red;">IFSC Code is required</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Additional Details</label>
+                                    <label for="client-custom" class="label-custom">Additional Details</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" ng-model="userregistration.addtional_detail" ng-Required="true" placeholder="Additional Details">
+                                        <input id="client-addtional_detail" type="text" name="addtional_detail" class="form-control" ng-model="userregistration.addtional_detail"  placeholder="Additional Details">
                                     </div>
                                 </div>
                             </div>
@@ -204,17 +215,17 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Address Line 1</label>
+                                    <label for="client-custom" class="label-custom">Address Line 1</label>
                                     <div class="input-group" >
-                                        <input type="text" class="form-control" ng-model="userregistration.address_one" ng-Required="true" placeholder="Address Line 1">
+                                        <input id="client-address_one" type="text" name="address_one" class="form-control" ng-model="userregistration.address_one" placeholder="Address Line 1">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Address Line 2</label>
+                                    <label for="client-custom" class="label-custom">Address Line 2</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" ng-model="userregistration.address_two" ng-Required="true" placeholder="Address Line 2">
+                                        <input id="client-address_two" type="text" name="address_two" class="form-control" ng-model="userregistration.address_two"  placeholder="Address Line 2">
                                     </div>
                                 </div>
                             </div>
@@ -224,17 +235,17 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>City</label>
+                                    <label for="client-custom" class="label-custom">City</label>
                                     <div class="input-group" >
-                                        <input type="text" class="form-control" ng-model="userregistration.city" ng-Required="true" placeholder="City">
+                                        <input id="client-city" type="text" name="city" class="form-control" ng-model="userregistration.city"  placeholder="City">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>State</label>
+                                    <label for="client-custom" class="label-custom">State</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" ng-model="userregistration.state" ng-Required="true" placeholder="State">
+                                        <input id="client-state" type="text" name="state" class="form-control" ng-model="userregistration.state"  placeholder="State">
                                     </div>
                                 </div>
                             </div>
@@ -243,17 +254,17 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Country</label>
+                                    <label for="client-custom" class="label-custom">Country</label>
                                     <div class="input-group" >
-                                        <input type="text" class="form-control" ng-model="userregistration.country" ng-Required="true" placeholder="Country">
+                                        <input id="client-country" type="text" name="country" class="form-control" ng-model="userregistration.country"  placeholder="Country">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Pin Code</label>
+                                    <label for="client-custom" class="label-custom">Pin Code</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" ng-model="userregistration.pin_code" ng-Required="true" placeholder="Pin code">
+                                        <input id="client-pin_code" type="text" name="pin_code" class="form-control" ng-model="userregistration.pin_code" placeholder="Pin code">
                                     </div>
                                 </div>
                             </div>
@@ -261,22 +272,22 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>User Role</label>
+                                    <label for="client-custom" class="label-custom">User Role<span style="color: red;">*</span></label>
                                     <div class="select">
-                                       <select name="account" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
+                                       <select id="client-account" name="account" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
                                        <option>Select Role</option>
                                        </select>
                                     </div>
                                 </div>
                             </div>
-                        </div>    
+                        </div> 
+                         
                     </form>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-click="userForm()" data-dismiss="modal">Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+                   </div> 
+                   <div class="modal-footer">
+                      <button id="client" type="button" class="btn btn-primary" ng-disabled="client.first_name.$invalid || client.email.$invalid || client.password.$invalid || client.phone_one.$invalid || client.acc_no.$invalid || client.acc_name.$invalid || client.bank_name.$invalid || client.branch_name.$invalid || client.ifsc_code.$invalid" ng-click="userForm()" data-dismiss="modal">Save</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                   </div>
             </div>
         </div>
     </div>
@@ -384,60 +395,204 @@
                     </button>
                 </div>
                 <div class="modal-body machine-registration">
-                    <form name="client">
+                    <form name="client" novalidate> 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>First Name</label>
+                                    <label for="client-custom" class="label-custom">First Name<span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" ng-model="userregistration.first_name" placeholder="First Name" ng-Required="true">
+                                        <input id="client-first_name" ng-blur="visitedEmail = true" type="text" name="first_name" class="form-control" ng-model="userregistration.first_name" ng-Required="true" placeholder="First Name">
                                     </div>
+                                    <!-- <div ng-show="client.first_name.$error.required">Name is required.</div> -->
+                                    <!-- <div ng-show="client.first_name.$dirty && client.first_name.$invalid && visitedEmail">
+                                    <span ng-show="client.first_name.$error.required">Invalid:Tell us  your email.</span> 
+                                   <span  ng-show="client.first_name.$error.email">Invalid:This is not a valid email.</span>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Last Name</label>
+                                    <label for="client-custom" class="label-custom">Last Name</label>
                                     <div class="input-group" >
-                                        <input type="text" class="form-control" ng-model="userregistration.last_name" placeholder="Last Name"  ng-Required="true">
+                                        <input id="client-last_name" type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Last Name"  >
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Email ID</label>
+                                    <label for="client-custom" class="label-custom">Email ID<span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input type="email" class="form-control" ng-model="userregistration.email_id" placeholder="Email"  ng-Required="true">
-                                    </div>
-                                    <div role="alert">
-                                         <span class="error" ng-show="client.email.$error.email"> Not valid email!</span>
+                                        <input id="client-email" type="email" name="email" class="form-control" ng-model="userregistration.email" ng-Required="true" placeholder="Email">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Password</label>
+                                    <label for="client-custom" class="label-custom">Password<span style="color: red;">*</span></label>
                                     <div class="input-group" >
-                                        <input type="password" class="form-control" ng-model="userregistration.password" ng-pattern="^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$"  autocomplete="off" placeholder="Password"  ng-Required="true">
+                                        <input id="client-password" type="password" name="password" class="form-control" ng-model="userregistration.password" ng-minlength="8" ng-Required="true" autocomplete="off" placeholder="Password"><span ng-show="client.password.$error.minlength" style="color: red;">Password must be 8 Charaters</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Phone Number</label>
+                                    <label for="client-custom" class="label-custom">Phone Number 1<span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" ng-pattern="/^(?:\d{10}|\w+@\w+\.\w{2,3})$/" ng-model="userregistration.phone_number" ng-Required="true" placeholder="Mobile Number">
+                                        <input id="client-phone_one" type="text" name="phone_one" class="form-control" ng-model="userregistration.phone_one" ng-pattern="/^(?:\d{10}|\w+@\w+\.\w{2,3})$/" ng-Required="true" placeholder="Phone Number"><span ng-show="client.phone_one.$error.pattern" style="color: red;">Phone numbers should be 10 Numbers</span>
+                                        <span ng-show="client.phone_one.$error.text" style="color: red;">Phone numbers should be Numbers</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Remarks</label>
+                                    <label for="client-custom" class="label-custom">Phone Number 2</label>
                                     <div class="input-group" >
-                                        <input type="text" class="form-control" ng-model="userregistration.remarks" ng-Required="true">
+                                        <input id="client-phone_two" type="text" name="phone_two" class="form-control" ng-model="userregistration.phone_two" ng-pattern="/^(?:\d{10}|\w+@\w+\.\w{2,3})$/" placeholder="Phone Number"><span ng-show="client.phone_two.$error.pattern" style="color: red;">Phone numbers should be 10 Numbers</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Aadhaar Card Number</label>
+                                    <div class="input-grop">
+                                        <input id="client-adhar_card_no" type="text" name="adhar_card_no" class="form-control" ng-model="userregistration.adhar_card_no" placeholder="Aadhaar Card Number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Driving License Number</label>
+                                    <div class="input-group" >
+                                        <input id="client-driving_license_no" type="text" name="driving_license_no" class="form-control" ng-model="userregistration.driving_license_no" placeholder="Driving License Number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Account Number<span style="color: red;">*</span></label>
+                                    <div class="input-grop">
+                                        <input id="client-acc_no" type="text" name="acc_no" class="form-control" ng-model="userregistration.acc_no" ng-Required="true" placeholder="Account Number">
+                                        <span ng-show="client.acc_no.$error.required" style="color: red;">Account Number is required</span>
+                                    </div>
+                                   <!--  <div ng-show="userregistration."> -->
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Account Name<span style="color: red;">*</span></label>
+                                    <div class="input-group" >
+                                        <input id="client-acc_name" type="text" name="acc_name" class="form-control" ng-model="userregistration.acc_name" ng-Required="true" placeholder="Account Name">
+                                        <span ng-show="client.acc_name.$error.required" style="color: red;">Account Name is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Bank Name<span style="color: red;">*</span></label>
+                                    <div class="input-grop">
+                                        <input id="client-bank_name" type="text" name="bank_name" class="form-control" ng-model="userregistration.bank_name" ng-Required="true" placeholder="Bank Name"><span ng-show="client.bank_name.$error.required" style="color: red;">Bank Name is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Branch Name<span style="color: red;">*</span></label>
+                                    <div class="input-group" >
+                                        <input id="client-branch_name" type="text" name="branch_name" class="form-control" ng-model="userregistration.branch_name" ng-Required="true" placeholder="Branch Name">
+                                        <span ng-show="client.branch_name.$error.required" style="color: red;">Branch Name is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">IFSC Code<span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <input id="client-ifsc_code" type="text" name="ifsc_code" class="form-control" ng-model="userregistration.ifsc_code" ng-Required="true" placeholder="IFSC Code">
+                                        <span ng-show="client.ifsc_code.$error.required" style="color: red;">IFSC Code is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Additional Details</label>
+                                    <div class="input-group">
+                                        <input id="client-addtional_detail" type="text" name="addtional_detail" class="form-control" ng-model="userregistration.addtional_detail"  placeholder="Additional Details">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Address Line 1</label>
+                                    <div class="input-group" >
+                                        <input id="client-address_one" type="text" name="address_one" class="form-control" ng-model="userregistration.address_one" placeholder="Address Line 1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Address Line 2</label>
+                                    <div class="input-group">
+                                        <input id="client-address_two" type="text" name="address_two" class="form-control" ng-model="userregistration.address_two"  placeholder="Address Line 2">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">City</label>
+                                    <div class="input-group" >
+                                        <input id="client-city" type="text" name="city" class="form-control" ng-model="userregistration.city"  placeholder="City">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">State</label>
+                                    <div class="input-group">
+                                        <input id="client-state" type="text" name="state" class="form-control" ng-model="userregistration.state"  placeholder="State">
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Country</label>
+                                    <div class="input-group" >
+                                        <input id="client-country" type="text" name="country" class="form-control" ng-model="userregistration.country"  placeholder="Country">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="client-custom" class="label-custom">Pin Code</label>
+                                    <div class="input-group">
+                                        <input id="client-pin_code" type="text" name="pin_code" class="form-control" ng-model="userregistration.pin_code" placeholder="Pin code">
                                     </div>
                                 </div>
                             </div>
@@ -445,22 +600,22 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                            <label>User Role</label>
-                            <div class="select">
-                                <select name="account" class="form-control" ng-options="role.id as role.role_name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
-                                    <option>Select Role</option>
-                                </select>
+                                    <label for="client-custom" class="label-custom">User Role<span style="color: red;">*</span></label>
+                                    <div class="select">
+                                       <select id="client-account" name="account" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
+                                       <option>Select Role</option>
+                                       </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                            </div>
-                        </div>
+                        </div> 
+                         
                     </form>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-disabled="client.$invalid" ng-click="userForm()" data-dismiss="modal">Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+                   </div> 
+                   <div class="modal-footer">
+                      <button id="client" type="button" class="btn btn-primary" ng-disabled="client.first_name.$invalid || client.email.$invalid || client.password.$invalid || client.phone_one.$invalid || client.acc_no.$invalid || client.acc_name.$invalid || client.bank_name.$invalid || client.branch_name.$invalid || client.ifsc_code.$invalid" ng-click="userUpdateForm()" data-dismiss="modal">Save</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                   </div>
             </div>
         </div>
     </div>
