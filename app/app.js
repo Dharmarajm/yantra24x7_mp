@@ -6,7 +6,13 @@ angular.module('myApp', [
   'login',
   'registrations',
   'dashboard',
-  'user'/*,
+  'user',
+  'role',
+  'operator',
+  'operator_allocation_master',
+  'section',
+  'units'
+  /*,
   'alarms',
   'client',
   
@@ -20,14 +26,13 @@ angular.module('myApp', [
   'moment-picker',
   'shift',
   'breaktime',
-  'operator',
+  
   'operation',
   'comp',
-  'machine_allocation',
-  'operator_master',
-  'operator_allocation_master',
+  
+  
   'rolesetting',
-  'user',
+  
   'myApp.version'*/
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

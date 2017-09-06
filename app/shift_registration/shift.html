@@ -2,7 +2,7 @@
    <div class="page home-page">     
    <div ng-include="'header.html'"></div>
 
- <section class="updates section-padding section_top">
+ <section class="updates section-padding section_top" ng-init="shiftinit()">
             <div class="container-fluid">
                 <div class="row">
                   <!-- <div ng-show="myLoader" class="spinner">
@@ -11,9 +11,8 @@
                     <!-- Daily Feed-->
                     <div class="col-lg-5 col-md-5">
                         <header>
-                            <h1 class="h3 display"><i class="fa fa-bell-o"></i>Shift Registration
-                            <a href="" class="btn_add" data-toggle="modal" data-target="#exampleModalLabel" ng-if="shiftdetails.id == null" ng-click="cleandata()"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                            <span class="note">(Note: Enter your day start time)</span>
+                            <h1 class="h3 display"><i class="fa fa-bell-o"></i> Current Shift Details
+                            
                           </h1>
                         </header>
                         <div class="row">
@@ -26,13 +25,15 @@
                                     </div>
                                     <div class="play_circle"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
                                     <h1>Day Start Time</h1>
-                                    <h2>{{shiftdetails.day_start_time }}</h2>
+                                    <h2>{{shift[0].start_time }}</h2>
+                                    <h4>Shift Start: {{shift[0].start_time}}</h4>
+                                     <h4>Shift End: {{shift[0].end_time }}</h4>
                                     <div class="row status_icon shift">
                                         <div class="col-md-6 status_first">
-                                            <i class="fa fa-clock-o"></i> Working Time {{shiftdetails.working_time }}
+                                            <i class="fa fa-clock-o"></i> Total Working Hours {{shift[0].total_working_hours }}
                                         </div>
                                         <div class="col-md-6">
-                                            <i class="fa fa-cog" aria-hidden="true"></i> Number of Shifts {{shiftdetails.no_of_shift }}
+                                            <i class="fa fa-cog" aria-hidden="true"></i>Shift Number{{shift[0].number }}
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +44,7 @@
                     </div>
                     <div class="col-lg-7">
                         <header>
-                            <h1 class="h3 display"><i class="fa fa-laptop"></i>Shift Transaction Registration
+                            <h1 class="h3 display"><i class="fa fa-laptop"></i>Shift Registration
                             <a href="" class="btn_add" data-toggle="modal" data-target="#exampleModalLabel1" ng-click="cleandata()"><i class="fa fa-plus" aria-hidden="true"></i></a>
                             <span class="note">(Note: Please register your break details under the actions tab for each shift)</span>
                           </h1>
@@ -55,22 +56,25 @@
                                         <tr>
                                             <th>Shift Start Time</th>
                                             <th>Shift End Time</th>
-                                            <th>Actual Working Hours</th>
+                                            <th>Total Working Hours</th>
+                                            <th>Day Start Time</th>
+                                            <th>Shift Number</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="shift in shiftstrans">
-                                            <td>{{ shift.shift_start_time }}</td>
-                                            <td>{{ shift.shift_end_time }}</td>
-                                            <td>{{ shift.actual_working_hours }}</td>
+                                        <tr ng-repeat="shift in shiftdetails">
+                                            <td>{{ shift.start_time }}</td>
+                                            <td>{{ shift.end_time }}</td>
+                                            <td>{{ shift.total_working_hours }}</td><td>{{shift.day_start_time}}</td>
+                                            <td>{{shift.number}}</td>
                                             <td>
                                                 <ul class="item-actions-list">
                                                     <li>
-                                                        <a class="remove"> <i class="fa fa-trash-o " confirmed-click="delete1(shift.id)"  ng-confirm-click="Do you want to delete"></i> </a>
+                                                        <a class="remove"> <i class="fa fa-trash-o " confirmed-click="delete(shift.id)"  ng-confirm-click="Do you want to delete"></i> </a>
                                                     </li>
                                                     <li>
-                                                        <a class="edit" data-toggle="modal" data-target="#exampleModalLabel1" title="Edit" ng-click="edit1(shift.id)"> <i class="fa fa-pencil"></i> </a>
+                                                        <a class="edit" data-toggle="modal" data-target="#exampleModalLabel" title="Edit" ng-click="edit(shift.id)"> <i class="fa fa-pencil"></i> </a>
                                                     </li>
                                                     <li>
                                                         <a class="create" title=" creation"> <i class="fa fa-plus" ng-click="breaktime(shift.id)"></i> </a>
@@ -88,44 +92,9 @@
             </div>
         </section>
 
-    <!-- modal -->
-    <div class="modal fade" id="exampleModalLabel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Shift Registration</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Day Start Time</label>
-                            <input type="text" placeholder="Start Time" class="form-control" ng-Required="true" ng-model="shiftregistration.day_start_time_dummy" size="8" bs-timepicker>
-                        </div>
-                        <div class="form-group">
-                            <label>Working Time</label>
-                            <input type="text" placeholder="Working Time" class="form-control" ng-Required="true" ng-model="shiftregistration.working_time_dummy"  size="8"   data-time-type="time" data-time-format="HH:mm:ss" bs-timepicker>
-                        </div>
-                        <div class="form-group">
-                            <label>Number of Shifts</label>
-                            <input type="text" placeholder="Shift" class="form-control" ng-Required="true" ng-model="shiftregistration.no_of_shift">
-                        </div>
-
-                    </form>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-disabled="shiftreg.$invalid" ng-click="shiftform()" data-dismiss="modal">Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+ 
      <!-- modal -->
-    <div class="modal fade" id="exampleModalLabel1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModalLabel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -138,22 +107,30 @@
                     <form name="shifttran">
                         <div class="form-group">
                             <label>Shift Start Time</label>
-                            <input type="text" placeholder="Start Time" class="form-control" ng-Required="true" ng-model="shifttransaction.shift_start_time_dummy" ng-readonly="false" size="8"   bs-timepicker>
+                            <input type="text" placeholder="Start Time" class="form-control" ng-Required="true" ng-model="shiftregistration.start_time_dummy" ng-readonly="false" size="8"   bs-timepicker>
                         </div>
                          <div class="form-group">
                             <label>Shift End Time</label>
-                            <input type="text" placeholder="End Time" class="form-control" ng-Required="true" ng-model="shifttransaction.shift_end_time_dummy"  size="8"  bs-timepicker>
+                            <input type="text" placeholder="End Time" class="form-control" ng-Required="true" ng-model="shiftregistration.end_time_dummy"  size="8"  bs-timepicker>
                         </div>
                         <div class="form-group">
                             <label>Shift Number</label>
-                            <input type="text" placeholder="Number" class="form-control" ng-Required="true" ng-model="shifttransaction.shift_no">
+                            <input type="text" placeholder="Number" class="form-control" ng-Required="true" ng-model="shiftregistration.number">
+                        </div>
+                         <div class="form-group">
+                            <label>Total Working Hours</label>
+                           <input type="text" placeholder="Total Working Hours" class="form-control" ng-Required="true" ng-model="shiftregistration.total_time_dummy" data-time-format="HH:mm:ss" size="8" bs-timepicker>
+                        </div>
+                         <div class="form-group">
+                            <label>Day Start Time</label>
+                            <input type="text" placeholder="Day Start Time" class="form-control" ng-Required="true" ng-model="shiftregistration.day_start_time_dummy"  size="8"  bs-timepicker>
                         </div>
 
                     </form>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-disabled="shifttran.$invalid" ng-click="newshifttrans()" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-primary" ng-disabled="shifttran.$invalid" ng-click="shiftform()" data-dismiss="modal">Save</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>

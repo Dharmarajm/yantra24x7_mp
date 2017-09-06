@@ -54,7 +54,7 @@ $scope.userregistration = {
 $scope.username=localStorage.getItem("username");
 $scope.userForm= function(){  
 
-  var userregistrationform = {
+  var userregistration = {
                               "user":{ 
                                    
                                    "first_name":$scope.userregistration.first_name,
@@ -100,7 +100,7 @@ $scope.userForm= function(){
         
         if(data){
           //alert("hi");
-$scope.userregistrationform="";
+$scope.userregistration="";
        // $state.go('/company_registration');
     alert("Registration completed");
     //$window.location.reload();
@@ -119,9 +119,8 @@ $scope.userregistrationform="";
  
 
 $scope.userUpdateForm=function(){
- var userregistrationform = {
-                              "user":{ 
-                                   
+ var userregistration = {
+                                 
                                    "first_name":$scope.userregistration.first_name,
                                    "last_name":$scope.userregistration.last_name,
                                    "email":$scope.userregistration.email,
@@ -138,29 +137,30 @@ $scope.userUpdateForm=function(){
                                    "usertype_id":$scope.userregistration.usertype_id,
                                    "approval_status":$scope.userregistration.approval_status,
                                    "role_id":$scope.userregistration.role_id,
-                                   "tenant_id": $scope.tenant_id
-                                   },
-
-                              "user_detail":{     
-                                   "adhar_card_no": $scope.userregistration.adhar_card_no,
-                                   "driving_license_no": $scope.userregistration.driving_license_no,
-                                   "acc_no": $scope.userregistration.acc_no,
-                                   "acc_name": $scope.userregistration.acc_name,
-                                   "bank_name": $scope.userregistration.bank_name,
-                                   "branch_name": $scope.userregistration.branch_name,
-                                   "ifsc_code": $scope.userregistration.ifsc_code,
+                                   "tenant_id": $scope.tenant_id,
+                                   
+                       "user_detail":{     
+                                    "adhar_card_no": $scope.userregistration.adhar_card_no,
+                                    "driving_license_no": $scope.userregistration.driving_license_no,
+                                    "acc_no": $scope.userregistration.acc_no,
+                                    "acc_name": $scope.userregistration.acc_name,
+                                    "bank_name": $scope.userregistration.bank_name,
+                                    "branch_name": $scope.userregistration.branch_name,
+                                    "ifsc_code": $scope.userregistration.ifsc_code
                                    }
+                                  
                             };
+          console.log($scope.userregistration.user_detail);                  
  $http({
         method: 'put',
         url: $rootScope.api_url+'users/'+$scope.userregistration.id,
-        data: userregistrationform  
+        data: userregistration  
       })
       
       .success(function(data) {
         console.log($scope.success=data);
         if(data){
-
+    console.log(data);
        // $state.go('/company_registration');
 alert("Updated Successfully");
     $scope.userinit();
@@ -231,13 +231,17 @@ $scope.userregistration = angular.copy($scope.cleardata);
 
 
 
-$scope.edit = function(id) {
+$scope.edit = function(id,user_id) {
   var i;
+  console.log(id,user_id);
+  
    for(i in $rootScope.users) {
 
             if($rootScope.users[i].id == id) {
                var user_id=$rootScope.users[i];
+               console.log($rootScope.users[i])
                $scope.userregistration = angular.copy(user_id);
+               console.log($rootScope.users[i]);
             }
            
         }

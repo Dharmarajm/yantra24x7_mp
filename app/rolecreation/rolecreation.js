@@ -11,28 +11,38 @@ angular.module('role', ['ngRoute'])
 
 .controller('RolecreationCtrl', ['$scope', '$http','$location','$window','$rootScope',
   function($scope, $http,$location,$window,$rootScope) {
+$scope.tenant_id=localStorage.getItem('tenant_id');
+$scope.roleregistration = {id: null,"name":"","type_name":"","description":"","tenant_id": $scope.tenant_id,"role_type_id":null,"reference_id":$scope.reference_id};
 
-$scope.roleregistration = {id: null,role_name:"",tenant_id: $scope.tenant_id};
+$scope.roleForm= function(data){
 
-$scope.roleForm= function(){
-
-
-        var roleregistration = {"role_name":$scope.roleregistration.role_name,"tenant_id": $scope.roleregistration.tenant_id};
+  var roleregistration = {
+                             "name":$scope.roleregistration.name,
+                             "tenant_id": $scope.roleregistration.tenant_id,
+                             "role_type_id":$scope.roleregistration.role_type_id,
+                             "reference_id":$scope.reference_id
+                         };
+  console.log(roleregistration);
   if ($scope.roleregistration.id== null){
       $http
       ({
         method: 'post',
-        url: $rootScope.api_url+'api/v1/roles',
+        url: $rootScope.api_url+'roles',
         data: roleregistration
       })
 
       .success(function(data) {
 
         if(data){
+
+          $scope.roleName=data;
+          console.log($scope.roleName);
 $scope.roleregistration="";
+       
        // $state.go('/company_registration');
     alert("Registration completed");
-     $window.location.reload();
+     //$window.location.reload();
+    
      $scope.rolecreationinit();
         }else{
         alert('Registration Failed');
@@ -44,7 +54,7 @@ $scope.roleregistration="";
  $http
       ({
         method: 'put',
-        url: $rootScope.api_url+'api/v1/roles/'+$scope.roleregistration.id,
+        url: $rootScope.api_url+'roles/'+$scope.roleregistration.id,
         data: roleregistration
       })
 
@@ -64,39 +74,57 @@ alert("Updated Successfully");
     }
 
 /*app.js end*/
+
+
+
 $scope.rolecreationinit=function(){
+
 $http({
 
     method:'GET',
-    url:$rootScope.api_url+'api/v1/roles?tenant_id='+$scope.tenant_id
+    url:$rootScope.api_url+'tenant_roles?tenant_id='+$scope.tenant_id
   })
   .then(function(response){
-   $rootScope.roles = response.data;
+   $scope.roles = response.data;
+
+    })
+
+$http({
+
+    method:'GET',
+    url:$rootScope.api_url+'role_types'
+  })
+  .then(function(response){
+   $scope.role_types=response.data;
+   console.log($scope.roles)
+   
 
     })
 }
   $scope.cleandata=function(){
 
-$scope.cleardata= {id: null,role_name:"",tenant_id: $scope.tenant_id};
+$scope.roleregistration = {id: null,"name":"","type_name":"","description":"","tenant_id": $scope.tenant_id,"role_type_id":null,"reference_id":$scope.reference_id};
 $scope.roleregistration = angular.copy($scope.cleardata);
   }
 
+    
+
     $scope.edit = function(id) {
+   var i;
+   for(i in $scope.roles) {
 
-
-
-var i;
-   for(i in $rootScope.roles) {
-
-            if($rootScope.roles[i].id == id) {
-               var role_id=$rootScope.roles[i];
+            if($scope.roles[i].id == id) {
+               var role_id=$scope.roles[i];
                $scope.roleregistration = angular.copy(role_id);
             }
 
         }
 
     }
+/*$scope.roleType=function(id){
+  console.log(id.id);
 
+}*/
 
 $scope.roleset=function(id){
 localStorage.setItem("role_idforsetting",id);
@@ -106,7 +134,7 @@ $location.path("/rolesetting");
 
 $scope.delete = function(id) {
  if ($window.confirm("Please confirm?")) {
-$http.delete($rootScope.api_url+'api/v1/roles/'+id).success(function(data) {
+$http.delete($rootScope.api_url+'roles/'+id).success(function(data) {
 
         if(data){
 

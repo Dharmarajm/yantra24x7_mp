@@ -12,23 +12,45 @@ angular.module('machine_reg', ['ngRoute'])
 .controller('Machine_registrationCtrl', ['$scope', '$http','$location','$rootScope','$window',
   function($scope, $http,$location,$rootScope,$window,DTOptionsBuilder) {
 //$scope.myUrl = $location.absUrl();
-$scope.myLoader = true;
-$scope.tenant_id=localStorage.getItem("tenant_id");
-$rootScope.tenant=$scope.tenant_id;
-$scope.username=localStorage.getItem("username");
-//$scope.ipaddr = /^\+?\d{3}[.]?\d{}[- ]?\d{}[-]?\d{}$/;
-$scope.machineregistration = {id: null,machine_name:"",machine_model:"",machine_serial_no:"",machine_type:"",machine_ip:"",tenant_id: null};
+
+$scope.machineregistration = {id: null,
+ 
+name: "", 
+  machine_id: "", 
+  type: "",
+  controller_name: "", 
+  controller_model:"", 
+  serial_number: "", 
+  ip: "", 
+  manufacture_year: "", 
+  manufacture_name: "", 
+  section_id: null};
+
+
 
 
  $scope.newmachine = function(){  
   
-        var machineregistration = {"machine_name":$scope.machineregistration.machine_name,"machine_model":$scope.machineregistration.machine_model,"machine_serial_no":$scope.machineregistration.machine_serial_no,"machine_type":$scope.machineregistration.machine_type,"machine_ip":$scope.machineregistration.machine_ip,"tenant_id": $scope.tenant_id};
+        var machineregistration = {
+
+"name": $scope.machineregistration.name, 
+  "machine_id": $scope.machineregistration.machine_id, 
+  "machine_type":$scope.machineregistration.type,
+  "controller_name":$scope.machineregistration.controller_name, 
+  "controller_model":$scope.machineregistration.controller_model, 
+  "serial_number": $scope.machineregistration.serial_number, 
+  "ip":$scope.machineregistration.ip, 
+  "manufacture_year": $scope.machineregistration.manufacture_year, 
+  "manufacture_name": $scope.machineregistration.manufacture_name, 
+  "section_id": $scope.machineregistration.section_id};
+
+
      
       if ($scope.machineregistration.id== null){
        // alert(machineregistration.machine_ip);
       $http({
         method: 'post',
-        url: $rootScope.api_url+'api/v1/machines',
+        url: $rootScope.api_url+'machines',
         data: machineregistration  
       })
       
@@ -51,7 +73,7 @@ $scope.machineregistration = {id: null,machine_name:"",machine_model:"",machine_
      
 $http({
         method: 'put',
-        url: $rootScope.api_url+'api/v1/machines/'+$scope.machineregistration.id,
+        url: $rootScope.api_url+'machines/'+$scope.machineregistration.id,
         data: machineregistration  
       })
       
@@ -75,13 +97,39 @@ $http({
 $scope.machineinit=function(){
 $http({
     method:'GET',
-    url:$rootScope.api_url+'api/v1/machines?tenant_id='+$rootScope.tenant
+    url:$rootScope.api_url+'tenant_machine?tenant_id='+$scope.tenant_id
   })
   .then(function(response){
-    $scope.myLoader = false;
-   $rootScope.machines = response.data; 
+    
+   $rootScope.machines = response.data;
+   
+  
+    })
+
+
+    $http({
+
+    method:'GET',
+    url:$rootScope.api_url+'tenant_section?tenant_id='+$scope.tenant_id
+  })
+  .then(function(response){
+    $scope.sections_details=[]
+   $rootScope.section_for_machine= response.data; 
+
+   for(var i in $rootScope.section_for_machine){
+
+    for(var j in $rootScope.section_for_machine[i].sections){
+       var temp={id:$rootScope.section_for_machine[i].sections[j].id,
+        name:$rootScope.section_for_machine[i].name+"-"+$rootScope.section_for_machine[i].sections[j].name};
+ $scope.sections_details.push(temp);
+
+    }
+
+   }
+
    
     })
+
 }
 $scope.cleandata= function(id) {
   $scope.machineregist = {id: null,machine_name:"",machine_model:"",machine_serial_no:"",machine_type:"",machine_ip:"",tenant_id: null};
@@ -110,7 +158,7 @@ alert("hi");
 //delete table
 $scope.delete = function(id) {
 
-$http.delete($rootScope.api_url+'api/v1/machines/'+id).success(function(data) {
+$http.delete($rootScope.api_url+'machines/'+id).success(function(data) {
         
         if(data){
 
