@@ -11,7 +11,15 @@ angular.module('myApp', [
   'operator',
   'operator_allocation_master',
   'section',
-  'units'
+  'units',
+  'bwo_creation',
+  'bwo_list',
+  'preventive_maintenance_creation',
+  'preventive_maintenance_list',
+  'anualMaintenanceCreation',
+  'anualMaintenanceList',
+  'preventive_maintenance_checklist',
+  'bwo_service_details'
   /*,
   'alarms',
   'client',
@@ -84,7 +92,7 @@ alert("Logout Successfully");
   }
 
 $scope.pageverification=function(url){
-
+ $window.location="/#!/rolecreation";
 }
 
 

@@ -1,0 +1,183 @@
+<div ng-include="'sidebar.html'"></div>
+<div class="page home-page">     
+<div ng-include="'header.html'"></div>
+ <section class="bwo_updates section-padding section_top">
+    <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <img ng-src="assets/images/u7949.png">
+                &nbsp;&nbsp;&nbsp;&nbsp;<label><b>Breakdown Work Order</b></label>
+              </div>
+            </div>
+
+           <div class="row d-flex align-items-stretch">
+            <div class="col-lg-8">
+              <div class="container-form6">
+                 <div class="row">
+                 </div><br>
+                 <div class="row">
+                     <div class="col-lg-1"></div>  
+                     <div class="col-lg-5">
+                       <span><b>Location</b></span>
+                     </div>
+                     <div class="col-lg-5">
+                     	<div class="select">
+                            <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
+                            <option>Select Role</option>
+                            </select>
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div>
+                 </div>
+                  <div class="row">
+                     <div class="col-lg-1"></div>     
+                     <div class="col-lg-5">
+                       <span><b>Section</b></span>
+                     </div>
+                     <div class="col-lg-5">
+                        <div class="select">
+                            <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
+                            <option>Select Role</option>
+                            </select>
+                        </div> 
+                     </div>
+                     <div class="col-lg-1"></div>  
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-1"></div>   
+                     <div class="col-lg-5">
+                       <span><b>Machine</b></span>
+                     </div>
+                     <div class="col-lg-5">
+                     	<div class="select">
+                            <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
+                            <option>Select Role</option>
+                            </select>
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div> 
+                 </div>
+                 <div class="row">
+                     <div class="col-lg-1"></div> 
+                     <div class="col-lg-5">
+                       <span><b>Mfr.Date</b></span>
+                     </div>
+                     <div class="col-lg-5">
+                     	<div class="form-group">
+                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Manufactured Date">
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div> 
+                 </div>
+                 <div class="row">
+                     <div class="col-lg-1"></div> 
+                     <div class="col-lg-5">
+                       <span><b>MWO Number</b></span>
+                     </div>
+                     <div class="col-lg-5">
+                     	<div class="form-group">
+                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Machine Wrok Order Number">
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div> 
+                 </div>
+                 <div class="row">
+                     <div class="col-lg-1"></div> 
+                     <div class="col-lg-5">
+                       <span><b>Start Time</b></span>
+                     </div>
+                     <div class="col-lg-5">
+                     	<div class="form-group">
+                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Start Time">
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div> 
+                 </div>
+                 <div class="row">
+                     <div class="col-lg-1"></div> 
+                     <div class="col-lg-5">
+                       <span><b>End Time</b></span>
+                     </div>
+                      <div class="col-lg-5">
+                     	<div class="form-group">
+                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="End Time">
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div> 
+                 </div>
+                 <div class="row">
+                     <div class="col-lg-1"></div> 
+                     <div class="col-lg-5">
+                       <span><b>Alarm</b></span>
+                     </div>
+                      <div class="col-lg-5">
+                     	<div class="form-group">
+                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Alarm">
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div> 
+                 </div>
+                 <div class="row">
+                     <div class="col-lg-1"></div>   
+                     <div class="col-lg-5">
+                       <span><b>MWO Type</b></span>
+                     </div>
+                      <div class="col-lg-5">
+                     	<div class="form-group">
+                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Machine Wrok Order Type">
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div> 
+                 </div>
+                 <div class="row">
+                     <div class="col-lg-1"></div> 
+                     <div class="col-lg-5">
+                       <span><b>MWO Closed by</b></span>
+                     </div>
+                      <div class="col-lg-5">
+                     	<div class="form-group">
+                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Machine Wrok Order Closed by">
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div> 
+                 </div>
+                 <div class="row">
+                     <div class="col-lg-1"></div> 
+                     <div class="col-lg-5">
+                       <span><b>Status</b></span>
+                     </div>
+                      <div class="col-lg-5">
+                     	<div class="form-group">
+                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Status">
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div> 
+                 </div>
+                 <div class="row">
+                     <div class="col-lg-1"></div> 
+                     <div class="col-lg-5">
+                       <span><b>Awaiting</b></span>
+                     </div>
+                     <div class="col-lg-5">
+                     	<div class="form-group">
+                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Awaiting">
+                        </div>
+                     </div>
+                     <div class="col-lg-1"></div> 
+                 </div>
+                 <div class="row">
+                   <div class="col-lg-9"></div>
+                     <div class="col-lg-2">
+                        <div class="form-group">   
+                            <button type="button" class="btn btn-primary btn-md">Next</button>
+                        </div>  
+                     </div>
+                   <div class="col-lg-1"></div>
+                 </div><br>
+            </div> 
+           </div>  
+          </div>
+    </div>       
+ </section>                               
+   <div ng-include="'footer.html'"></div>
+ </div>

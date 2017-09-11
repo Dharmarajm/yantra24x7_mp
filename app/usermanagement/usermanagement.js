@@ -17,7 +17,7 @@ angular.module('user', ['ngRoute'])
   $scope.email = {
         text: 'me@example.com'
       };
-  $scope.emailFormat = '/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/';    
+  $scope.eml_add = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 $scope.tenant_id=localStorage.getItem('tenant_id');
 $rootScope.tenant_id=$scope.tenant_id;
 /*$scope.role_type_id=localStorage.getItem("role_type_id");
@@ -93,7 +93,7 @@ $scope.userForm= function(){
       ({
         method: 'post',
         url: $rootScope.api_url+'users',
-        data: userregistrationform  
+        data: userregistration  
       })
       
       .success(function(data) {
@@ -118,9 +118,11 @@ $scope.userregistration="";
       
  
 
-$scope.userUpdateForm=function(){
+$scope.userUpdateForm=function(id){
+  $scope.tenant_id=localStorage.getItem('tenant_id');
+  console.log(localStorage.getItem('tenant_id'));
  var userregistration = {
-                                 
+                                "user":{ 
                                    "first_name":$scope.userregistration.first_name,
                                    "last_name":$scope.userregistration.last_name,
                                    "email":$scope.userregistration.email,
@@ -137,8 +139,8 @@ $scope.userUpdateForm=function(){
                                    "usertype_id":$scope.userregistration.usertype_id,
                                    "approval_status":$scope.userregistration.approval_status,
                                    "role_id":$scope.userregistration.role_id,
-                                   "tenant_id": $scope.tenant_id,
-                                   
+                                   "tenant_id": $scope.tenant_id
+                                   },
                        "user_detail":{     
                                     "adhar_card_no": $scope.userregistration.adhar_card_no,
                                     "driving_license_no": $scope.userregistration.driving_license_no,
@@ -150,15 +152,15 @@ $scope.userUpdateForm=function(){
                                    }
                                   
                             };
-          console.log($scope.userregistration.user_detail);                  
+          console.log($scope.userregistration);                  
  $http({
         method: 'put',
-        url: $rootScope.api_url+'users/'+$scope.userregistration.id,
+        url: $rootScope.api_url+'users/'+id,
         data: userregistration  
       })
       
       .success(function(data) {
-        console.log($scope.success=data);
+        
         if(data){
     console.log(data);
        // $state.go('/company_registration');
@@ -181,7 +183,7 @@ $http({
   })
   .then(function(response){
     $scope.myLoader = false;
-   $rootScope.users = response.data; 
+   $scope.users = response.data; 
    
     })
 
@@ -231,21 +233,47 @@ $scope.userregistration = angular.copy($scope.cleardata);
 
 
 
-$scope.edit = function(id,user_id) {
+$scope.edit = function(id) {
   var i;
-  console.log(id,user_id);
-  
-   for(i in $rootScope.users) {
+  $scope.updateId=id;
+  console.log(id);
+   for(i in $scope.users) {
 
-            if($rootScope.users[i].id == id) {
-               var user_id=$rootScope.users[i];
-               console.log($rootScope.users[i])
-               $scope.userregistration = angular.copy(user_id);
-               console.log($rootScope.users[i]);
-            }
+            if($scope.users[i].id == id) {
+               var user_id=$scope.users[i];
+               console.log($scope.users[i]);
+               
+               $scope.userregistration ={ "id":$scope.users[i].id,
+                                          "first_name":$scope.users[i].first_name,
+                                          "last_name":$scope.users[i].last_name,
+                                          "email":$scope.users[i].email,
+                                          "password":$scope.users[i].password,
+                                          "phone_one": $scope.users[i].phone_one,
+                                          "phone_two": $scope.users[i].phone_two,
+                                          "addtional_detail":$scope.users[i].addtional_detail,
+                                          "address_one": $scope.users[i].address_one,
+                                          "address_two": $scope.users[i].address_two,
+                                          "city": $scope.users[i].city,
+                                          "state": $scope.users[i].state,
+                                          "country":$scope.users[i].country,
+                                          "pin_code": $scope.users[i].pin_code,
+                                          "role_id":$scope.users[i].role_id,                                         
+                                          "approval_status":$scope.users[i].approval_status,
+                                          "tenant_id": $scope.users[i].tenant_id,    
+                                          "adhar_card_no": $scope.users[i].user_detail.adhar_card_no,
+                                          "driving_license_no": $scope.users[i].user_detail.driving_license_no,
+                                          "acc_no": $scope.users[i].user_detail.acc_no,
+                                          "acc_name": $scope.users[i].user_detail.acc_name,
+                                          "bank_name": $scope.users[i].user_detail.bank_name,
+                                          "branch_name": $scope.users[i].user_detail.branch_name,
+                                          "ifsc_code": $scope.users[i].user_detail.ifsc_code
+                                          
+                                        }
+            console.log($scope.userregistration);                            
            
         }
     }
+ }   
 
 $scope.delete = function(id) {
  if ($window.confirm("Please confirm?")) {

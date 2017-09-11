@@ -3,3 +3,14 @@
   Showing of 'interpolate' filter:
   {{ 'Current version is v%VERSION%.' | interpolate }}
 </p>
+<div class="col-sm-10">
+  <input type="button" class="btn btn-info" ng-click="addNewChoice()" value="ADD QUESTION">
+  <div class="col-sm-4">
+    <fieldset data-ng-repeat="field in choiceSet.choices track by $index">
+      <textarea rows="4" cols="50" ng-model=" choiceSet.choices[$index]"></textarea>
+      <button type="button" class="btn btn-default btn-sm" ng-click="removeChoice($index)">
+        <span class="glyphicon glyphicon-minus"></span> REMOVE
+      </button>
+    </fieldset>
+  </div>
+</div>

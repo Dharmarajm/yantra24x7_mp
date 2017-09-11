@@ -13,7 +13,7 @@ angular.module('registrations', ['ngRoute'])
   function($scope,$http,$location,$window,$rootScope) {
 
 $scope.registration = {"first_name": '',"last_name": '',"email": '',"password": '',"phone_one": '',"phone_two": '',"tenant_name": '', "website": '',"brand_name": '' ,"about_company": '',"address_one": '',"address_two": '',"city": '',"state": '',"country":'',"pincode": '',"approval_status":'active'};
-
+$scope.eml_add = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 $scope.signup = function(){  
   
   console.log($scope.registration);

@@ -70,7 +70,7 @@ $scope.operatorUpdateForm=function(id){
 console.log(operatorassignregistration);
   $http({
         method: 'put',
-        url: $rootScope.api_url+'operator_allocations_update',
+        url: $rootScope.api_url+'operator_allocations_update?id='+id,
         data: operatorassignregistration  
       })
       
