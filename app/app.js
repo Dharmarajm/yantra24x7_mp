@@ -19,7 +19,9 @@ angular.module('myApp', [
   'anualMaintenanceCreation',
   'anualMaintenanceList',
   'preventive_maintenance_checklist',
-  'bwo_service_details'
+  'bwo_service_details',
+  'bwo_spare_details',
+  'bwo_analysis'
   /*,
   'alarms',
   'client',
