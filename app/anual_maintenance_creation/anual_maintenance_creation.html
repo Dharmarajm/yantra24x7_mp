@@ -1,7 +1,7 @@
 <div ng-include="'sidebar.html'"></div>
 <div class="page home-page">     
 <div ng-include="'header.html'"></div>
-<section class="bwo_updates section-padding section_top">
+<section class="anual_maintenance_creation section-padding section_top">
     <div class="container-fluid">
             <div class="row">
               <div class="col-lg-12">
@@ -23,7 +23,7 @@
                      <div class="col-lg-5">
                      	<div class="select">
                             <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
-                            <option>Select Machine</option>
+                            <option value="">Select Machine</option>
                             </select>
                         </div>
                      </div>

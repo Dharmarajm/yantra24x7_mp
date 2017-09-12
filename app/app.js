@@ -3,6 +3,8 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
+  'ui.calendar',
+  'ui.bootstrap',
   'login',
   'registrations',
   'dashboard',
@@ -21,7 +23,8 @@ angular.module('myApp', [
   'preventive_maintenance_checklist',
   'bwo_service_details',
   'bwo_spare_details',
-  'bwo_analysis'
+  'bwo_analysis',
+  'preventive_maintenance_slip'
   /*,
   'alarms',
   'client',

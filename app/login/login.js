@@ -47,7 +47,7 @@ angular.module('login', ['ngRoute'])
        localStorage.setItem("reference_id",data.role.reference_id);
        localStorage.setItem("roletype_name",data.role.role_type.type_name);
        $scope.const();
-         $window.location='/#!/bwo_service_details'; 
+         $window.location='/#!/bwo_analysis'; 
         }else{      
            
         alert('The username or password is incorrect');   

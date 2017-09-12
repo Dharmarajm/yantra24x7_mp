@@ -11,5 +11,7 @@ angular.module('bwo_creation', ['ngRoute'])
 
 .controller('bwoCreationCtrl', ['$scope', '$http','$location','$window','$rootScope',
   function($scope, $http,$location,$window,$rootScope) {
+  
+  
 
 }]);

@@ -1,7 +1,7 @@
 <div ng-include="'sidebar.html'"></div>
 <div class="page home-page">     
 <div ng-include="'header.html'"></div>
- <section class="bwo_updates section-padding section_top">
+ <section class="bwo_creates section-padding section_top">
     <div class="container-fluid">
             <div class="row">
               <div class="col-lg-12">
@@ -12,7 +12,7 @@
 
            <div class="row d-flex align-items-stretch">
             <div class="col-lg-8">
-              <div class="container-form6">
+              <div class="container">
                  <div class="row">
                  </div><br>
                  <div class="row">
@@ -22,8 +22,8 @@
                      </div>
                      <div class="col-lg-5">
                      	<div class="select">
-                            <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
-                            <option>Select Role</option>
+                            <select name="location" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="bwocreation.role_id" class="btn btn-default select-width selectpicker form-control">
+                            <option value="">Select Location</option>
                             </select>
                         </div>
                      </div>
@@ -36,8 +36,8 @@
                      </div>
                      <div class="col-lg-5">
                         <div class="select">
-                            <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
-                            <option>Select Role</option>
+                            <select name="section" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="bwocreation.role_id" class="btn btn-default select-width selectpicker form-control">
+                            <option value="">Select Section</option>
                             </select>
                         </div> 
                      </div>
@@ -50,8 +50,8 @@
                      </div>
                      <div class="col-lg-5">
                      	<div class="select">
-                            <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
-                            <option>Select Role</option>
+                            <select name="machine" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="bwocreation.role_id" class="btn btn-default select-width selectpicker form-control">
+                            <option value="">Select Machine</option>
                             </select>
                         </div>
                      </div>
@@ -64,7 +64,7 @@
                      </div>
                      <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Manufactured Date">
+                            <input type="text" name="mfrdate" class="form-control" ng-model="bwocreation.last_name" placeholder="Manufactured Date">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -76,7 +76,7 @@
                      </div>
                      <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Machine Wrok Order Number">
+                            <input type="text" name="mwonumber" class="form-control" ng-model="bwocreation.last_name" placeholder="Machine Wrok Order Number">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -88,7 +88,7 @@
                      </div>
                      <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Start Time">
+                            <input type="text" name="starttime" class="form-control" ng-model="bwocreation.last_name" placeholder="Start Time">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -100,7 +100,7 @@
                      </div>
                       <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="End Time">
+                            <input type="text" name="endtime" class="form-control" ng-model="bwocreation.last_name" placeholder="End Time">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -112,7 +112,7 @@
                      </div>
                       <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Alarm">
+                            <input type="text" name="alarm" class="form-control" ng-model="bwocreation.last_name" placeholder="Alarm">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -124,7 +124,7 @@
                      </div>
                       <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Machine Wrok Order Type">
+                            <input type="text" name="mwotype" class="form-control" ng-model="bwocreation.last_name" placeholder="Machine Work Order Type">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -136,7 +136,7 @@
                      </div>
                       <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Machine Wrok Order Closed by">
+                            <input type="text" name="mwoclosedby" class="form-control" ng-model="bwocreation.last_name" placeholder="Machine Wrok Order Closed by">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -148,7 +148,7 @@
                      </div>
                       <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Status">
+                            <input type="text" name="status" class="form-control" ng-model="bwocreation.last_name" placeholder="Status">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -160,7 +160,7 @@
                      </div>
                      <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Awaiting">
+                            <input type="text" name="awaiting" class="form-control" ng-model="bwocreation.last_name" placeholder="Awaiting">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -169,7 +169,7 @@
                    <div class="col-lg-9"></div>
                      <div class="col-lg-2">
                         <div class="form-group">   
-                            <button type="button" class="btn btn-primary btn-md">Next</button>
+                            <input type="button" class="btn btn-primary btn-md" Value="Next" ng-click="next(bwocreation)">
                         </div>  
                      </div>
                    <div class="col-lg-1"></div>
