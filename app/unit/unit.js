@@ -67,6 +67,7 @@ $scope.unitForm= function(){
         
         if(data){
           //alert("hi");
+          console.log(data);
 $scope.unitregistration="";
        // $state.go('/company_registration');
     alert("Registration completed");
@@ -117,7 +118,7 @@ $http({
   .then(function(response){
     
    $rootScope.units = response.data; 
-   console.log($rootScope.units);
+   console.log($rootScope.units.id);
     })
 }
 
@@ -146,6 +147,7 @@ $scope.unitregistration = angular.copy($scope.cleardata);
 
     $scope.edit = function(id) {
 var i;
+console.log(id);
    for(i in $rootScope.units) {
 
             if($rootScope.units[i].id == id) {
