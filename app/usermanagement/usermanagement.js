@@ -241,9 +241,37 @@ $scope.edit = function(id) {
 
             if($scope.users[i].id == id) {
                var user_id=$scope.users[i];
-               console.log($scope.users[i]);
+               if($scope.users[i].user_detail==null){
                
                $scope.userregistration ={ "id":$scope.users[i].id,
+                                          "first_name":$scope.users[i].first_name,
+                                          "last_name":$scope.users[i].last_name,
+                                          "email":$scope.users[i].email,
+                                          "password":$scope.users[i].password,
+                                          "phone_one": $scope.users[i].phone_one,
+                                          "phone_two": $scope.users[i].phone_two,
+                                          "addtional_detail":$scope.users[i].addtional_detail,
+                                          "address_one": $scope.users[i].address_one,
+                                          "address_two": $scope.users[i].address_two,
+                                          "city": $scope.users[i].city,
+                                          "state": $scope.users[i].state,
+                                          "country":$scope.users[i].country,
+                                          "pin_code": $scope.users[i].pin_code,
+                                          "role_id":$scope.users[i].role_id,                                         
+                                          "approval_status":$scope.users[i].approval_status,
+                                          "tenant_id": $scope.users[i].tenant_id,    
+                                          "adhar_card_no": "",
+                                          "driving_license_no": "",
+                                          "acc_no": "",
+                                          "acc_name": "",
+                                          "bank_name": "",
+                                          "branch_name": "",
+                                          "ifsc_code": ""
+                                          
+                                        }
+                                       
+           }else{
+              $scope.userregistration ={ "id":$scope.users[i].id,
                                           "first_name":$scope.users[i].first_name,
                                           "last_name":$scope.users[i].last_name,
                                           "email":$scope.users[i].email,
@@ -269,8 +297,8 @@ $scope.edit = function(id) {
                                           "ifsc_code": $scope.users[i].user_detail.ifsc_code
                                           
                                         }
-            console.log($scope.userregistration);                            
-           
+
+           }
         }
     }
  }   

@@ -95,6 +95,8 @@ $http({
 
 /*app.js end*/
 $scope.machineinit=function(){
+  if($scope.role_type_name=='Tenant'){
+
 $http({
     method:'GET',
     url:$rootScope.api_url+'tenant_machine?tenant_id='+$scope.tenant_id
@@ -105,7 +107,24 @@ $http({
    
   
     })
+}//if block end
+else{
 
+$http({
+    method:'GET',
+    url:$rootScope.api_url+'unit_machine?unit_id='+$scope.reference_id
+  })
+  .then(function(response){
+    
+   $rootScope.machines = response.data;
+   
+  
+    })
+
+}
+
+
+if($scope.role_type_name=='Tenant'){
 
     $http({
 
@@ -129,6 +148,27 @@ $http({
 
    
     })
+}//if close
+else{
+
+
+$http({
+  method:'GET',
+  url:$rootScope.api_url+'unit_section?unit_id='+$scope.reference_id
+}).then(function(response){
+$scope.sections_details=response.data;
+
+})
+
+
+}
+
+
+
+
+
+
+
 
 }
 $scope.cleandata= function(id) {

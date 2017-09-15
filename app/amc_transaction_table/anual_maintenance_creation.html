@@ -13,23 +13,19 @@
            <div class="row d-flex align-items-stretch">
             <div class="col-lg-8">
               <div class="container-form6">
-                <form name="anualCreate" ng-submit="anualMaintainCreate()" method="post" novalidate> 
                  <div class="row">
                  </div><br>
-                 
                  <div class="row">
                      <div class="col-sm-1 col-md-1"></div>     
                      <div class="col-sm-5 col-md-5">
                        <span><b>Machine</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                       <div class="form-group">
-                        <div class="select">
-                            <select name="machine" class="form-control" ng-options="machine.id as machine.name for machine in anualCheckMachines" ng-model="anualMainCreation.machine_id" ng-required="true class="btn btn-default select-width selectpicker form-control">
+                     	<div class="select">
+                            <select name="machine" class="form-control" ng-options="machine.id as machine.name for machine in anualCheckMachines" ng-model="anualMainCreation.machine_id" class="btn btn-default select-width selectpicker form-control">
                             <option value="">Select Machine</option>
                             </select>
                         </div>
-                       </div> 
                      </div>
                      <div class="col-sm-1 col-md-1"></div>
                  </div>
@@ -39,13 +35,11 @@
                        <span><b>Maintenance Type</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                       <div class="form-group">
                         <div class="select">
-                            <select name="maintenance_type" class="form-control" ng-options=" anual.value for anual in anualmaintain.maintenance_type" ng-model="anualMainCreation.maintenance_type_id" ng-required="true class="btn btn-default select-width selectpicker form-control">
+                            <select name="maintenance_type" class="form-control" ng-options=" anual.value for anual in anualmaintain.maintenance_type" ng-model="anualMainCreation.maintenance_type_id" class="btn btn-default select-width selectpicker form-control">
                             <option value="">Select Maintenance type</option>
                             </select>
                         </div>
-                       </div> 
                      </div>
                      <div class="col-sm-1 col-md-1"></div>
                   </div>
@@ -55,9 +49,9 @@
                        <span><b>Manufacturing Date</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                        <div class="form-group">	
-                            <input type="text" name="manufacturing_date" class="form-control" ng-model="anualMainCreation.manufacturing_date" ng-required="true" placeholder="Manufacturing Date">
-                        </div> 
+                     	<div class="form-group">
+                            <input type="text" name="manufacturing_date" class="form-control" ng-model="anualMainCreation.manufacturing_date" placeholder="Manufacturing Date">
+                        </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div>
                  </div>
@@ -67,9 +61,9 @@
                        <span><b>Duration From</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                       <div class="form-group"> 
-                            <input type="text" name="duration_from" class="form-control" ng-model="anualMainCreation.duration_from" ng-required="true" placeholder="Duration From">
-                       </div> 
+                     	<div class="form-group">
+                            <input type="text" name="duration_from" class="form-control" ng-model="anualMainCreation.duration_from" placeholder="Duration From">
+                        </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div>
                  </div>
@@ -79,9 +73,9 @@
                        <span><b>Duration To</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                       <div class="form-group"> 
-                            <input type="text" name="duration_to" class="form-control" ng-model="anualMainCreation.duration_to" ng-required="true" placeholder="Duration To"> 
-                       </div> 
+                     	<div class="form-group">
+                            <input type="text" name="duration_to" class="form-control" ng-model="anualMainCreation.duration_to" placeholder="Duration To">
+                        </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div>
                  </div>
@@ -91,9 +85,9 @@
                        <span><b>Renewal Started Date</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                       <div class="form-group">  
-                            <input type="text" name="renewal_started_date" class="form-control" ng-model="anualMainCreation.renewal_started_date" ng-required="true" placeholder="Renewal Started Date">
-                       </div> 
+                     	<div class="form-group">
+                            <input type="text" name="renewal_started_date" class="form-control" ng-model="anualMainCreation.renewal_started_date" placeholder="Renewal Started Date">
+                        </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
                  </div>
@@ -103,9 +97,9 @@
                        <span><b>Visit per Annum</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                       <div class="form-group">  
-                            <input type="text" name="visit_per_annum" class="form-control" ng-model="anualMainCreation.visit_per_annum" ng-required="true" placeholder="Visit Per Annum">
-                       </div> 
+                     	<div class="form-group">
+                            <input type="text" name="visit_per_annum" class="form-control" ng-model="anualMainCreation.visit_per_annum" placeholder="Visit Per Annum">
+                        </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div>
                  </div>
@@ -115,20 +109,19 @@
                        <span><b>Amount Paid</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                       <div class="form-group">  
-                            <input type="text" name="amount_paid" class="form-control" ng-model="anualMainCreation.amount_paid" ng-required="true" placeholder="Amount Paid">
-                       </div> 
+                     	<div class="form-group">
+                            <input type="text" name="amount_paid" class="form-control" ng-model="anualMainCreation.amount_paid" placeholder="Amount Paid">
+                        </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div>
                  </div>
                  <div class="row">
                    <div class="col-lg-12 text-center">
                         <div class="form-group">   
-                            <input type="submit" ng-disabled="anualCreate.$invalid" class="btn btn-primary btn-md" value="Save">
+                            <input type="submit" ng-click="anualMaintainCreate()" class="btn btn-primary btn-md" value="Save">
                         </div>  
                    </div>
                  </div><br>
-               </form>  
             </div> 
            </div>  
           </div>

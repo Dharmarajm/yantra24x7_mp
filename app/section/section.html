@@ -25,7 +25,7 @@
                                            <th>Phone Number1</th>
                                            <th>Phone Number2</th>
                                            <th>Email ID</th>
-                                          <th>Unit</th>
+                                          <th ng-show="role_type_name=='Tenant'">Unit</th>
                                            <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -36,7 +36,7 @@
                                            <td>{{sec.phone_one}}</td>
                                            <td>{{sec.phone_two}}</td>
                                            <td>{{sec.email}}</td>
-                                          <td>{{section.name}}</td> 
+                                          <td  ng-show="role_type_name=='Tenant'">{{section.name}}</td> 
                                            <td>
                                                 <ul class="item-actions-list">
                                                     <li>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="row">
                          
-                            <div class="col-md-6">
+                            <div class="col-md-6" ng-show="role_type_name=='Tenant'">
                                 <div class="form-group">
                                     <label>Unit</label>
                                     <div class="input-group">

@@ -24,7 +24,9 @@ angular.module('myApp', [
   'bwo_service_details',
   'bwo_spare_details',
   'bwo_analysis',
-  'preventive_maintenance_slip'
+  'preventive_maintenance_slip',
+  'myApp.view2',
+  'amc_transaction'
   /*,
   'alarms',
   'client',

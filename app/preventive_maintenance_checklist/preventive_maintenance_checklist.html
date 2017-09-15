@@ -13,6 +13,7 @@
            <div class="row d-flex align-items-stretch">
             <div class="col-lg-8">
               <div class="container-form6">
+                <form name="preventCheck" ng-submit="preventiveCheckCretion()" method="post" novalidate> 
                  <div class="row">
                  </div><br>
                  <div class="row">
@@ -22,8 +23,8 @@
                      </div>
                      <div class="col-lg-5">
                      	<div class="select">
-                            <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
-                            <option>Select Machine</option>
+                            <select name="userRole" class="form-control" ng-options="mac.id as mac.name for mac in preventCheckMachines" ng-model="preventive_checklist.machine_id" ng-required="true" class="btn btn-default select-width selectpicker form-control">
+                            <option value="">Select Machine</option>
                             </select>
                         </div>
                      </div>
@@ -36,8 +37,8 @@
                      </div>
                      <div class="col-lg-5">
                         <div class="select">
-                            <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
-                            <option>Select Machine</option>
+                            <select name="checklist_type" class="form-control" ng-options="prevent.value for prevent in preventCheckType.checklist_type" ng-model="preventive_checklist.checklist_type" ng-required="true" class="btn btn-default select-width selectpicker form-control">
+                            <option value="">Select Checklist type</option>
                             </select>
                         </div>
                      </div>
@@ -50,7 +51,7 @@
                      </div>
                      <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Duration From">
+                            <input type="text" name="duration_from" class="form-control" ng-model="preventive_checklist.duration_from" ng-required="true" placeholder="Duration From">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -62,7 +63,7 @@
                      </div>
                      <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Duration To">
+                            <input type="text" name="duration_to" class="form-control" ng-model="preventive_checklist.duration_to" ng-required="true" placeholder="Duration To">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -74,7 +75,7 @@
                      </div>
                       <div class="col-lg-5">
                      	<div class="form-group">
-                            <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Reason for Preventive">
+                             <input type="file" ng-model="preventive_checklist.image_path" ng-required="true" file-model="myFile"/>
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
@@ -82,7 +83,7 @@
                  <div class="row">
                    <div class="col-lg-12 text-center">
                         <div class="form-group">   
-                            <button type="button" class="btn btn-primary btn-md">Save</button>
+                            <input type="submit" ng-disabled="preventCheck.$invalid" class="btn btn-primary btn-md" value="Save">
                         </div>  
                    </div>
                  </div><br>
@@ -107,18 +108,19 @@
                            </tr>
                        </thead>
                        <tbody>
-                           <tr ng-repeat="user in ">
-                              <td>{{ user.first_name }}</td>
-                              <td>{{ user.email }}</td>
-                              <td>{{ user.phone_one }}</td>
-                              <td>{{user.role.name}}</td>
+                           <tr ng-repeat="data in preventChecklists   ">
+                              <td>{{ data.machine.name }}</td>
+                              <td>{{ data.checklist_type }}</td>
+                              <td>{{ data.duration_from }}</td>
+                              <td>{{ data.duration_to}}</td>
+                              <td>{{ data.image_path}}</td>
                               <td>
                                 <ul class="item-actions-list">
                                 <li>
-                                   <a class="remove"> <i class="fa fa-trash-o " confirmed-click="delete(user.id)" ng-confirm-click="Do you want to delete"></i> </a>
+                                   <a class="remove"> <i class="fa fa-trash-o " confirmed-click="delete(data.id)" ng-confirm-click="Do you want to delete"></i> </a>
                                 </li>
                                 <li>
-                                   <a class="edit" data-toggle="modal"  data-target="#exampleModalLabel1" title="Edit" ng-click="edit(user.id)"> <i class="fa fa-pencil"></i> </a>
+                                   <a class="edit" data-toggle="modal"  data-target="#exampleModalLabel" title="Edit" ng-click="edit(data.id)"> <i class="fa fa-pencil"></i> </a>
                                 </li>
                                 </ul>
                               </td>
@@ -129,5 +131,81 @@
            </div>
     </div>       
  </section>
+
+ <!-- modal -->
+    <div class="modal fade" id="exampleModalLabel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Preventive Maintenance Checklist</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body machine-registration">
+                    <form name="preventiveChecklistCre">
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Machine</label>
+                            <div class="select">
+                              <select name="machineName" class="form-control"  ng-options="macine.id as macine.name for macine in preventCheckMachines" ng-model="preventiveCheckEdit.machine_id" class="btn btn-default select-width selectpicker form-control">
+                              <option value="">Select Machine</option>
+                              </select>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Checklist Type</label>
+                            <div class="select">
+                              <select name="checklist_type" class="form-control"  ng-options="checkedit.value for checkedit in preventCheckType.checklist_type" ng-model="preventiveCheckEdit.checklist_type" class="btn btn-default select-width selectpicker form-control">
+                              <option value="">Select Checklist Type</option>
+                              </select>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Duration From</label>
+                            <input type="text" placeholder="Duration From" name="duration_from" class="form-control" ng-model="preventiveCheckEdit.duration_from" ng-Required="true">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Duration TO</label>
+                            <input type="text" placeholder="Duration To" name="duration_to" class="form-control" ng-model="preventiveCheckEdit.duration_to" ng-Required="true">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12">
+                       <label>Image Upload</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            
+                            <input type="file" ng-model="preventiveCheckEdit.image_path" file-model="myFile"/>
+                        </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-disabled="preventiveCheckEdit.$invalid" ng-click="preventChecklistUpdate(updateCheck)" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
    <div ng-include="'footer.html'"></div>
  </div>

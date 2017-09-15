@@ -29,7 +29,9 @@ angular.module('section', ['ngRoute'])
 
 $scope.sectionForm= function(){  
 
-
+if(role_type_name=='Unit'){
+  $scope.sectionregistration.unit_id=$scope.reference_id;
+}
         var sectionregistration = {
           name:$scope.sectionregistration.name,
   detail:$scope.sectionregistration.detail,
@@ -106,6 +108,8 @@ $http({
    $rootScope.units = response.data; 
    $rootScope.count = $rootScope.units.count
     })
+
+if($scope.role_type_name=="Tenant"){
   $http({
 
     method:'GET',
@@ -116,6 +120,24 @@ $http({
    $rootScope.sections = response.data; 
    
     })
+}else{
+
+  $http({
+
+    method:'GET',
+    url:$rootScope.api_url+'section_unit?unit_id='+$scope.reference_id
+  })
+  .then(function(response){
+    
+   $rootScope.sections = response.data;
+   localStorage.setItem("unit_id",$rootScope.sections);
+   
+    })
+
+
+
+}
+
 }
 
   $scope.cleandata=function(){

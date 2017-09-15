@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('anualMaintenanceCreation', ['ngRoute','ui.calendar','ui.bootstrap'])
+angular.module('anualMaintenanceCreation', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/anual_maintenance_creation', {
@@ -11,17 +11,6 @@ angular.module('anualMaintenanceCreation', ['ngRoute','ui.calendar','ui.bootstra
 
 .controller('anualMaintenanceCreationCtrl', ['$scope', '$http','$location','$window','$rootScope',
   function($scope, $http,$location,$window,$rootScope) {
-
-   /*$scope.visibility = true;
-
-    $interval(function setInterval() {
-      //toggling manually everytime
-      $scope.visibility = !$scope.visibility;
-    }, 3500);
-*/
-
-
-
 
   $scope.anualmaintain={ "maintenance_type":[
                                            {"value":"AMC"},   
@@ -60,13 +49,9 @@ console.log(anualCreate);
        url: $rootScope.api_url+'amc_details',
        data: anualCreate 
       }).then(function(response){
-      	
-        $scope.anualCreateSuccess=response.data;
-        localStorage.setItem("id",$scope.anualCreateSuccess.id);
-        $scope.amc_detail_id=localStorage.getItem("id");
-        console.log($scope.amc_detail_id);
+      	$scope.anualCreateSuccess=response.data;
+        
       	alert("Anual Maintenance Created")
-        $location.path('/amc_transaction');
         
       })                           
 }

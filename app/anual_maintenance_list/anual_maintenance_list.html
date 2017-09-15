@@ -28,18 +28,24 @@
                            </tr>
                        </thead>
                        <tbody>
-                           <tr ng-repeat="user in ">
-                              <td>{{ user.first_name }}</td>
-                              <td>{{ user.email }}</td>
-                              <td>{{ user.phone_one }}</td>
-                              <td>{{user.role.name}}</td>
+                           <tr ng-repeat="anuallistdata in anualmainlist">
+                              <td>{{ anualmainlist.length }}</td>
+                              <td>{{ anuallistdata.machine.name }}</td>
+                              <td>{{ anuallistdata.machine.machine_id }}</td>
+                              <td>{{ anuallistdata.maintenance_type }}</td>
+                              <td>{{ anuallistdata.duration_from }}</td>
+                              <td>{{ anuallistdata.duration_to }}</td>
+                              <td>{{ anuallistdata.renewal_started_date }}</td>
+                              <td>{{ anuallistdata.amount_paid}}</td>
+                              <td>{{ anuallistdata.visit_per_annum }}</td>
+                              <td>{{  }}</td>
                               <td>
                                 <ul class="item-actions-list">
                                 <li>
-                                   <a class="remove"> <i class="fa fa-trash-o " confirmed-click="delete(user.id)" ng-confirm-click="Do you want to delete"></i> </a>
+                                   <a class="remove"> <i class="fa fa-trash-o " confirmed-click="delete(anuallistdata.id)" ng-confirm-click="Do you want to delete"></i> </a>
                                 </li>
                                 <li>
-                                   <a class="edit" data-toggle="modal"  data-target="#exampleModalLabel1" title="Edit" ng-click="edit(user.id)"> <i class="fa fa-pencil"></i> </a>
+                                   <a class="edit" data-toggle="modal"  data-target="#exampleModalLabel" title="Edit"  ng-click="edit(anuallistdata.id)"> <i class="fa fa-pencil"></i> </a>
                                 </li>
                                 </ul>
                               </td>
@@ -49,6 +55,101 @@
                </div>
            </div>
     </div>       
- </section>                               
+ </section>
+
+<!-- modal -->
+    <div class="modal fade" id="exampleModalLabel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit AMC List</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body machine-registration">
+                    <form name="anual">
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Machine Name</label>
+                            <div class="select">
+                              <select name="machineName" class="form-control"  ng-options="machineq.id as machineq.name for machineq in anualCheckMachines" ng-model="editAmcList.machine_id" class="btn btn-default select-width selectpicker form-control">
+                              <option value="">Select Machine</option>
+                              </select>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Maintenance Type</label>
+                            <div class="select">
+                              <select name="maintenance_type" class="form-control"  ng-options="main.value for main in anualmaintain.maintenance_type" ng-model="editAmcList.maintenance_type" class="btn btn-default select-width selectpicker form-control">
+                              <option value="">Select Maintenance Type</option>
+                              </select>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Duration From</label>
+                            <input type="text" placeholder="Duration From" name="duration_from" class="form-control" ng-model="editAmcList.duration_from" ng-Required="true">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Duration TO</label>
+                            <input type="text" placeholder="Duration To" name="duration_to" class="form-control" ng-model="editAmcList.duration_to" ng-Required="true">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Renewal Started Date</label>
+                            <input type="text" placeholder="Renewal Started Date" name="renewal_started_date" class="form-control" ng-model="editAmcList.renewal_started_date" ng-Required="true">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Anual Cost</label>
+                            <input type="text" placeholder="Anual Cost" name="amount_paid" class="form-control" ng-model="editAmcList.amount_paid" ng-Required="true">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Number of Visit</label>
+                            <input type="text" placeholder="Number of Visit" name="visit_per_annum" class="form-control" ng-model="editAmcList.visit_per_annum" ng-Required="true">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Visit Completed</label>
+                            <input type="text" placeholder="Visit Completed" name="visit_completed" class="form-control" ng-model="editAmcList.visit_completed" ng-Required="true">
+                        </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-disabled="anual.$invalid" ng-click="editAnuallist(updateId)" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
  <div ng-include="'footer.html'"></div>
  </div>

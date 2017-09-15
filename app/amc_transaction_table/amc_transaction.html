@@ -1,0 +1,105 @@
+<div ng-include="'sidebar.html'"></div>
+<div class="page home-page">     
+<div ng-include="'header.html'"></div>
+<section class="anual_maintenance_creation section-padding section_top">
+    <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <img ng-src="assets/images/u12137.png">
+                &nbsp;&nbsp;&nbsp;&nbsp;<label><b>AMC Transaction Table</b></label>
+              </div>
+            </div>
+
+           <div class="row d-flex align-items-stretch">
+            <div class="col-lg-8">
+              <div class="container-form6">
+                <form name="amctrans" ng-submit="amcTransactTable()" method="post" novalidate>
+                 <div class="row">
+                 </div><br>
+                 <div class="row">
+                     <div class="col-sm-1 col-md-1"></div>     
+                     <div class="col-sm-5 col-md-5">
+                       <span><b>Visit Number</b></span>
+                     </div>
+                     <div class="col-sm-5 col-md-5">
+                     	<div class="form-group">
+                            <input type="text" name="visit_number" class="form-control" ng-model="amcTransact.visit_number" ng-required="true" placeholder="Visit Number">
+                        </div>
+                     </div>
+                     <div class="col-sm-1 col-md-1"></div>
+                 </div>
+                  <div class="row">
+                     <div class="col-sm-1 col-md-1"></div>     
+                     <div class="col-sm-5 col-md-5">
+                       <span><b>Maintenance Date</b></span>
+                     </div>
+                     <div class="col-sm-5 col-md-5">
+                        <div class="form-group">
+                            <input type="text" name="maintenance_date" class="form-control" ng-model="amcTransact.maintenance_date" ng-required="true" placeholder="Maintenance Date">
+                        </div>
+                     </div>
+                     <div class="col-sm-1 col-md-1"></div>
+                  </div>
+                  <div class="row">
+                     <div class="col-sm-1 col-md-1"></div>     
+                     <div class="col-sm-5 col-md-5">
+                       <span><b>Reason for Change</b></span>
+                     </div>
+                     <div class="col-sm-5 col-md-5">
+                     	<div class="form-group">
+                            <input type="text" name="reason_for_change" class="form-control" ng-model="amcTransact.reason_for_change" ng-required="true" placeholder="Reason for Change">
+                        </div>
+                     </div>
+                     <div class="col-sm-1 col-md-1"></div>
+                 </div>
+                 <div class="row">
+                     <div class="col-sm-1 col-md-1"></div>     
+                     <div class="col-sm-5 col-md-5">
+                       <span><b>Spare Changed</b></span>
+                     </div>
+                     <div class="col-sm-5 col-md-5">
+                     	<div class="form-group">
+                            <input type="text" name="spare_changed" class="form-control" ng-model="amcTransact.spare_changed" ng-required="true" placeholder="Spare Changed">
+                        </div>
+                     </div>
+                     <div class="col-sm-1 col-md-1"></div>
+                 </div>
+                 <div class="row">
+                     <div class="col-sm-1 col-md-1"></div>     
+                     <div class="col-sm-5 col-md-5">
+                       <span><b>Spare Cost</b></span>
+                     </div>
+                     <div class="col-sm-5 col-md-5">
+                     	<div class="form-group">
+                            <input type="text" name="spare_cost" class="form-control" ng-model="amcTransact.spare_cost" ng-required="true" placeholder="Spare Cost">
+                        </div>
+                     </div>
+                     <div class="col-sm-1 col-md-1"></div>
+                 </div>
+                 <div class="row">
+                     <div class="col-sm-1 col-md-1"></div>     
+                     <div class="col-sm-5 col-md-5">
+                       <span><b>Amount Paid</b></span>
+                     </div>
+                     <div class="col-sm-5 col-md-5">
+                     	<div class="form-group">
+                            <input type="text" name="amount_paid" class="form-control" ng-model="amcTransact.amount_paid" ng-required="true" placeholder="Amount Paid">
+                        </div>
+                     </div>
+                     <div class="col-sm-1 col-md-1"></div> 
+                 </div>
+                </form> 
+                 <div class="row">
+                   <div class="col-lg-12 text-center">
+                        <div class="form-group">   
+                            <input type="submit" ng-disabled="amctrans.$invalid" class="btn btn-primary btn-md" value="Save">
+                        </div>  
+                   </div>
+                 </div><br>
+            </div> 
+           </div>  
+          </div>
+    </div>       
+ </section>                                                            
+ <div ng-include="'footer.html'"></div>
+ </div>

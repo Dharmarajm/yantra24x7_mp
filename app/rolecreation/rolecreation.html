@@ -71,8 +71,7 @@
                         <div class="form-group">
                             <label>Role Type</label>
                             <div class="select">
-                          
-                              <select id="role-roleType" name="roleType" class="form-control"  ng-options="role.id as role.type_name for role in role_types" ng-model="roleregistration.role_type_id" class="btn btn-default select-width selectpicker form-control">
+                              <select id="role-roleType" name="roleType" class="form-control"  ng-options="role.id as role.type_name for role in role_types" ng-model="roleregistration.role_type_id" required class="btn btn-default select-width selectpicker form-control">
                               <option value="">Select Role Type</option>
                               </select>
                             </div>
