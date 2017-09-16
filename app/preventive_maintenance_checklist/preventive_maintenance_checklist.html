@@ -1,6 +1,6 @@
 <div ng-include="'sidebar.html'"></div>
-   <div class="page home-page">     
-   <div ng-include="'header.html'"></div>
+<div class="page home-page">     
+<div ng-include="'header.html'"></div>
 <section class="preventive_checklist section-padding section_top">
     <div class="container-fluid">
             <div class="row">
@@ -14,72 +14,76 @@
             <div class="col-lg-8">
               <div class="container-form6">
                 <form name="preventCheck" ng-submit="preventiveCheckCretion()" method="post" novalidate> 
+                 <br>
                  <div class="row">
-                 </div><br>
-                 <div class="row">
-                     <div class="col-lg-1"></div>  
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div>  
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Machine</b></span>
                      </div>
-                     <div class="col-lg-5">
-                     	<div class="select">
+                     <div class="col-md-5 col-sm-4">
+                        <div class="form-group">
+                      	  <div class="select">
                             <select name="userRole" class="form-control" ng-options="mac.id as mac.name for mac in preventCheckMachines" ng-model="preventive_checklist.machine_id" ng-required="true" class="btn btn-default select-width selectpicker form-control">
                             <option value="">Select Machine</option>
                             </select>
-                        </div>
+                          </div>
+                        </div>  
                      </div>
-                     <div class="col-lg-1"></div>
+                     <div class="col-md-1 col-sm-2"></div>
                  </div>
                  <div class="row">
-                     <div class="col-lg-1"></div>     
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div>  
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Checklist Type</b></span>
                      </div>
-                     <div class="col-lg-5">
+                     <div class="col-md-5 col-sm-4">
+                       <div class="form-group">                    
                         <div class="select">
-                            <select name="checklist_type" class="form-control" ng-options="prevent.value for prevent in preventCheckType.checklist_type" ng-model="preventive_checklist.checklist_type" ng-required="true" class="btn btn-default select-width selectpicker form-control">
+                            <select name="checklist_type" class="form-control" ng-options="prevent for prevent in preventCheckType" ng-model="preventive_checklist.checklist_type" ng-required="true" class="btn btn-default select-width selectpicker form-control">
                             <option value="">Select Checklist type</option>
                             </select>
                         </div>
+                       </div> 
                      </div>
-                     <div class="col-lg-1"></div>  
+                     <div class="col-md-1 col-sm-2"></div>  
                  </div>
                  <div class="row">
-                     <div class="col-lg-1"></div> 
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div>  
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Duration From</b></span>
                      </div>
-                     <div class="col-lg-5">
-                     	<div class="form-group">
+                     <div class="col-md-5 col-sm-4">
+                     	<div class="form-group" moment-picker="preventive_checklist.duration_from"  format="YYYY-MM-DD">
                             <input type="text" name="duration_from" class="form-control" ng-model="preventive_checklist.duration_from" ng-required="true" placeholder="Duration From">
                         </div>
                      </div>
                      <div class="col-lg-1"></div> 
                  </div>
                  <div class="row">
-                     <div class="col-lg-1"></div> 
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div>  
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Duration To</b></span>
                      </div>
-                     <div class="col-lg-5">
-                     	<div class="form-group">
+                     <div class="col-md-5 col-sm-4">
+                     	<div class="form-group" moment-picker="preventive_checklist.duration_to"  format="YYYY-MM-DD">
                             <input type="text" name="duration_to" class="form-control" ng-model="preventive_checklist.duration_to" ng-required="true" placeholder="Duration To">
                         </div>
                      </div>
-                     <div class="col-lg-1"></div> 
+                     <div class="col-md-1 col-sm-2"></div>
                  </div>
                  <div class="row">
-                     <div class="col-lg-1"></div> 
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div>  
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Image Upload</b></span>
                      </div>
-                      <div class="col-lg-5">
-                     	<div class="form-group">
-                             <input type="file" ng-model="preventive_checklist.image_path" ng-required="true" file-model="myFile"/>
+                     <div class="col-md-5 col-sm-4">
+                     	  <div class="form-group">
+                             <input id="inputFileToLoad" type="file" ng-model='preventive_checklist.image_path' onchange="encodeImageFileAsURL();"/>
                         </div>
                      </div>
-                     <div class="col-lg-1"></div> 
+                     <div class="col-md-1 col-sm-2"></div> 
                  </div>
+                 
                  <div class="row">
                    <div class="col-lg-12 text-center">
                         <div class="form-group">   
@@ -87,6 +91,7 @@
                         </div>  
                    </div>
                  </div><br>
+                </form> 
             </div> 
            </div>  
           </div>
@@ -111,9 +116,9 @@
                            <tr ng-repeat="data in preventChecklists   ">
                               <td>{{ data.machine.name }}</td>
                               <td>{{ data.checklist_type }}</td>
-                              <td>{{ data.duration_from }}</td>
-                              <td>{{ data.duration_to}}</td>
-                              <td>{{ data.image_path}}</td>
+                              <td>{{ data.duration_from | date:'yyyy-MM-dd' }}</td>
+                              <td>{{ data.duration_to | date:'yyyy-MM-dd' }}</td>
+                              <td>{{ data.image_id  }}</td>
                               <td>
                                 <ul class="item-actions-list">
                                 <li>
@@ -142,69 +147,68 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body machine-registration">
-                    <form name="preventiveChecklistCre">
+                <div class="modal-body preventive_checklist-registration">
+                  <form name="preventiveChecklistCre">
                     <div class="row">
                         <div class="col-lg-12">
-                        <div class="form-group">
-                            <label>Machine</label>
-                            <div class="select">
-                              <select name="machineName" class="form-control"  ng-options="macine.id as macine.name for macine in preventCheckMachines" ng-model="preventiveCheckEdit.machine_id" class="btn btn-default select-width selectpicker form-control">
+                         <div class="form-group"> 
+                          <label>Machine</label>
+                            <div class="form-group">
+                             <!-- <div class="select"> -->
+                              <select name="machineName" class="form-control"  ng-options="macine.id as macine.name for macine in preventCheckMachines" ng-model="preventiveCheckEdit.machine_id" ng-Required="true" class="btn btn-default select-width selectpicker form-control">
                               <option value="">Select Machine</option>
                               </select>
-                            </div>
-                        </div>
+                             <!-- </div> -->
+                            </div>  
+                         </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                        <div class="form-group">
-                            <label>Checklist Type</label>
-                            <div class="select">
-                              <select name="checklist_type" class="form-control"  ng-options="checkedit.value for checkedit in preventCheckType.checklist_type" ng-model="preventiveCheckEdit.checklist_type" class="btn btn-default select-width selectpicker form-control">
+                          <div class="form-group"> 
+                           <label>Checklist Type</label> 
+                            <!-- <div class="form-group"> -->
+                             <!-- <div class="select"> -->
+                              <select name="checklist_type" class="form-control"  ng-options="checkedit for checkedit in preventCheckType" ng-model="preventiveCheckEdit.checklist_type" required class="btn btn-default select-width selectpicker form-control">
                               <option value="">Select Checklist Type</option>
                               </select>
-                            </div>
-                        </div>
+                             <!-- </div> -->
+                            <!-- </div> --> 
+                          </div> 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                        <div class="form-group">
+                          <div class="form-group" moment-picker="preventiveCheckEdit.duration_from"  format="YYYY-MM-DD">
                             <label>Duration From</label>
                             <input type="text" placeholder="Duration From" name="duration_from" class="form-control" ng-model="preventiveCheckEdit.duration_from" ng-Required="true">
-                        </div>
+                          </div>  
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                        <div class="form-group">
-                            <label>Duration TO</label>
+                         <div class="form-group" moment-picker="preventiveCheckEdit.duration_to"  format="YYYY-MM-DD">
+                           <label>Duration TO</label>
                             <input type="text" placeholder="Duration To" name="duration_to" class="form-control" ng-model="preventiveCheckEdit.duration_to" ng-Required="true">
+                         </div>  
                         </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-12">
-                       <label>Image Upload</label>
-                      </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                        <div class="form-group">
-                            
-                            <input type="file" ng-model="preventiveCheckEdit.image_path" file-model="myFile"/>
-                        </div>
+                         <div class="form-group">
+                           <label>Image Upload</label>
+                            <input id="inputFileToLoad" type="file" ng-model='preventiveCheckEdit.image_path' onchange="encodeImageFileAsURL();"/>
+                         </div>
                         </div>
                     </div>
-                    </form>
-                </div>
+                  </form>
+                </div>  
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-disabled="preventiveCheckEdit.$invalid" ng-click="preventChecklistUpdate(updateCheck)" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-primary" ng-disabled="preventiveChecklistCre.$invalid" ng-click="preventChecklistUpdate(updateCheck)" data-dismiss="modal">Save</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-            </div>
-        </div>
+          </div>
+        </div>       
     </div>
 
    <div ng-include="'footer.html'"></div>

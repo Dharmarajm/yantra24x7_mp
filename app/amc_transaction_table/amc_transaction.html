@@ -13,7 +13,7 @@
            <div class="row d-flex align-items-stretch">
             <div class="col-lg-8">
               <div class="container-form6">
-                <form name="amctrans" ng-submit="amcTransactTable()" method="post" novalidate>
+                <form name="amctrans" method="post" novalidate>
                  <div class="row">
                  </div><br>
                  <div class="row">
@@ -34,7 +34,7 @@
                        <span><b>Maintenance Date</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                        <div class="form-group">
+                        <div class="form-group" moment-picker="amcTransact.maintenance_date"  format="YYYY-MM-DD">
                             <input type="text" name="maintenance_date" class="form-control" ng-model="amcTransact.maintenance_date" ng-required="true" placeholder="Maintenance Date">
                         </div>
                      </div>
@@ -92,7 +92,7 @@
                  <div class="row">
                    <div class="col-lg-12 text-center">
                         <div class="form-group">   
-                            <input type="submit" ng-disabled="amctrans.$invalid" class="btn btn-primary btn-md" value="Save">
+                            <input type="submit" ng-disabled="amctrans.$invalid" ng-click="amcTransactTable()" class="btn btn-primary btn-md" value="Save">
                         </div>  
                    </div>
                  </div><br>

@@ -12,13 +12,7 @@ angular.module('preventive_maintenance_checklist', ['ngRoute'])
 .controller('preventiveMaintenanceChecklistCtrl', ['$scope', '$http','$location','$window','$rootScope',
   function($scope, $http,$location,$window,$rootScope) {
 
- $scope.preventCheckType={ "checklist_type":[
-                                           {"value":"Daily"},   
-                                           {"value":"Weekly"},
-                                           {"value":"Monthly"}
-                                           
-                                          ]
-                             }; 
+ $scope.preventCheckType=["Daily","Weekly","Monthly"]; 
 
 $scope.preventive_checklist={
                              "machine_id": "",
@@ -29,17 +23,17 @@ $scope.preventive_checklist={
                             }
 
 
-
+$scope.file_path;
 //Post Method for Checklist Creation
 
 $scope.preventiveCheckCretion=function(){
 	
 	var preventCreate={ 
                              "machine_id":$scope.preventive_checklist.machine_id,
-                             "checklist_type":$scope.preventive_checklist.checklist_type.value,
+                             "checklist_type":$scope.preventive_checklist.checklist_type,
                              "duration_from":$scope.preventive_checklist.duration_from,
                              "duration_to":$scope.preventive_checklist.duration_to,
-                             "image_path":$scope.preventive_checklist.image_path                               
+                             "image":{"image_path":$scope.file_path }                              
                             };
 console.log(preventCreate);
  $http({
@@ -103,11 +97,11 @@ $scope.edit = function(id) {
                
                
                $scope.preventiveCheckEdit ={ 
-                                             "machine_id": $scope.preventChecklists[i].machine.name,
+                                             "machine_id": $scope.preventChecklists[i].machine.id,
                                              "checklist_type": $scope.preventChecklists[i].checklist_type,
                                              "duration_from": $scope.preventChecklists[i].duration_from,
                                              "duration_to": $scope.preventChecklists[i].duration_to,
-                                             "image_path": $scope.preventChecklists[i].image_path
+                                             "image_path": $scope.preventChecklists[i].image_id
                                              
                                             }
                  console.log($scope.preventiveCheckEdit);                      
@@ -167,4 +161,60 @@ alert("Deleted Successfully");
 }
 
 }
+
+function encodeImageFileAsURL(cb) {
+    return function(){
+        var file = this.files[0];
+        var reader  = new FileReader();
+        reader.onloadend = function () {
+            cb(reader.result);
+        }
+        reader.readAsDataURL(file);
+    }
+}
+
+$('#inputFileToLoad').change(encodeImageFileAsURL(function(base64Img){
+  $scope.file_path=base64Img;
+  console.log($scope.file_path);
+    $('.output')
+      .find('textarea')
+        .val(base64Img)
+        .end()
+      .find('a')
+        .attr('href', base64Img)
+        .text(base64Img)
+        .end()
+      .find('img')
+        .attr('src', base64Img);
+}));
+
+}])
+.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}])
+.service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(file, uploadUrl){
+        var fd = new FormData();
+        fd.append('file', file);
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function(){
+        })
+        .error(function(){
+        });
+    }
 }]);

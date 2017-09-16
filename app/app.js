@@ -4,6 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'ui.calendar',
+  'moment-picker',
   'ui.bootstrap',
   'login',
   'registrations',

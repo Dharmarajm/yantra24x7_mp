@@ -29,16 +29,16 @@
                        </thead>
                        <tbody>
                            <tr ng-repeat="anuallistdata in anualmainlist">
-                              <td>{{ anualmainlist.length }}</td>
+                              <td>{{ $index+1 }}</td>
                               <td>{{ anuallistdata.machine.name }}</td>
                               <td>{{ anuallistdata.machine.machine_id }}</td>
                               <td>{{ anuallistdata.maintenance_type }}</td>
-                              <td>{{ anuallistdata.duration_from }}</td>
-                              <td>{{ anuallistdata.duration_to }}</td>
-                              <td>{{ anuallistdata.renewal_started_date }}</td>
+                              <td>{{ anuallistdata.duration_from | date:'yyyy-MM-dd' }}</td>
+                              <td>{{ anuallistdata.duration_to | date:'yyyy-MM-dd' }}</td>
+                              <td>{{ anuallistdata.renewal_started_date | date:'yyyy-MM-dd' }}</td>
                               <td>{{ anuallistdata.amount_paid}}</td>
                               <td>{{ anuallistdata.visit_per_annum }}</td>
-                              <td>{{  }}</td>
+                              <td>{{ anuallistdata.visit_completed }}</td>
                               <td>
                                 <ul class="item-actions-list">
                                 <li>
@@ -68,52 +68,62 @@
                     </button>
                 </div>
                 <div class="modal-body machine-registration">
-                    <form name="anual">
+                  <form name="anual">
                     <div class="row">
                         <div class="col-lg-12">
                         <div class="form-group">
-                            <label>Machine Name</label>
+                         <label>Machine Name</label>
+                           <div class="form-group">
                             <div class="select">
-                              <select name="machineName" class="form-control"  ng-options="machineq.id as machineq.name for machineq in anualCheckMachines" ng-model="editAmcList.machine_id" class="btn btn-default select-width selectpicker form-control">
+                              <select name="machineName" class="form-control"  ng-options="machineq.id as machineq.name for machineq in anualCheckMachines" ng-model="editAmcList.machine_id" ng-Required="true" class="btn btn-default select-width selectpicker form-control">
                               <option value="">Select Machine</option>
                               </select>
                             </div>
+                           </div>
                         </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
                         <div class="form-group">
-                            <label>Maintenance Type</label>
+                         <label>Maintenance Type</label>
+                          <div class="form-group">
                             <div class="select">
-                              <select name="maintenance_type" class="form-control"  ng-options="main.value for main in anualmaintain.maintenance_type" ng-model="editAmcList.maintenance_type" class="btn btn-default select-width selectpicker form-control">
+                              <select name="maintenance_type" class="form-control"  ng-options="main for main in anualmaintain" ng-model="editAmcList.maintenance_type" ng-Required="true" class="btn btn-default select-width selectpicker form-control">
                               <option value="">Select Maintenance Type</option>
                               </select>
                             </div>
+                          </div> 
                         </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
                         <div class="form-group">
-                            <label>Duration From</label>
+                          <label>Duration From</label>
+                           <div class="form-group" moment-picker="editAmcList.duration_from"  format="YYYY-MM-DD">
                             <input type="text" placeholder="Duration From" name="duration_from" class="form-control" ng-model="editAmcList.duration_from" ng-Required="true">
+                           </div> 
                         </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
                         <div class="form-group">
-                            <label>Duration TO</label>
+                          <label>Duration TO</label>
+                           <div class="form-group" moment-picker="editAmcList.duration_to"  format="YYYY-MM-DD">
                             <input type="text" placeholder="Duration To" name="duration_to" class="form-control" ng-model="editAmcList.duration_to" ng-Required="true">
+                           </div> 
                         </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
                         <div class="form-group">
-                            <label>Renewal Started Date</label>
+                          <label>Renewal Started Date</label>
+                           <div class="form-group" moment-picker="editAmcList.renewal_started_date"  format="YYYY-MM-DD"> 
                             <input type="text" placeholder="Renewal Started Date" name="renewal_started_date" class="form-control" ng-model="editAmcList.renewal_started_date" ng-Required="true">
+                           </div>
                         </div>
                         </div>
                     </div>
@@ -137,14 +147,14 @@
                         <div class="col-lg-12">
                         <div class="form-group">
                             <label>Visit Completed</label>
-                            <input type="text" placeholder="Visit Completed" name="visit_completed" class="form-control" ng-model="editAmcList.visit_completed" ng-Required="true">
+                            <input type="text" placeholder="Visit Completed" name="visit_completed" class="form-control" ng-model="editAmcList.visit_completed" ng-readonly="editAmcList.visit_completed" ng-disabled="model.isDisabled">
                         </div>
                         </div>
                     </div>
-                    </form>
+                  </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-disabled="anual.$invalid" ng-click="editAnuallist(updateId)" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-primary" ng-disabled="anual.$invalid" ng-click="updateAnuallist(updateId)" data-dismiss="modal">Save</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>

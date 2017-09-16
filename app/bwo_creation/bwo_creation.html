@@ -57,18 +57,6 @@
                  <div class="row">
                      <div class="col-sm-1 col-md-1"></div> 
                      <div class="col-sm-5 col-md-5">
-                       <span><b>Mfr.Date</b></span>
-                     </div>
-                     <div class="col-sm-5 col-md-5">
-                     	<div class="form-group">
-                            <input type="text" name="mfr_date" class="form-control" ng-model="bwocreation.manufacture_date" ng-required="true" placeholder="Manufactured Date">
-                        </div>
-                     </div>
-                     <div class="col-sm-1 col-md-1"></div> 
-                 </div>
-                 <div class="row">
-                     <div class="col-sm-1 col-md-1"></div> 
-                     <div class="col-sm-5 col-md-5">
                        <span><b>MWO Number</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
@@ -81,11 +69,23 @@
                  <div class="row">
                      <div class="col-sm-1 col-md-1"></div> 
                      <div class="col-sm-5 col-md-5">
+                       <span><b>Maintenance Date</b></span>
+                     </div>
+                     <div class="col-sm-5 col-md-5">
+                        <div class="form-group" moment-picker="bwocreation.maintenance_date"  format="YYYY-MM-DD">
+                            <input type="text" name="maintainDate" class="form-control" ng-model="bwocreation.maintenance_date" ng-Required="true" placeholder="Maintenance Date">
+                        </div>
+                     </div>
+                     <div class="col-sm-1 col-md-1"></div> 
+                 </div>
+                 <div class="row">
+                     <div class="col-sm-1 col-md-1"></div> 
+                     <div class="col-sm-5 col-md-5">
                        <span><b>Start Time</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
                      	<div class="form-group">
-                            <input type="text" name="startTime" class="form-control" ng-model="bwocreation.start_time" ng-required="true" placeholder="Start Time">
+                            <input type="text" name="startTime" class="form-control" ng-model="bwocreation.starttime_dummy" ng-required="true" placeholder="Start Time" size="8" bs-timepicker>
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
@@ -97,7 +97,7 @@
                      </div>
                       <div class="col-sm-5 col-md-5">
                      	<div class="form-group">
-                            <input type="text" name="endTime" class="form-control" ng-model="bwocreation.end_time" ng-required="true" placeholder="End Time">
+                            <input type="text" name="endTime" class="form-control" ng-model="bwocreation.endtime_dummy" ng-required="true" placeholder="End Time" size="8" bs-timepicker>
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
@@ -252,7 +252,7 @@
                        <span><b>File Upload</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                         <input type="file" ng-model="bwocreation.file_path" ng-required file-model="myFile" name="myFile"/>   
+                         <input id="inputFileToLoad" type="file" ng-model='file_path' onchange="encodeImageFileAsURL();" />   
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
                  </div>

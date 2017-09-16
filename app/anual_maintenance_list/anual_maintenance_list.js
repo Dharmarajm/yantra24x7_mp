@@ -12,14 +12,12 @@ angular.module('anualMaintenanceList', ['ngRoute','ui.calendar','ui.bootstrap'])
 .controller('anualMaintenanceListCtrl', ['$scope', '$http','$location','$window','$rootScope',
   function($scope, $http,$location,$window,$rootScope) {
 
+ $scope.model = {
+    isDisabled: true
+};
+
  
- $scope.anualmaintain={ "maintenance_type":[
-                                           {"value":"AMC"},   
-                                           {"value":"NO AMC"},
-                                           {"value":"WARRANTY"}
-                                           
-                                          ]
-                      };
+ $scope.anualmaintain=["AMC","NO AMC","WARRANTY"];
 //Get Method for getting machines                      
 $http({
         method: 'GET',
@@ -35,6 +33,7 @@ $http({
         url: $rootScope.api_url+'amc_details'
       }).then(function(response){
       	$scope.anualmainlist=response.data;
+        console.log($scope.anualmainlist);
       })
 
 $scope.allocationinit=function(){
@@ -44,6 +43,7 @@ $http({
         url: $rootScope.api_url+'amc_details'
       }).then(function(response){
         $scope.anualmainlist=response.data;
+        console.log($scope.anualmainlist);
       })
 
 }      
@@ -59,7 +59,7 @@ $scope.edit = function(id) {
                var user_id=$scope.anualmainlist[i];
                
                $scope.editAmcList={
-                                   "machine_id": $scope.anualmainlist[i].machine.name,
+                                   "machine_id": $scope.anualmainlist[i].machine.id,
                                    "maintenance_type": $scope.anualmainlist[i].maintenance_type,
                                    "duration_from": $scope.anualmainlist[i].duration_from,
                                    "duration_to": $scope.anualmainlist[i].duration_to,
@@ -75,10 +75,10 @@ $scope.edit = function(id) {
 
 //update function for AMC
 
-$scope.editAnuallist=function(id){
+$scope.updateAnuallist=function(id){
   
   var editAmcList={ 
-                      "machine_id": $scope.editAmcList.machine.name,
+                      "machine_id": $scope.editAmcList.machine_id,
                       "maintenance_type": $scope.editAmcList.maintenance_type,
                       "duration_from": $scope.editAmcList.duration_from,
                       "duration_to": $scope.editAmcList.duration_to,
@@ -100,7 +100,7 @@ $scope.editAnuallist=function(id){
     console.log(data);
        // $state.go('/company_registration');
 alert("Updated Successfully");
-    $scope.userinit();
+    $scope.allocationinit();
         }else{      
         alert('Updation Failed');   
         }

@@ -17,83 +17,83 @@
                  <div class="row">
                  </div><br>
                  <div class="row">
-                     <div class="col-lg-1"></div>  
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div>  
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Machine ID</b></span>
                      </div>
-                     <div class="col-lg-5">
+                     <div class="col-md-5 col-sm-4">
                      	<div class="select">
                             <select name="machineName" class="form-control" ng-options="machine.id as machine.machine_id for machine in preMaintenanceCreate" ng-model="preventiveCreation.machine_id" ng-required="true" class="btn btn-default select-width selectpicker form-control">
                             <option value="">Select Machine</option>
                             </select>
                         </div>
                      </div>
-                     <div class="col-lg-1"></div>
+                     <div class="col-md-1 col-sm-2"></div>
                  </div>
                   <div class="row">
-                     <div class="col-lg-1"></div>   
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div>   
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Area</b></span>
                      </div>
-                     <div class="col-lg-5">
+                     <div class="col-md-5 col-sm-4">
                      	<div class="form-group">
                             <input type="text" name="area" class="form-control" ng-model="preventiveCreation.area" ng-required="true" placeholder="Area">
                         </div>
                      </div>
-                     <div class="col-lg-1"></div> 
+                     <div class="col-md-1 col-sm-2"></div> 
                  </div>
                  <div class="row">
-                     <div class="col-lg-1"></div> 
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div> 
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Frequency</b></span>
                      </div>
-                     <div class="col-lg-5">
+                     <div class="col-md-5 col-sm-4">
                      	<div class="select">
                             <select name="frequency" class="form-control" ng-options="freq.value for freq in preCreation.frequency" ng-model="preventiveCreation.frequency" ng-required="true" class="btn btn-default select-width selectpicker form-control">
                             <option value="">Select Frequency</option>
                             </select>
                         </div>
                      </div>
-                     <div class="col-lg-1"></div> 
+                     <div class="col-md-1 col-sm-2"></div> 
                  </div>
                  <div class="row">
-                     <div class="col-lg-1"></div> 
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div> 
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Phone Number</b></span>
                      </div>
-                     <div class="col-lg-5">
+                     <div class="col-md-5 col-sm-4">
                      	<div class="form-group">
                             <input type="text" name="phoneNumber" class="form-control" ng-model="preventiveCreation.phone_number" ng-required="true" placeholder="Phone Number">
                         </div>
                      </div>
-                     <div class="col-lg-1"></div> 
+                     <div class="col-md-1 col-sm-2"></div> 
                  </div>
                  <div class="row">
-                     <div class="col-lg-1"></div> 
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div> 
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Maintenance Date</b></span>
                      </div>
-                     <div class="col-lg-5">
-                     	<div class="form-group">
+                     <div class="col-md-5 col-sm-4">
+                     	<div class="form-group" moment-picker="preventiveCreation.maintenance_date"  format="YYYY-MM-DD">
                             <input type="text" name="maintenanceDate" class="form-control" ng-model="preventiveCreation.maintenance_date" ng-required="true" placeholder="Maintenance Date">
                         </div>
                      </div>
-                     <div class="col-lg-1"></div> 
+                     <div class="col-md-1 col-sm-2"></div> 
                  </div>
                  <div class="row">
-                     <div class="col-lg-1"></div> 
-                     <div class="col-lg-5">
+                     <div class="col-md-1 col-sm-2"></div> 
+                     <div class="col-md-5 col-sm-4">
                        <span><b>Reason for Preventive</b></span>
                      </div>
-                      <div class="col-lg-5">
+                      <div class="col-md-5 col-sm-4">
                      	<div class="form-group">
                             <input type="text" name="preventiveReason" class="form-control" ng-model="preventiveCreation.reason_for_preventive" ng-required="true" placeholder="Reason for Preventive">
                         </div>
                      </div>
-                     <div class="col-lg-1"></div> 
+                     <div class="col-md-1 col-sm-2"></div> 
                  </div>
                  <div class="row">
-                   <div class="col-lg-12 text-center">
+                   <div class="col-md-12 text-center">
                         <div class="form-group">   
                             <input type="submit" ng-disabled="preventCreate.$invalid" class="btn btn-primary btn-md" value="Save">
                         </div>  

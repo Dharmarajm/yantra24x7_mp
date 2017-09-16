@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bwo_creation', ['ngRoute','ui.calendar','ui.bootstrap','720kb.datepicker'])
+angular.module('bwo_creation', ['ngRoute','ui.calendar','ui.bootstrap'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/bwo_creation', {
@@ -18,12 +18,14 @@ $scope.checklist={ "require_brain_storming":[{"id":1,"value":true},{"id":0,"valu
                    "kaizen_status":[{"id":1,"value":true},{"id":0,"value":false}]  
                  };
 
-/*$scope.bwocreation={
+$scope.bwocreation={
                      "machine_id": "",
                      "manufacture_date":"",
                      "maintenance_workorder_number": "", 
                      "start_time": "", 
                      "end_time": "",
+                     "starttime_dummy": "", 
+                     "endtime_dummy": "",
                      "alarm": "", 
                      "maintainence_workorder_type": "", 
                      "maintenance_workorder_closedby": "",
@@ -37,17 +39,21 @@ $scope.checklist={ "require_brain_storming":[{"id":1,"value":true},{"id":0,"valu
                      "nature_of_breakdown_id": "", 
                      "breakdown_type_id": "",
                      "file_path": ""
-                   };*/
+                   };
 // Post Method for BWO Creation
 
 $scope.bwoCreation=function(){
-  console.log("false");
+  
+  $scope.daystart = $filter('date')($scope.bwocreation.starttime_dummy, "hh:mma");
+  $scope.dayend = $filter('date')($scope.bwocreation.endtime_dummy, "hh:mma");
   var bwocreation={
                    "machine_id": $scope.bwocreation.machine_id,
-                   "manufacture_date": $scope.bwocreation.manufacture_date,
+                   "maintenance_date":$scope.bwocreation.maintenance_date,
                    "maintenance_workorder_number": $scope.bwocreation.maintenance_workorder_number, 
-                   "start_time": $scope.bwocreation.start_time, 
-                   "end_time": $scope.bwocreation.end_time,
+                   "start_time": $scope.daystart, 
+                   "end_time": $scope.dayend,
+                   "starttime_dummy": $scope.bwocreation.starttime_dummy, 
+                   "endtime_dummy": $scope.bwocreation.endtime_dummy,
                    "alarm": $scope.bwocreation.alarm, 
                    "maintainence_workorder_type": $scope.bwocreation.maintainence_workorder_type, 
                    "maintenance_workorder_closedby": $scope.bwocreation.maintenance_workorder_closedby,
@@ -60,7 +66,7 @@ $scope.bwoCreation=function(){
                    "maintenance_type_id":$scope.bwocreation.maintenance_type_id,
                    "nature_of_breakdown_id": $scope.bwocreation.nature_of_breakdown_id, 
                    "breakdown_type_id": $scope.bwocreation.breakdown_type_id,
-                   "file_path": $scope.bwocreation.file_path
+                   "image":{"image_path": $scope.file_path}
                   };  
 
                   console.log(bwocreation);
@@ -70,9 +76,8 @@ $scope.bwoCreation=function(){
   	url: $rootScope.api_url+'breakdown_work_orders',
   	data: bwocreation
   }).then(function(response){
-  	$scope.bwoCreationSuccess=response.data;
-    console.log($scope.bwoCreationSuccess);
-  	if($scope.bwoCreationSuccess==null){
+  	
+  	if(response){
       console.log(data);
   	 alert('Breakdown work orders Created');
       $location.path('/bwo_service_details');	 

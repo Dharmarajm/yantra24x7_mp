@@ -47,7 +47,6 @@ $scope.anualMaintainCreate=function(){
 	var anualCreate={ 
                              "machine_id":$scope.anualMainCreation.machine_id,
                              "maintenance_type":$scope.anualMainCreation.maintenance_type_id.value,
-                             "manufacturing_date":$scope.anualMainCreation.manufacturing_date,
                              "duration_from":$scope.anualMainCreation.duration_from,
                              "duration_to":$scope.anualMainCreation.duration_to,
                              "renewal_started_date":$scope.anualMainCreation.renewal_started_date,

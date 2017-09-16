@@ -33,7 +33,7 @@
                      </div>
                      <div class="col-sm-1 col-md-1"></div>
                  </div>
-                  <div class="row">
+                 <div class="row">
                      <div class="col-sm-1 col-md-1"></div>     
                      <div class="col-sm-5 col-md-5">
                        <span><b>Maintenance Type</b></span>
@@ -48,26 +48,14 @@
                        </div> 
                      </div>
                      <div class="col-sm-1 col-md-1"></div>
-                  </div>
-                  <div class="row">
-                     <div class="col-sm-1 col-md-1"></div>     
-                     <div class="col-sm-5 col-md-5">
-                       <span><b>Manufacturing Date</b></span>
-                     </div>
-                     <div class="col-sm-5 col-md-5">
-                        <div class="form-group">	
-                            <input type="text" name="manufacturing_date" class="form-control" ng-model="anualMainCreation.manufacturing_date" ng-required="true" placeholder="Manufacturing Date">
-                        </div> 
-                     </div>
-                     <div class="col-sm-1 col-md-1"></div>
-                 </div>
-                <div class="row">
+                 </div> 
+                 <div class="row">
                      <div class="col-sm-1 col-md-1"></div>     
                      <div class="col-sm-5 col-md-5">
                        <span><b>Duration From</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                       <div class="form-group"> 
+                       <div class="form-group" moment-picker="anualMainCreation.duration_from"  format="YYYY-MM-DD"> 
                             <input type="text" name="duration_from" class="form-control" ng-model="anualMainCreation.duration_from" ng-required="true" placeholder="Duration From">
                        </div> 
                      </div>
@@ -79,7 +67,7 @@
                        <span><b>Duration To</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                       <div class="form-group"> 
+                       <div class="form-group" moment-picker="anualMainCreation.duration_to"  format="YYYY-MM-DD"> 
                             <input type="text" name="duration_to" class="form-control" ng-model="anualMainCreation.duration_to" ng-required="true" placeholder="Duration To"> 
                        </div> 
                      </div>
@@ -91,7 +79,7 @@
                        <span><b>Renewal Started Date</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                       <div class="form-group">  
+                       <div class="form-group" moment-picker="anualMainCreation.renewal_started_date"  format="YYYY-MM-DD">  
                             <input type="text" name="renewal_started_date" class="form-control" ng-model="anualMainCreation.renewal_started_date" ng-required="true" placeholder="Renewal Started Date">
                        </div> 
                      </div>
