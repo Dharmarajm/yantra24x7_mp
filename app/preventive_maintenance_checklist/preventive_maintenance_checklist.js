@@ -165,6 +165,8 @@ alert("Deleted Successfully");
 function encodeImageFileAsURL(cb) {
     return function(){
         var file = this.files[0];
+        console.log(file);
+        console.log($scope.preventiveCheckEdit.image_path);
         var reader  = new FileReader();
         reader.onloadend = function () {
             cb(reader.result);
@@ -175,7 +177,6 @@ function encodeImageFileAsURL(cb) {
 
 $('#inputFileToLoad').change(encodeImageFileAsURL(function(base64Img){
   $scope.file_path=base64Img;
-  console.log($scope.file_path);
     $('.output')
       .find('textarea')
         .val(base64Img)

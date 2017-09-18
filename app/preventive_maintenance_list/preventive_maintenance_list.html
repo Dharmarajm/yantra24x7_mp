@@ -10,12 +10,18 @@
               </div>
             </div><br><br>
     
-    <div class="container calendar">
+    <div class="container calendar" style="overflow-y:visible;">
       <div class="col-lg-8">        
             <div class="row">
-              <div class="col-md-12 ">
-                <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div>
-              </div> 
+              <div class="col-md-12">
+                <div id="calendar" ui-calendar="uiConfig.calendar" config="uiConfig.calendar" class="span8 calendar" ng-model="eventSources" calendar="myCalendar"></div>
+              </div>
+              <!-- <div class="col-md-4">
+                <div ng-show="SelectedEvent" class="alert alert-success" style="margin-top:50px";>
+                <h2 style="margin-top:0px">Selected Event</h2>
+                <h3 style="margin-top:0px">{{SelectedEvent.title}}</h3>
+                <p>{{SelectedEvent.description}}</p>
+              </div>  -->
             </div>
       </div>      
     </div>         

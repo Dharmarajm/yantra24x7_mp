@@ -53,6 +53,7 @@ console.log(preventiveCreation);
       	$scope.preventSuccess=response.data;
       	console.log($scope.preventSuccess);
         alert("Preventive Maintenance Created");
+        $location.path('/preventive_maintenance_list ');
       })                           
 }
 

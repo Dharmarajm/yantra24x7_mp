@@ -12,12 +12,22 @@ angular.module('preventive_maintenance_slip', ['ngRoute','ui.calendar','ui.boots
 .controller('preventiveMaintenanceSlip', ['$scope', '$http','$location','$window','$rootScope',
   function($scope, $http,$location,$window,$rootScope) {
 
-  //Get Method for getting machines                      
+//Get Method for getting machines
+
 $http({
         method: 'GET',
         url: $rootScope.api_url+'machines'
       }).then(function(response){
         $scope.anualCheckMachines=response.data;
       })
+
+//Get Method for slippage list
+
+$http({
+        method: 'GET',
+        url: $rootScope.api_url+'preventive_maintenances'
+      }).then(function(response){
+        $scope.preventSlip=response.data;
+      })        
            
 }]);

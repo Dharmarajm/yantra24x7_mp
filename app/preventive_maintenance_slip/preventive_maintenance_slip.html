@@ -92,15 +92,16 @@
                        <th>frequency</th>
                        <th>Slippage Date</th>
                        <th>Reason for Slippage</th>
-                       <th>Causes</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="user in ">
-                       <td>{{ user.first_name }}</td>
-                       <td>{{ user.email }}</td>
-                       <td>{{ user.phone_one }}</td>
-                       <td>{{user.role.name}}</td>
+                    <tr ng-repeat="slip in preventSlip">
+                       <td>{{ $index+1 }}</td>
+                       <td>{{ slip.machine.machine_id }}</td>
+                       <td>{{ slip.reason_for_preventive }}</td>
+                       <td>{{ slip.frequency}}</td>
+                       <td>{{ slip.maintenance_date}}</td>
+                       <td>{{ slip.reason_for_slippage}}</td>
                        <td>
                          <ul class="item-actions-list">
                           <li>
