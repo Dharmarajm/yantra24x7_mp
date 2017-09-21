@@ -12,17 +12,6 @@ angular.module('anualMaintenanceCreation', ['ngRoute','ui.calendar','ui.bootstra
 .controller('anualMaintenanceCreationCtrl', ['$scope', '$http','$location','$window','$rootScope',
   function($scope, $http,$location,$window,$rootScope) {
 
-   /*$scope.visibility = true;
-
-    $interval(function setInterval() {
-      //toggling manually everytime
-      $scope.visibility = !$scope.visibility;
-    }, 3500);
-*/
-
-
-
-
   $scope.anualmaintain={ "maintenance_type":[
                                            {"value":"AMC"},   
                                            {"value":"NO AMC"},
@@ -32,14 +21,34 @@ angular.module('anualMaintenanceCreation', ['ngRoute','ui.calendar','ui.bootstra
                        };
 
 //Machine Name getting functions
+                     
+if($scope.role_type_name=='Tenant'){
+
 $http({
-        method: 'GET',
-        url: $rootScope.api_url+'machines'
-      }).then(function(response){
-      	$scope.anualCheckMachines=response.data;
-      })                       
+    method:'GET',
+    url:$rootScope.api_url+'tenant_machine?tenant_id='+$scope.tenant_id
+  })
+  .then(function(response){
+    
+   $scope.anualCheckMachines = response.data;
+   console.log()
+  
+    })
+}//if block end
+else{
 
+$http({
+    method:'GET',
+    url:$rootScope.api_url+'unit_machine?unit_id='+$scope.reference_id
+  })
+  .then(function(response){
+    
+$scope.anualCheckMachines = response.data;
+   
+  
+    })
 
+}
 //Post Method for creating anual maintenance
 
 $scope.anualMaintainCreate=function(){
@@ -61,11 +70,11 @@ console.log(anualCreate);
       }).then(function(response){
       	
         $scope.anualCreateSuccess=response.data;
-        localStorage.setItem("id",$scope.anualCreateSuccess.id);
-        $scope.amc_detail_id=localStorage.getItem("id");
-        console.log($scope.amc_detail_id);
-      	alert("Anual Maintenance Created")
-        $location.path('/amc_transaction');
+       // localStorage.setItem("id",$scope.anualCreateSuccess.id);
+        //$scope.amc_detail_id=localStorage.getItem("id");
+       // console.log($scope.amc_detail_id);
+      	//alert("Anual Maintenance Created")
+        $location.path('/anual_maintenance_list');
         
       })                           
 }

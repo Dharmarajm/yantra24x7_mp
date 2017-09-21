@@ -20,29 +20,47 @@ angular.module('preventive_maintenance_creation', ['ngRoute'])
                                            {"value":"Yearly"}
                                           ]
                              };
-  /*$scope.preventiveCreation={ 
-                             "machine_id":"",
-                             "area":"",
-                             "frequency":"",
-                             "phone_number":"",
-                             "maintenance_date":"",
-                             "reason_for_preventive":""                               
-                            }; */
+//Machines data Getting Functions
+
+if($scope.role_type_name=='Tenant'){
+
 $http({
-        method: 'GET',
-        url: $rootScope.api_url+'machines'
-      }).then(function(response){
-      	$scope.preMaintenanceCreate=response.data;
-      })
+    method:'GET',
+    url:$rootScope.api_url+'tenant_machine?tenant_id='+$scope.tenant_id
+  })
+  .then(function(response){
+    
+   $scope.preMaintenanceCreate = response.data;
+   
+  
+    })
+}//if block end
+else{
+
+$http({
+    method:'GET',
+    url:$rootScope.api_url+'unit_machine?unit_id='+$scope.reference_id
+  })
+  .then(function(response){
+    
+$scope.preMaintenanceCreate = response.data;
+   
+  
+    })
+
+}
+
+$scope.preventiveCreation={"machine_id":'',"area":'',"frequency":'',"phone_number":'',"maintenance_date":'',"reason_for_preventive":'',"status":'Inprogress'};
 $scope.preventCreation=function(){
-	
+	console.log($scope.preventiveCreation);
 	var preventiveCreation={ 
                              "machine_id":$scope.preventiveCreation.machine_id,
                              "area":$scope.preventiveCreation.area,
                              "frequency":$scope.preventiveCreation.frequency.value,
                              "phone_number":$scope.preventiveCreation.phone_number,
                              "maintenance_date":$scope.preventiveCreation.maintenance_date,
-                             "reason_for_preventive":$scope.preventiveCreation.reason_for_preventive                               
+                             "reason_for_preventive":$scope.preventiveCreation.reason_for_preventive,
+                             "status":$scope.preventiveCreation.status                              
                             };
 console.log(preventiveCreation);
  $http({
@@ -51,9 +69,10 @@ console.log(preventiveCreation);
        data: preventiveCreation 
       }).then(function(response){
       	$scope.preventSuccess=response.data;
-      	console.log($scope.preventSuccess);
+      	localStorage.setItem("id",$scope.preventSuccess.id);
+        console.log(localStorage.getItem("id"))
         alert("Preventive Maintenance Created");
-        $location.path('/preventive_maintenance_list ');
+        $location.path('/preventive_maintenance_list');
       })                           
 }
 

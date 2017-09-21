@@ -12,7 +12,7 @@ angular.module('registrations', ['ngRoute'])
 .controller('RegistrationCtrl', ['$scope', '$http', '$location', '$window', '$rootScope',
   function($scope,$http,$location,$window,$rootScope) {
 
-$scope.registration = {"first_name": '',"last_name": '',"email": '',"password": '',"phone_one": '',"phone_two": '',"tenant_name": '', "website": '',"brand_name": '' ,"about_company": '',"address_one": '',"address_two": '',"city": '',"state": '',"country":'',"pincode": '',"approval_status":'active'};
+$scope.registration = {"first_name": '',"last_name": '',"email": '',"password": '',"phone_one": '',"phone_two": '',"tenant_name": '', "website": '',"brand_name": '' ,"about_company": '',"address_one": '',"address_two": '',"city": '',"state": '',"country":'',"pin_code": '',"approval_status":'active'};
 $scope.eml_add = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 $scope.signup = function(){  
   
@@ -29,7 +29,7 @@ $scope.signup = function(){
             "city": $scope.registration.city,
             "state": $scope.registration.state, 
             "country":$scope.registration.country,
-            "pincode": $scope.registration.pincode,
+            "pin_code": $scope.registration.pin_code,
             "approval_status":$scope.registration.approval_status
                       },
              "tenant": {      
@@ -45,7 +45,7 @@ $scope.signup = function(){
                       "city": $scope.registration.city,
                       "state": $scope.registration.state, 
                       "country":$scope.registration.country,
-                      "pincode": $scope.registration.pincode
+                      "pin_code": $scope.registration.pin_code
                       }
                      
            };    

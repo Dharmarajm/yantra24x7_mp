@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('preventive_maintanance_slip_check', ['ngRoute'])
+angular.module('preventive_maintanance_slipchecklist', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/preventive_maintanance_slip_check', {
-    templateUrl: 'preventive_maintanance_slip_check/preventive_maintanance_slip_check.html',
+  $routeProvider.when('/preventive_maintanance_slipchecklist', {
+    templateUrl: 'preventive_maintanance_slipchecklist/preventive_maintanance_slipchecklist.html',
     controller: 'preventiveMaintenanceSlipChecklistCtrl'
   });
 }])
@@ -12,24 +12,29 @@ angular.module('preventive_maintanance_slip_check', ['ngRoute'])
 .controller('preventiveMaintenanceSlipChecklistCtrl', ['$scope', '$http','$location','$window','$rootScope',
 function($scope, $http,$location,$window,$rootScope) {
   
-
+ $scope.init=function(){
+  
+  $scope.slipCheckId=localStorage.getItem("addCheckSlip");
+  
   $http({
   	method:'get',
-  	url: $rootScope.api_url+'preventive_main_transaction',
+  	url: $rootScope.api_url+'preventive_maintenance_to_checklist?preventive_maintenance_id='+$scope.slipCheckId
   }).then(function(response){
   	$scope.slipCheckGetSuccess=response.data;
-  	console.log($scope.slipcheckSuccess);
+  	console.log($scope.slipCheckGetSuccess);
   })
   
-  $scope.slipCheckId=localStorage.getItem("id");
+ }
+
+  
   
   $scope.slipcheck={ "id":null,"checklist_name":"","description":""}
 
   $scope.slip_form=function(){
 
-  	console.log($scope.slipCheckId)
+  console.log($scope.slipCheckId)
   var slipcheck={ "preventive_main_transaction":{"list_to_check":$scope.slipcheck.checklist_name,"description":$scope.slipcheck.description,"preventive_maintenance_id":$scope.slipCheckId}}
-if ($scope.slipcheck.id== null && $scope.slipcheck.checklist_name.length!=0 && $scope.slipcheck.description.length!=0){
+  if ($scope.slipcheck.id== null && $scope.slipcheck.checklist_name.length!=0 && $scope.slipcheck.description.length!=0){
   $http({
   	method:'post',
   	url: $rootScope.api_url+'preventive_main_transaction_create',
@@ -37,25 +42,14 @@ if ($scope.slipcheck.id== null && $scope.slipcheck.checklist_name.length!=0 && $
   }).then(function(response){
   	   $scope.slipcheckSuccess=response.data
   	   $scope.slipcheck="";	
-  	   $scope.slipinit();
+  	   $scope.init();
   	   alert("Slip checklist created");	
   })
-}else{
-	alert("Slip checklist created failed");   
-}
-
+  }else{
+	   alert("Slip checklist created failed");   
   }
 
-  $scope.slipinit=function(){
-  $http({
-  	method:'get',
-  	url: $rootScope.api_url+'preventive_main_transaction',
-  }).then(function(response){
-  	$scope.slipCheckGetSuccess=response.data;
-  })
   }
-
-  
 
   $scope.delete=function(id){
   	console.log(id)
@@ -67,7 +61,7 @@ if ($scope.slipcheck.id== null && $scope.slipcheck.checklist_name.length!=0 && $
        // $state.go('/company_registration');
   alert("Deleted Successfully");
       //$window.location.reload();
-      $scope.slipinit();
+      $scope.init();
         }else{      
         alert('Delete Failed');   
         }
@@ -111,11 +105,15 @@ if ($scope.slipcheck.id== null && $scope.slipcheck.checklist_name.length!=0 && $
     if(data){
     console.log(data);
     alert("Updated Successfully");
-    $scope.slipinit();
+    $scope.init();
     }else{      
         alert('Updation Failed');   
         }
     });
+ }
+
+ $scope.redirect=function(){
+  $location.path("/preventive_maintenance_list");
  }	
 
 }]);

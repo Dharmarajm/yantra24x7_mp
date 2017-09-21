@@ -1,12 +1,12 @@
 <div ng-include="'sidebar.html'"></div>
 <div class="page home-page">     
 <div ng-include="'header.html'"></div>
-<section class="anual_maintenance_creation section-padding section_top">
+<section class="anual_maintenance_creation section-padding section_top" ng-init="trekinit()">
     <div class="container-fluid">
             <div class="row">
               <div class="col-lg-12">
                 <img ng-src="assets/images/u12137.png">
-                &nbsp;&nbsp;&nbsp;&nbsp;<label><b>AMC Transaction Table</b></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;<label><b>AMC Transaction</b></label>
               </div>
             </div>
 
@@ -40,18 +40,6 @@
                      </div>
                      <div class="col-sm-1 col-md-1"></div>
                   </div>
-                  <div class="row">
-                     <div class="col-sm-1 col-md-1"></div>     
-                     <div class="col-sm-5 col-md-5">
-                       <span><b>Reason for Change</b></span>
-                     </div>
-                     <div class="col-sm-5 col-md-5">
-                     	<div class="form-group">
-                            <input type="text" name="reason_for_change" class="form-control" ng-model="amcTransact.reason_for_change" ng-required="true" placeholder="Reason for Change">
-                        </div>
-                     </div>
-                     <div class="col-sm-1 col-md-1"></div>
-                 </div>
                  <div class="row">
                      <div class="col-sm-1 col-md-1"></div>     
                      <div class="col-sm-5 col-md-5">
@@ -79,6 +67,18 @@
                  <div class="row">
                      <div class="col-sm-1 col-md-1"></div>     
                      <div class="col-sm-5 col-md-5">
+                       <span><b>Reason for Change</b></span>
+                     </div>
+                     <div class="col-sm-5 col-md-5">
+                        <div class="form-group">
+                            <input type="text" name="reason_for_change" class="form-control" ng-model="amcTransact.reason_for_change" ng-required="true" placeholder="Reason for Change">
+                        </div>
+                     </div>
+                     <div class="col-sm-1 col-md-1"></div>
+                 </div>
+                 <div class="row">
+                     <div class="col-sm-1 col-md-1"></div>     
+                     <div class="col-sm-5 col-md-5">
                        <span><b>Amount Paid</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
@@ -99,7 +99,133 @@
             </div> 
            </div>  
           </div>
-    </div>       
+    </div><br>
+
+    <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <img ng-src="assets/images/u12137.png">
+                &nbsp;&nbsp;&nbsp;&nbsp;<label><b>AMC Transaction List</b></label>
+              </div>
+            </div><br>
+           <div class="card">
+               <div class="card-block tablescroll">
+                   <table class="table table-striped table-sm table_front">
+                       <thead>
+                           <tr>
+                              <th>Visit Number</th>
+                              <th>Maintenance Date</th>
+                              <th>Spare Changed</th>
+                              <th>Spare Cost</th>
+                              <th>Amount Paid</th>
+                              <th>Reason for Change</th>
+                              <th>Action</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr ng-repeat="anultrs in amcTransactionSuccess">
+                              <td>{{ anultrs.visit_number }}</td>
+                              <td>{{ anultrs.maintenance_date }}</td>
+                              <td>{{ anultrs.spare_changed }}</td>
+                              <td>{{ anultrs.spare_cost}}</td>
+                              <td>{{ anultrs.reason_for_change }}</td>
+                              <td>{{ anultrs.amount_paid }}</td>
+                              <td>
+                                <ul class="item-actions-list">
+                                <li>
+                                   <a class="remove"> <i class="fa fa-trash-o " confirmed-click="delete(anultrs.id)" ng-confirm-click="Do you want to delete"></i> </a>
+                                </li>
+                                <li>
+                                   <a class="edit" data-toggle="modal"  data-target="#amctransactModal" title="Edit"  ng-click="edit(anultrs.id)"> <i class="fa fa-pencil"></i> </a>
+                                </li>
+                                </ul>
+                              </td> 
+                           </tr>
+                       </tbody>
+                    </table>
+               </div>
+           </div>
+    </div>
+
+ <!-- modal -->
+    <div class="modal fade" id="amctransactModal" tabindex="-1" role="dialog" aria-labelledby="amctransactModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="amctransactModal">Edit AMC Transaction</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body machine-registration">
+                  <form name="anualtrack">
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                         <label>Visit Number</label>
+                           <div class="form-group">
+                            <input type="text" placeholder="Visit Number" name="visit_number" class="form-control" ng-model="amcTransactdetail.visit_number" ng-Required="true">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                          <label>Maintenance Date</label>
+                           <div class="form-group" moment-picker="amcTransactdetail.maintenance_date"  format="YYYY-MM-DD">
+                            <input type="text" placeholder="Maintanance Date" name="duration_from" class="form-control" ng-model="amcTransactdetail.maintenance_date" ng-Required="true">
+                           </div> 
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                          <label>Spare Changed</label>
+                           <div class="form-group"> 
+                            <input type="text" placeholder="Spare Changed" name="spare_changed" class="form-control" ng-model="amcTransactdetail.spare_changed" ng-Required="true">
+                           </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Spare Cost</label>
+                            <input type="text" placeholder="Spare Cost" name="spare_cost" class="form-control" ng-model="amcTransactdetail.spare_cost" ng-Required="true">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                          <label>Reason for Change</label>
+                           <div class="form-group">
+                            <input type="text" placeholder="Reason for Change" name="reason_for_change" class="form-control" ng-model="amcTransactdetail.reason_for_change" ng-Required="true">
+                           </div> 
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Amount Paid</label>
+                            <input type="text" placeholder="Amout Paid" name="amount_paid" class="form-control" ng-model="amcTransactdetail.amount_paid" ng-Required="true">
+                        </div>
+                        </div>
+                    </div>
+                  
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-disabled="anualtrack.$invalid" ng-click="transactUpdateDetails(updateId)" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+               </form>
+              </div>
+            </div>
+        </div>
+    </div>
+                     
  </section>                                                            
  <div ng-include="'footer.html'"></div>
  </div>

@@ -20,12 +20,13 @@
                  <div class="row">
                      <div class="col-sm-1 col-md-1"></div>     
                      <div class="col-sm-5 col-md-5">
-                       <span><b>Machine</b></span>
+                       <span><b>Machine ID</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
                        <div class="form-group">
                         <div class="select">
-                            <select name="machine" class="form-control" ng-options="machine.id as machine.name for machine in anualCheckMachines" ng-model="anualMainCreation.machine_id" ng-required="true class="btn btn-default select-width selectpicker form-control">
+                            <select name="machine" class="form-control" ng-options="machine.id as machine.machine_id for machine in anualCheckMachines" ng-model="anualMainCreation.machine_id" ng-required="true"
+                             class="btn btn-default select-width selectpicker form-control">
                             <option value="">Select Machine</option>
                             </select>
                         </div>
@@ -41,7 +42,7 @@
                      <div class="col-sm-5 col-md-5">
                        <div class="form-group">
                         <div class="select">
-                            <select name="maintenance_type" class="form-control" ng-options=" anual.value for anual in anualmaintain.maintenance_type" ng-model="anualMainCreation.maintenance_type_id" ng-required="true class="btn btn-default select-width selectpicker form-control">
+                            <select name="maintenance_type" class="form-control" ng-options=" anual.value for anual in anualmaintain.maintenance_type" ng-model="anualMainCreation.maintenance_type_id" ng-required="true" class="btn btn-default select-width selectpicker form-control">
                             <option value="">Select Maintenance type</option>
                             </select>
                         </div>

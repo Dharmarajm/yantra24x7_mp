@@ -18,46 +18,73 @@ angular.module('anualMaintenanceList', ['ngRoute','ui.calendar','ui.bootstrap'])
 
  
  $scope.anualmaintain=["AMC","NO AMC","WARRANTY"];
-//Get Method for getting machines                      
-$http({
-        method: 'GET',
-        url: $rootScope.api_url+'machines'
-      }).then(function(response){
-        $scope.anualCheckMachines=response.data;
-      })                       
+$scope.new_amc=function(){
 
-
-//Anual Maintenance list getting functions
-$http({
-        method: 'GET',
-        url: $rootScope.api_url+'amc_details'
-      }).then(function(response){
-      	$scope.anualmainlist=response.data;
-        console.log($scope.anualmainlist);
-      })
+  $location.path('/anual_maintenance_creation');
+}
 
 $scope.allocationinit=function(){
 
+//Get Method for getting machines                      
+
+if($scope.role_type_name=='Tenant'){
+
+$http({
+    method:'GET',
+    url:$rootScope.api_url+'tenant_machine?tenant_id='+$scope.tenant_id
+  })
+  .then(function(response){
+    
+   $scope.anualCheckMachines = response.data;
+   
+  
+    })
+}//if block end
+else{
+
+$http({
+    method:'GET',
+    url:$rootScope.api_url+'unit_machine?unit_id='+$scope.reference_id
+  })
+  .then(function(response){
+    
+$scope.anualCheckMachines = response.data;
+   
+  
+    })
+
+}               
+
+if($scope.role_type_name=='Tenant'){
+
 $http({
         method: 'GET',
-        url: $rootScope.api_url+'amc_details'
+        url: $rootScope.api_url+'tenant_amc_details?tenant_id='+$scope.tenant_id
       }).then(function(response){
         $scope.anualmainlist=response.data;
         console.log($scope.anualmainlist);
       })
 
-}      
-
+}else{
+  $http({
+        method: 'GET',
+        url: $rootScope.api_url+'unit_amc_details?unit_id='+$scope.reference_id
+      }).then(function(response){
+        $scope.anualmainlist=response.data;
+        console.log($scope.anualmainlist);
+      })
+}
+}
 //Edit functions for AMC list
 
 $scope.edit = function(id) {
   var i;
  $scope.updateId=id;
+ console.log($scope.updateId);
    for(i in $scope.anualmainlist) {
 
             if($scope.anualmainlist[i].id == id) {
-               var user_id=$scope.anualmainlist[i];
-               
+              
                $scope.editAmcList={
                                    "machine_id": $scope.anualmainlist[i].machine.id,
                                    "maintenance_type": $scope.anualmainlist[i].maintenance_type,
@@ -71,6 +98,14 @@ $scope.edit = function(id) {
               console.log($scope.editAmcList); 
     }
  }
+}
+
+//Add Transaction for AMC
+
+$scope.add=function(id){
+ $scope.addTransactId=id;
+ localStorage.setItem("addId",$scope.addTransactId);
+ $location.path('/amc_transaction');
 }
 
 //update function for AMC
@@ -117,8 +152,7 @@ $http.delete($rootScope.api_url+'amc_details/'+id).success(function(data) {
         if(data){
 
        // $state.go('/company_registration');
-alert("Deleted Successfully");
-      //$window.location.reload();
+     alert("Deleted Successfully");
       $scope.allocationinit();
         }else{      
         alert('Delete Failed');   

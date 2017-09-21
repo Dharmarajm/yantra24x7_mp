@@ -18,12 +18,12 @@ $scope.preventive_checklist={
                              "machine_id": "",
                              "checklist_type": "",
                              "duration_from": "",
-                             "duration_to": "",
-                             "image_path":"" 
+                             "duration_to": ""
                             }
 
 
-$scope.file_path;
+
+console.log($scope.file_path);
 //Post Method for Checklist Creation
 
 $scope.preventiveCheckCretion=function(){
@@ -50,37 +50,59 @@ console.log(preventCreate);
 }
 
 
-//Machine Name getting functions
-$http({
-        method: 'GET',
-        url: $rootScope.api_url+'machines'
-      }).then(function(response){
-      	$scope.preventCheckMachines=response.data;
-      }) 
 
 
 //Get method for display the Checkliat data
 
 $scope.userinit=function(){
 
- $http({
-        method: 'GET',
-        url: $rootScope.api_url+'preventive_maintenance_checklists'
-      }).then(function(response){
-      	$scope.preventChecklists=response.data;
-      	console.log($scope.preventChecklists);
-        
-      })
-}
+//Machine Name getting functions
+if($scope.role_type_name=='Tenant'){
 
- $http({
+$http({
+    method:'GET',
+    url:$rootScope.api_url+'tenant_machine?tenant_id='+$scope.tenant_id
+  })
+  .then(function(response){
+    
+   $scope.preventCheckMachines = response.data;
+   
+  
+    })
+  $http({
         method: 'GET',
-        url: $rootScope.api_url+'preventive_maintenance_checklists'
+        url: $rootScope.api_url+'tenant_preventive_maintenance_checklist?tenant_id='+$scope.tenant_id
       }).then(function(response){
         $scope.preventChecklists=response.data;
         console.log($scope.preventChecklists);
         
       })
+}//if block end
+else{
+
+$http({
+    method:'GET',
+    url:$rootScope.api_url+'unit_machine?unit_id='+$scope.reference_id
+  })
+  .then(function(response){
+    
+$scope.preventCheckMachines = response.data;
+   
+  
+    })
+$http({
+        method: 'GET',
+        url: $rootScope.api_url+'unit_preventive_maintenance_checklist?unit_id='+$scope.reference_id
+      }).then(function(response){
+        $scope.preventChecklists=response.data;
+        console.log($scope.preventChecklists);
+        
+      })
+
+}
+}
+
+
 
 //Edit Method for Preventive Checklist
 
@@ -218,4 +240,8 @@ $('#inputFileToLoad').change(encodeImageFileAsURL(function(base64Img){
         .error(function(){
         });
     }
+
+ $scope.data=function(id){
+  console.log(id);
+ }   
 }]);
