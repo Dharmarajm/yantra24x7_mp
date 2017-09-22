@@ -1,7 +1,7 @@
 <div ng-include="'sidebar.html'"></div>
 <div class="page home-page">     
 <div ng-include="'header.html'"></div>
- <section class="bwo_analysis section-padding section_top">
+ <section class="bwo_analysis section-padding section_top" ng-init="why_why_analysis()">
     <div class="container-fluid">
             <div class="row">
               <div class="col-lg-12">
@@ -24,11 +24,25 @@
                            </tr>
                        </thead>
                        <tbody>
+                       <tr ng-repeat="why in whywhy_list">
+                         
+
+                       <td>
+                         {{why.why}}
+                       </td>
+<td>
+  {{why.due_to}}
+</td>
+<td>
+  {{why.action}}
+</td>
+ <td style="font-size:20px;"><i class="fa fa-trash-o" ng-click="delete1(why.id)"></i></td>
+                       </tr>
                            <tr>
-                              <td><input type="text" id="why"/></td>
-                              <td><input type="text" id="dueto"/></td>
-                              <td><input type="text" id="action"/></td>
-                              <td style="font-size:20px;"><i class="fa fa-plus-circle" ng-click="insertAnalysisRow()"></i></td>
+                              <td><input type="text" ng-model="whywhycreation.why" class="form-control"/></td>
+                              <td><input type="text"  ng-model="whywhycreation.due_to" class="form-control"/></td>
+                              <td><input type="text"  ng-model="whywhycreation.action" class="form-control"/></td>
+                              <td style="font-size:20px;"><i class="fa fa-plus-circle" ng-click="whywhycreation_form()"></i></td>
                               <!-- <td>
                                 <ul class="item-actions-list">
                                 <li>
@@ -46,47 +60,74 @@
               </div>
            </div>  
           </div><br>
-          <div class="col-lg-8">
-            <div class="card">
-                 <div class="row">
-                   <div class="col-md-6">
-                    <input type="checkbox" ng-model="checkboxModel.value1">Add final action to final checklist
-                   </div>
-                   <div class="col-md-6">
-                     <input type="file" file-model="myFile"/>
-                   </div>
-                 </div>
-                 <div class="row">
-                   <div class="col-md-6">
-                    <input type="checkbox" ng-model="checkboxModel.value1">Required brain storming
-                   </div>
-                   <div class="col-md-2">
-                     <label>Status</label>
-                   </div>
-                   <div class="col-md-4">
-                     <input type="text" ng-model="checkboxModel.value1" placeholder="Status">
-                   </div>
-                 </div>
-                 <div class="row">
-                   <div class="col-md-12">
-                    <input type="checkbox" ng-model="checkboxModel.value1">Need Service Report
-                   </div>
-                 </div>
-                 <div class="row">
-                   <div class="col-md-12  ">
-                    <input type="checkbox" ng-model="checkboxModel.value1">PSN Notification Mail
-                   </div>
-                 </div>
-            </div>         
-                 <div class="row">
-                   <div class="col-md-6 text-left">
-                     <button type="button" class="btn btn-primary btn-md">Previous</button>
-                   </div>
-                   <div class="col-md-6 text-right">
-                     <button type="button" class="btn btn-primary btn-md">Submit</button>
-                   </div>
-                 </div>
-          </div> 
+
+           <div class="row d-flex align-items-stretch">
+            <div class="col-lg-8">
+            <label>Spares </label><br>
+              <div class="card">
+               <div class="card-block tablescroll">
+                   <table class="table table-striped table-sm table_front" id="analysis">
+                       <thead>
+                           <tr>
+                              <th>Item ID</th>
+                              <th>Item Description</th>
+                              <th>Quantity</th>
+                              <th>Spare Cost</th>
+                              <th>Reason For Change</th>
+                              <th>Achieved Life Time</th>
+                              <td>Expected Change Date</td>
+                              
+                           </tr>
+                       </thead>
+                       <tbody>
+                       <tr ng-repeat="spare in spare_list">
+                         
+
+                       <td>
+                         {{spare.spare_id}}
+                       </td>
+<td>
+  {{spare.spare_description}}
+</td>
+<td>
+  {{spare.qty}}
+</td>
+<td>{{spare.spare_cost}}</td>
+<td>{{spare.reason_for_change}}</td>
+<td>{{spare.achieved_life_time}}</td>
+<td>{{spare.expected_change_date}}</td>
+ <td style="font-size:20px;"><i class="fa fa-trash-o" ng-click="delete(spare.id)"></i></td>
+                       </tr>
+                           <tr>
+                              <td><input type="text" ng-model="sparecreation.spare_id" class="form-control"/></td>
+                              <td><input type="text"  ng-model="sparecreation.spare_description" class="form-control"/></td>
+                              <td><input type="number"  ng-model="sparecreation.qty" class="form-control"/></td>
+                               <td><input type="number"  ng-model="sparecreation.spare_cost" class="form-control"/></td>
+                                <td><input type="text"  ng-model="sparecreation.reason_for_change" class="form-control"/></td>
+                                 <td><input type="text"  ng-model="sparecreation.achieved_life_time" class="form-control"/></td>
+                                 <td><div class="form-group" moment-picker="sparecreation.expected_change_date"  format="YYYY-MM-DD">
+                       <input type="text" name="last_name" class="form-control" ng-model="sparecreation.expected_change_date" placeholder="">
+                    </div>
+
+                              <td style="font-size:20px;"><i class="fa fa-plus-circle" ng-click="sparecreation_form()"></i></td>
+                              <!-- <td>
+                                <ul class="item-actions-list">
+                                <li>
+                                   <a class="remove"> <i class="fa fa-trash-o " confirmed-click="delete(user.id)" ng-confirm-click="Do you want to delete"></i> </a>
+                                </li>
+                                <li>
+                                   <a class="edit" data-toggle="modal"  data-target="#exampleModalLabel1" title="Edit" ng-click="edit(user.id)"> <i class="fa fa-pencil"></i> </a>
+                                </li>
+                                </ul>
+                              </td>
+     -->                   </tr>
+                       </tbody>
+                    </table>
+               </div>
+              </div>
+           </div>  
+          </div>
+          
     </div>
 </section>
 <section></section>                               

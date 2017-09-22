@@ -1,7 +1,7 @@
 <div ng-include="'sidebar.html'"></div>
 <div class="page home-page">     
 <div ng-include="'header.html'"></div>
- <section class="bwo_service section-padding section_top">
+ <section class="bwo_service section-padding section_top" ng-init="inhouseinit()">
     <div class="container-fluid">
             <div class="row">
               <div class="col-lg-12">
@@ -12,25 +12,30 @@
 
            <div class="row d-flex align-items-stretch">
             <div class="col-lg-8">
-            <label>Inhouse Service Engineers Details</label><br>
+            <h4>Inhouse Service Engineers Details</h4><br>
               <div class="card">
                <div class="card-block tablescroll">
                    <table class="table table-striped table-sm table_front" id="bwoService">
                        <thead>
                            <tr>
-                              <th>S.No</th>
                               <th>Attended By</th>
-                              <th>Hours</th>
+                              <th>Attended Hours</th>
                            </tr>
                        </thead>
                        <tbody>
+                       <tr ng-repeat="inhouse in inhouse_list">
+                         <td>{{inhouse.service_engineer.name}}</td>
+                         <td>{{inhouse.hours}}</td>
+                         <td style="font-size:20px;"><i class="fa fa-trash" ng-click="delete(inhouse.id)"></i></td>
+                       </tr>
                            <tr>
-                              <td>1</td>
-                              <td><select name="engineer" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
-                              <option value="" id="engineer">Select Engineer</option>
-                              </select></td>
-                              <td><input type="text" id="hours" /></td>
-                              <td style="font-size:20px;"><i class="fa fa-plus-circle" ng-click="insertServiceRow()"></i></td>
+                              
+                              <td><select name="userRole" class="form-control" ng-options="service.id as service.name for service in service_engineer_list" ng-model="inhouseregistration.service_engineer_id" class="btn btn-default select-width selectpicker form-control">
+                      <option value="">Select Service Engineer</option>
+                      </select>
+                      </td>
+                              <td><input type="text" name="hours" ng-model="inhouseregistration.dummy_hours" class="form-control" data-time-format="HH:mm:ss" size="8" bs-timepicker></td>
+                              <td style="font-size:20px;"><i class="fa fa-plus-circle" ng-click="inhouse_form()"></i></td>
                            </tr>     
                               <!-- <td>
                                 <ul class="item-actions-list">
@@ -52,7 +57,7 @@
           </div>
           <div class="row d-flex align-items-stretch">
             <div class="col-lg-12">
-            <label>Vendor Service Engineers Details</label><br>
+            <h4>Vendor Service Engineers Details</h4><br>
               <form name="register" novalidate>
                 <div class="row">
                   <div class="col-md-3">
@@ -60,7 +65,7 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                       <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Area">
+                       <input type="text" name="last_name" class="form-control" ng-model="vendorregistration.name" placeholder="Service Engineer Name">
                     </div>
                   </div>
                   <div class="col-md-3">
@@ -68,7 +73,7 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Area">
+                      <input type="text" name="last_name" class="form-control" ng-model="vendorregistration.endtime_dummy" placeholder="End Time"  data-time-format="HH:mma" size="8" bs-timepicker>
                     </div>
                   </div>
                 </div>
@@ -77,9 +82,9 @@
                     <p>Service Provider</p>
                   </div>
                   <div class="col-md-3">
-                    <div class="select">
-                      <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
-                      <option>Select Machine</option>
+                    <div class="form-group">
+                      <select name="userRole" class="form-control" ng-options="service.id as service.vendor_name for service in service_provider_list" ng-model="vendorregistration.service_provider_id" class="btn btn-default select-width selectpicker form-control">
+                      <option value="">Select Provider</option>
                       </select>
                     </div>
                   </div>
@@ -87,9 +92,9 @@
                     <p>Breakdown Status</p>
                   </div>
                   <div class="col-md-3">
-                    <div class="select">
-                      <select name="userRole" class="form-control" ng-options="role.id as role.name for role in role_ids" ng-model="userregistration.role_id" class="btn btn-default select-width selectpicker form-control">
-                      <option>Select Machine</option>
+                    <div class="form-group">
+                      <select name="status" class="form-control" ng-options="status for status in ['completed','inprogress']" ng-model="vendorregistration.break_down_status" class="btn btn-default select-width selectpicker form-control">
+                      <option value="">Select Breakdown Status</option>
                       </select>
                     </div>
                   </div>
@@ -99,8 +104,8 @@
                     <p>Attended Date</p>
                   </div>
                   <div class="col-md-3">
-                    <div class="form-group">
-                       <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Area">
+                    <div class="form-group" moment-picker="vendorregistration.attended_date"  format="YYYY-MM-DD">
+                       <input type="text" name="last_name" class="form-control" ng-model="vendorregistration.attended_date" placeholder="Attended Date">
                     </div>
                   </div>
                   <div class="col-md-3">
@@ -108,7 +113,7 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Area">
+                      <input type="text" name="last_name" class="form-control" ng-model="vendorregistration.type_of_visit" placeholder="Type of visit">
                     </div>
                   </div>
                 </div>
@@ -118,7 +123,7 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                       <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Area">
+                       <input type="text" name="last_name" class="form-control" ng-model="vendorregistration.attended_duration_dummy" placeholder="Attended Duration"  data-time-format="HH:mm:ss" size="8" bs-timepicker>
                     </div>
                   </div>
                   <div class="col-md-3">
@@ -126,7 +131,7 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Area">
+                      <input type="text" name="last_name" class="form-control" ng-model="vendorregistration.amount" placeholder="Amount">
                     </div>
                   </div>
                 </div>
@@ -136,26 +141,19 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                       <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Area">
+                       <input type="text" name="last_name" class="form-control" ng-model="vendorregistration.starttime_dummy" placeholder="Start Time"  data-time-format="HH:mma" size="8" bs-timepicker>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <p>PSN Status</p>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <input type="text" name="last_name" class="form-control" ng-model="userregistration.last_name" placeholder="Area">
-                    </div>
-                  </div>
+                 
                 </div>
 
               </form>
               <div class="row">
                 <div class="col-md-6 text-left">
-                  <button type="button" class="btn btn-primary btn-md">Previous</button>
+                 
                 </div>
                 <div class="col-md-6 text-right">
-                  <button type="button" class="btn btn-primary btn-md">Next</button>
+                  <button type="button" class="btn btn-primary btn-md" ng-click="vendor_form()">submit</button>
                 </div>
               </div>
             </div>

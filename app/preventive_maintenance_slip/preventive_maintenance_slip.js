@@ -61,14 +61,26 @@ $scope.userget=function(){
 
  }
   
-$scope.name=localStorage.getItem("Machine_idName");
-console.log($scope.name);
+/*$scope.name=localStorage.getItem("Machine_idName");
+console.log($scope.name);*/
+if($scope.role_type_name == 'Tenant'){
   $http({
          method: 'GET',
-         url: $rootScope.api_url+'preventive_to_lists?from_date='+$scope.from_date+'&&to_date='+$scope.to_date+'&&machine_id='+$scope.name
+         url: $rootScope.api_url+'preventive_to_lists?from_date='+$scope.from_date+'&&to_date='+$scope.to_date+'&&tenant_id='+$scope.tenant_id
        }).then(function(response){
          $scope.getSpecific=response.data;
+         console.log($scope.getSpecific); 
       }) 
+}else{
+
+ $http({
+         method: 'GET',
+         url: $rootScope.api_url+'preventive_to_lists?from_date='+$scope.from_date+'&&to_date='+$scope.to_date+'&&unit_id='+$scope.reference_id
+       }).then(function(response){
+         $scope.getSpecific=response.data;
+         console.log($scope.getSpecific); 
+      }) 
+}
 
 }
  
@@ -90,12 +102,25 @@ console.log($scope.name);
   $scope.toId=localStorage.getItem("to_date");
   $scope.machine=localStorage.getItem("machine_idName");
   console.log($scope.machine);
+  if($scope.role_type_name == 'Tenant'){
   $http({
          method: 'GET',
-         url: $rootScope.api_url+'preventive_to_lists?from_date='+$scope.fromId+'&&to_date='+$scope.toId+'&&machine_id='+$scope.machine
+         url: $rootScope.api_url+'preventive_to_lists?from_date='+$scope.fromId+'&&to_date='+$scope.toId+'&&machine_id='+$scope.machine+'&&tenant_id='+$scope.tenant_id
        }).then(function(response){
          $scope.getSpecific=response.data;
+         console.log($scope.getSpecific); 
       }) 
+}else{
+
+ $http({
+         method: 'GET',
+         url: $rootScope.api_url+'preventive_to_lists?from_date='+$scope.fromId+'&&to_date='+$scope.toId+'&&machine_id='+$scope.machine+'&&unit_id='+$scope.reference_id
+       }).then(function(response){
+         $scope.getSpecific=response.data;
+         console.log($scope.getSpecific); 
+      }) 
+ }
+
  }
 
  $scope.addeventCheck=function(id){

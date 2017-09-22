@@ -3,31 +3,34 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
-  'ui.calendar',
-  'moment-picker',
-  'ui.bootstrap',
-  'login',
+   'login',
   'registrations',
   'dashboard',
-  'user',
-  'role',
-  'operator',
-  'operator_allocation_master',
-  'section',
   'units',
-  'bwo_creation',
+  'section',
+  'machine_reg',
+  'shift',
+  'breaktime',
+  'operator_master',
+  'operator_allocation_master',
+  'role','bwo_creation',
+  'moment-picker',
+  'bwo_service_details',
+  'service_engineer_master',
+  'service_provider',
+  'user',
+  'bwo_analysis',
   'bwo_list',
-  'preventive_maintenance_creation',
-  'preventive_maintenance_list',
+  'bwo_reports',
+  'preventive_maintenance_checklist',
+  'amc_transaction',
   'anualMaintenanceCreation',
   'anualMaintenanceList',
-  'preventive_maintenance_checklist',
-  'bwo_service_details',
-  'bwo_spare_details',
-  'bwo_analysis',
+  'preventive_maintenance_list',
+  'preventive_maintenance_creation',
+  'preventive_maintanance_slipchecklist',
   'preventive_maintenance_slip',
-  'amc_transaction',
-  'preventive_maintanance_slipchecklist'
+  'pendingworkorder_reports'
   /*,
   'alarms',
   'client',
@@ -42,13 +45,14 @@ angular.module('myApp', [
   'moment-picker',
   'shift',
   'breaktime',
-  
+  'operator',
   'operation',
   'comp',
-  
-  
+  'machine_allocation',
+  'operator_master',
+  'operator_allocation_master',
   'rolesetting',
-  
+  'user',
   'myApp.version'*/
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
@@ -62,9 +66,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
   function($scope, $http,$location,$rootScope,$window) {
 
 
-    
    
-
    $rootScope.api_url="http://192.168.1.52:4005/";
    //$rootScope.api_url="http://115.111.129.98:3003/";
     if (localStorage.getItem("tenant_id") !=null){
@@ -84,13 +86,16 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
       
        $scope.tenant_id=localStorage.getItem("tenant_id");
        $scope.tenant_name=localStorage.getItem("tenant_name");
-       $scope.user_id=localStorage.getItem("userid");
+       $scope.user_id=localStorage.getItem("userid")
        $scope.user_name=localStorage.getItem("username");
        $scope.role_id=localStorage.getItem("role_id");
        $scope.role_type_id=localStorage.getItem("role_type_id");
        $scope.role_type_name=localStorage.getItem("roletype_name");
        $scope.reference_id=localStorage.getItem("reference_id");
+       
     }
+
+ 
 
  $scope.signout = function(){  
  // alert("hi");
@@ -100,7 +105,7 @@ alert("Logout Successfully");
   }
 
 $scope.pageverification=function(url){
- $window.location="/#!/rolecreation";
+
 }
 
 
@@ -156,6 +161,3 @@ alert("Updated Successfully");
                 }
             };
     }]);
-
-
-

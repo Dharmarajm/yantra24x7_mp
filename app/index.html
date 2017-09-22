@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp" class="no-js" ng-controller="appctrl">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Yantra24x7</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Yantra24x7</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="app.css">
@@ -19,19 +19,7 @@
      <link rel="stylesheet" type="text/css" href="assets/css/ngPercentDisplay.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel="shortcut icon" href="assets/images/favicon.png">
-    
-      
     <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
-    <!-- jquery, moment, and angular have to get included before fullcalendar -->
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-    <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-    <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
-    <script src='bower_components/angular-upload/angular-upload.min.js'></script>
-    
-
 
     <script src="assets/js/fontawesome.js"></script>
     <script src="https://use.fontawesome.com/99347ac47f.js"></script>
@@ -40,18 +28,21 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
 
-  <script src="assets/js/moment-with-locales.js"></script>
+    <script src="assets/js/moment-with-locales.js"></script>
     <!-- <script src="assets/js/ui-bootstrap-tpls-2.5.0.js"></script> -->
     <script src="bower_components/angular-route/angular-route.min.js"></script>
-     <script src="bower_components/angular-moment-picker/dist/angular-moment-picker.min.js"></script>
-       
+    <script src="bower_components/angular-moment-picker/dist/angular-moment-picker.min.js"></script>  
+    <script src="bower_components/angular-base64/angular-base64.js"></script>
+    <script src="bower_components/angular-base64-upload/src/angular-base64-upload.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
     <script src="assets/js/angular-sanitize.js"></script>
-
     <script src="assets/js/angular-animate.js"></script>
     <script src="assets/js/ui-bootstrap-tpls-2.5.0.js"></script>  
-<script type="text/javascript" src="assets/js/angular-strap.js"></script>
-<script type="text/javascript" src="assets/js/angular-strap.tpl.js"></script>
-<script type="text/javascript" src="assets/js/angular-strap.docs.tpl.js"></script>
+    <script type="text/javascript" src="assets/js/angular-strap.js"></script>
+    <script type="text/javascript" src="assets/js/angular-strap.tpl.js"></script>
+    <script type="text/javascript" src="assets/js/angular-strap.docs.tpl.js"></script>
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/tether.min.js"></script>
@@ -64,7 +55,7 @@
     <script src="assets/js/charts-job-status.js"></script>
     <script src="assets/js/charts-home.js"></script>
     <script src="assets/js/Chart.min.js"></script>
-    <script src="assets/js/charts-status.js"></script> 
+    <!-- <script src="assets/js/Chart-status.js"></script> -->
     <script src="assets/js/charts-operator-entry.js"></script>
     <script src="assets/js/charts-custom.js"></script>
 
@@ -72,52 +63,31 @@
     <script src="login/login.js"></script>
     <script src="registration/registration.js"></script>
     <script src="dashboard/dashboard.js"></script>
-    <script src="usermanagement/usermanagement.js"></script>
-    <script src="rolecreation/rolecreation.js"></script>
-    <script src="machine_registration/machine_registration.js"></script>
-    <script src="operator/operator.js"></script>
-    <script src="operator_allocation/operator_allocation.js"></script>
-    <script src="section/section.js"></script>
     <script src="unit/unit.js"></script>
-    <script src="bwo_creation/bwo_creation.js"></script>
-    <script src="bwo_list/bwo_list.js"></script>
-    <script src="preventive_maintenance_creation/preventive_maintenance_creation.js"></script>
-    <script src="preventive_maintenance_list/preventive_maintenance_list.js"></script>
-    <script src="anual_maintenance_creation/anual_maintenance_creation.js"></script>
-    <script src="anual_maintenance_list/anual_maintenance_list.js"></script>
-    <script src="preventive_maintenance_checklist/preventive_maintenance_checklist.js"></script>
-    <script src="bwo_service_details/bwo_service_details.js"></script>
-    <script src="bwo_spare_details/bwo_spare_details.js"></script>
-    <script src="bwo_analysis/bwo_analysis.js"></script>
-    <script src="preventive_maintenance_slip/preventive_maintenance_slip.js"></script>
-    <script src="amc_transaction_table/amc_transaction.js"></script>
-    <script src="preventive_maintanance_slipchecklist/preventive_maintanance_slipchecklist.js"></script>
-    <!--<script src="company_registration/company_registration.js"></script>
-    <script src="job_registration/job.js"></script>
+    <script src="section/section.js"></script>
+    <script src="usermanagement/usermanagement.js"></script>
+    <script src="machine_registration/machine_registration.js"></script>
     <script src="shift_registration/shift.js"></script>
-    <script src="client/client.js"></script>
-    <script src="cnc_operation/operation.js"></script>
-    <script src="admin_approval/admin_approval.js"></script>
-    <script src="dashboard/dashboard.js"></script>
-    <script src="machine_allocation/machine_allocation.js"></script>
-    <script src="machine_page/machine_page.js"></script>
-    <script src="job_page/job_page.js"></script>
-    <script src="report/report.js"></script>
-    
     <script src="breaktime/breaktime.js"></script>
-    <script src="alarms/alarms.js"></script>
-    <script src="breaktime/breaktime.js"></script>
-    <script src="maintanance/maintanance.js"></script>
-    <script src="login/login.js"></script>
-    <script src="registration/registration.js"></script>
-    
-    <script src="rolesetting/rolesetting.js"></script>
+    <script src="operator_master/operator_master.js"></script>
+    <script src="operator_allocation/operator_allocation.js"></script>
     <script src="rolecreation/rolecreation.js"></script>
-    <script src="components/version/version.js"></script>
-    <script src="components/version/version-directive.js"></script>
-    <script src="components/version/interpolate-filter.js"></script>
-    <script type="text/javascript" src="assets/js/ngPercentDisplay.js"></script> -->
-    
+    <script src="bwo_creation/bwo_creation.js"></script>
+    <script src="bwo_service_details/bwo_service_details.js"></script>
+    <script type="text/javascript" src="service_engineer/service_engineer.js"></script>
+    <script type="text/javascript" src="service_provider/service_provider.js"></script>
+    <script type="text/javascript" src="bwo_analysis/bwo_analysis.js"></script>
+    <script type="text/javascript" src="bwo_list/bwo_list.js"></script>
+    <script type="text/javascript" src="breakdown_report/breakdown_report.js"></script>
+    <script type="text/javascript" src="preventive_maintenance_checklist/preventive_maintenance_checklist.js"></script>
+    <script type="text/javascript" src="amc_transaction_table/amc_transaction.js"></script>
+    <script type="text/javascript" src="anual_maintenance_creation/anual_maintenance_creation.js"></script>
+    <script type="text/javascript" src="anual_maintenance_list/anual_maintenance_list.js"></script>
+    <script type="text/javascript" src="preventive_maintenance_list/preventive_maintenance_list.js"></script> 
+    <script type="text/javascript" src="preventive_maintenance_creation/preventive_maintenance_creation.js"></script>
+    <script type="text/javascript" src="preventive_maintenance_slip/preventive_maintenance_slip.js"></script>
+    <script type="text/javascript" src="preventive_maintanance_slipchecklist/preventive_maintanance_slipchecklist.js"></script>         
+    <script type="text/javascript" src="pendingworkorder_report/pendingworkorder_report.js"></script>
 </head>
 <body>
 

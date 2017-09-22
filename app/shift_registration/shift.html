@@ -20,7 +20,7 @@
                                 <!-- Monthly Usage-->
                                 <div class="card shifts">
                                     <div class="machine_edits shift_edits_main">
-                                        <div class="edit" ng-click="edit(shiftdetails.id)" data-toggle="modal" data-target="#exampleModalLabel"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
+                                       <!--  <div class="edit" ng-click="edit(shiftdetails.id)" data-toggle="modal" data-target="#exampleModalLabel"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div> -->
                                         <!-- <div class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></div> -->
                                     </div>
                                     <div class="play_circle"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
@@ -45,7 +45,7 @@
                     <div class="col-lg-7">
                         <header>
                             <h1 class="h3 display"><i class="fa fa-laptop"></i>Shift Registration
-                            <a href="" class="btn_add" data-toggle="modal" data-target="#exampleModalLabel1" ng-click="cleandata()"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            <a href="" class="btn_add" data-toggle="modal" data-target="#shiftmodal" ng-click="cleandata()"><i class="fa fa-plus" aria-hidden="true"></i></a>
                             <span class="note">(Note: Please register your break details under the actions tab for each shift)</span>
                           </h1>
                         </header>
@@ -74,7 +74,7 @@
                                                         <a class="remove"> <i class="fa fa-trash-o " confirmed-click="delete(shift.id)"  ng-confirm-click="Do you want to delete"></i> </a>
                                                     </li>
                                                     <li>
-                                                        <a class="edit" data-toggle="modal" data-target="#exampleModalLabel" title="Edit" ng-click="edit(shift.id)"> <i class="fa fa-pencil"></i> </a>
+                                                        <a class="edit" data-toggle="modal" data-target="#shiftmodal" title="Edit" ng-click="edit(shift.id)"> <i class="fa fa-pencil"></i> </a>
                                                     </li>
                                                     <li>
                                                         <a class="create" title=" creation"> <i class="fa fa-plus" ng-click="breaktime(shift.id)"></i> </a>
@@ -94,7 +94,7 @@
 
  
      <!-- modal -->
-    <div class="modal fade" id="exampleModalLabel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="shiftmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

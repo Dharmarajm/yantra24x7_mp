@@ -30,7 +30,7 @@
                                         <tr ng-repeat="break in breaks">
                                             <td>{{break.start_time }}</td>
                                             <td>{{break.end_time }}</td>
-                                            <td>{{break.reasion}}</td>
+                                            <td>{{break.reason}}</td>
                                             <td>
                                                 <ul class="item-actions-list">
                                                     <li>
@@ -70,11 +70,11 @@
                         </div>
                         <div class="form-group">
                             <label>Break End Time</label>
-                            <input type="text" placeholder="Working Time" class="form-control" ng-model="breakregistration.end_time_dumy"  size="8" bs-timepicker ng-Required="true" >
+                            <input type="text" placeholder="Working Time" class="form-control" ng-model="breakregistration.end_time_dummy"  size="8" bs-timepicker ng-Required="true" >
                         </div>
                         <div class="form-group">
                             <label>Reason</label>
-                            <input type="text" class="form-control" ng-model="breakregistration.reasion" ng-readonly="false" ng-Required="true">
+                            <input type="text" class="form-control" ng-model="breakregistration.reason" ng-readonly="false" ng-Required="true">
                         </div>
 
                     </form>

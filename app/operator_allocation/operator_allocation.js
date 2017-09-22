@@ -97,7 +97,7 @@ $scope.allocationinit=function(){
 $http({
 
     method:'GET',
-    url:$rootScope.api_url+'unit_sections_machine_and_operators?unit_id='+3
+    url:$rootScope.api_url+'unit_sections_machine_and_operators?unit_id='+$scope.reference_id
   })
   .then(function(response){
     

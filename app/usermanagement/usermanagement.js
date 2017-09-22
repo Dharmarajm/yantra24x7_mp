@@ -18,13 +18,12 @@ angular.module('user', ['ngRoute'])
         text: 'me@example.com'
       };
   $scope.eml_add = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-$scope.tenant_id=localStorage.getItem('tenant_id');
-$rootScope.tenant_id=$scope.tenant_id;
 /*$scope.role_type_id=localStorage.getItem("role_type_id");
 
 $scope.reference_id=localStorage.getItem("reference_id");*/
 
- 
+ $scope.user_reference_id;
+ $scope.role_type;
 $scope.userregistration = {
                           "id":null,
                           "first_name": '',
@@ -51,7 +50,6 @@ $scope.userregistration = {
                           "role_id":null,
                           "tenant_id": $scope.tenant_id
                          };
-$scope.username=localStorage.getItem("username");
 $scope.userForm= function(){  
 
   var userregistration = {
@@ -113,14 +111,35 @@ $scope.userregistration="";
         }
       });
   }
+  else{
+
+$http({
+        method: 'put',
+        url: $rootScope.api_url+'users/'+id,
+        data: userregistration  
+      })
+      
+      .success(function(data) {
+        
+        if(data){
+    console.log(data);
+       // $state.go('/company_registration');
+alert("Updated Successfully");
+    $scope.userinit();
+        }else{      
+        alert('Updation Failed');   
+        }
+      });
+
+
+  }
 
 }    
       
  
 
 $scope.userUpdateForm=function(id){
-  $scope.tenant_id=localStorage.getItem('tenant_id');
-  console.log(localStorage.getItem('tenant_id'));
+ 
  var userregistration = {
                                 "user":{ 
                                    "first_name":$scope.userregistration.first_name,
@@ -152,7 +171,7 @@ $scope.userUpdateForm=function(id){
                                    }
                                   
                             };
-          console.log($scope.userregistration);                  
+                        
  $http({
         method: 'put',
         url: $rootScope.api_url+'users/'+id,
@@ -175,17 +194,39 @@ alert("Updated Successfully");
 }
 
 $scope.userinit=function(){
+  $scope.roletype;
 
 $http({
 
     method:'GET',
-    url:$rootScope.api_url+'users'
+    url:$rootScope.api_url+'tenant_users?tenant_id='+$scope.tenant_id
   })
   .then(function(response){
-    $scope.myLoader = false;
-   $scope.users = response.data; 
+    
+   $rootScope.users = response.data; 
    
     })
+
+
+
+ $http({
+
+    method:'GET',
+    url:$rootScope.api_url+'roletype_selection?type_name='+$scope.role_type_name
+  })
+  .then(function(response){
+   $scope.role_types_for_user= response.data;         //role type dispaly based on user login
+console.log($scope.role_types_for_user);
+    })
+
+
+
+
+
+
+
+/*
+
 
 $http({
 
@@ -198,6 +239,124 @@ $http({
          $rootScope.count=$rootScope.role_ids.length
     })
 }
+*/
+}
+
+$scope.dropdown_open=function(roletype){
+
+if(roletype == 1){
+
+  $scope.show_role=true;
+  $scope.show_unit=false;
+  $scope.show_role_unit=false;
+  $scope.section_show_user=false;
+   $scope.show_role_section=false;
+
+alert(roletype);
+
+$http({
+
+    method:'GET',
+    url:$rootScope.api_url+'roles_tenant?tenant_id='+$scope.tenant_id+'&&role_type_id='+roletype
+  })
+  .then(function(response){
+   $scope.role_ids = response.data; 
+       //console.log($rootScope.role_ids);
+       //  $rootScope.count=$rootScope.role_ids.length
+    })
+}//if close
+else if(roletype == 2){
+  $http({
+
+    method:'GET',
+    url:$rootScope.api_url+'tenant_unit?tenant_id='+$scope.tenant_id
+  })
+  .then(function(response){
+    
+   $scope.units_for_user = response.data; 
+      })
+
+$scope.show_role=false;
+$scope.show_unit=true;
+$scope.show_role_unit=false;
+$scope.section_show_user=false;
+ $scope.show_role_section=false;
+
+}
+else{
+    $http({
+
+    method:'GET',
+    url:$rootScope.api_url+'tenant_unit?tenant_id='+$scope.tenant_id
+  })
+  .then(function(response){
+    
+   $scope.units_for_user = response.data; 
+      })
+$scope.show_role=false;
+$scope.show_unit=true;
+$scope.show_role_unit=false;
+$scope.section_show_user=false;
+ $scope.show_role_section=false;
+}
+
+
+
+
+
+}
+
+
+$scope.select_unit_user=function(reference_id){
+if($scope.role_type == 2){
+    $scope.show_role=false;
+    $scope.show_role_unit=true;
+    $scope.show_role_section=false;
+    $http({
+
+      method:'GET',
+      url:$rootScope.api_url+'role_type_base_roles?tenant_id='+$scope.tenant_id+'&&role_type_id=2&&reference_id='+reference_id
+     })
+    .then(function(response){
+    $scope.role_ids = response.data; 
+       //console.log($rootScope.role_ids);
+       //  $rootScope.count=$rootScope.role_ids.length
+    })}
+    else{
+    $http({
+
+    method:'GET',
+    url:$rootScope.api_url+'unit_section?unit_id='+reference_id
+  })
+  .then(function(response){
+    
+   $scope.section_for_user = response.data; 
+      })
+$scope.section_show_user=true;
+ $scope.show_role_section=false;
+}
+  
+}
+$scope.select_section=function(reference_id){
+   $scope.show_role_section=true;
+$http({
+
+      method:'GET',
+      url:$rootScope.api_url+'role_type_base_roles?tenant_id='+$scope.tenant_id+'&&role_type_id=3&&reference_id='+reference_id
+     })
+    .then(function(response){
+    $scope.role_ids = response.data; 
+       //console.log($rootScope.role_ids);
+       //  $rootScope.count=$rootScope.role_ids.length
+    })
+
+}
+
+
+
+
+
+
 
   $scope.cleandata=function(){
 
@@ -237,68 +396,47 @@ $scope.edit = function(id) {
   var i;
   $scope.updateId=id;
   console.log(id);
-   for(i in $scope.users) {
+   for(i in $rootScope.users) {
 
-            if($scope.users[i].id == id) {
-               var user_id=$scope.users[i];
-               if($scope.users[i].user_detail==null){
+            if($rootScope.users[i].id == id) {
+               var user_id=$rootScope.users[i];
                
-               $scope.userregistration ={ "id":$scope.users[i].id,
-                                          "first_name":$scope.users[i].first_name,
-                                          "last_name":$scope.users[i].last_name,
-                                          "email":$scope.users[i].email,
-                                          "password":$scope.users[i].password,
-                                          "phone_one": $scope.users[i].phone_one,
-                                          "phone_two": $scope.users[i].phone_two,
-                                          "addtional_detail":$scope.users[i].addtional_detail,
-                                          "address_one": $scope.users[i].address_one,
-                                          "address_two": $scope.users[i].address_two,
-                                          "city": $scope.users[i].city,
-                                          "state": $scope.users[i].state,
-                                          "country":$scope.users[i].country,
-                                          "pin_code": $scope.users[i].pin_code,
-                                          "role_id":$scope.users[i].role_id,                                         
-                                          "approval_status":$scope.users[i].approval_status,
-                                          "tenant_id": $scope.users[i].tenant_id,    
-                                          "adhar_card_no": "",
-                                          "driving_license_no": "",
-                                          "acc_no": "",
-                                          "acc_name": "",
-                                          "bank_name": "",
-                                          "branch_name": "",
-                                          "ifsc_code": ""
-                                          
+               $scope.userregistration ={ 
+"id":$rootScope.users[i].id,
+                "first_name":$rootScope.users[i].first_name,
+                                          "last_name":$rootScope.users[i].last_name,
+                                          "email":$rootScope.users[i].email,
+                                          "password":$rootScope.users[i].password,
+                                          "phone_one": $rootScope.users[i].phone_one,
+                                          "phone_two": $rootScope.users[i].phone_two,
+                                          "addtional_detail":$rootScope.users[i].addtional_detail,
+                                          "address_one": $rootScope.users[i].address_one,
+                                          "address_two": $rootScope.users[i].address_two,
+                                          "city": $rootScope.users[i].city,
+                                          "state": $rootScope.users[i].state,
+                                          "country":$rootScope.users[i].country,
+                                          "pin_code": $rootScope.users[i].pin_code,
+                                          "role_id":$rootScope.users[i].role_id,                                         
+                                          "approval_status":$rootScope.users[i].approval_status,
+                                          "tenant_id": $rootScope.users[i].tenant_id,    
+                                          "adhar_card_no": $rootScope.users[i].user_detail.adhar_card_no,
+                                          "driving_license_no": $rootScope.users[i].user_detail.driving_license_no,
+                                          "acc_no": $rootScope.users[i].user_detail.acc_no,
+                                          "acc_name": $rootScope.users[i].user_detail.acc_name,
+                                          "bank_name": $rootScope.users[i].user_detail.bank_name,
+                                          "branch_name": $rootScope.users[i].user_detail.branch_name,
+                                          "ifsc_code": $rootScope.users[i].user_detail.ifsc_code
+                                         
                                         }
-                                       
-           }else{
-              $scope.userregistration ={ "id":$scope.users[i].id,
-                                          "first_name":$scope.users[i].first_name,
-                                          "last_name":$scope.users[i].last_name,
-                                          "email":$scope.users[i].email,
-                                          "password":$scope.users[i].password,
-                                          "phone_one": $scope.users[i].phone_one,
-                                          "phone_two": $scope.users[i].phone_two,
-                                          "addtional_detail":$scope.users[i].addtional_detail,
-                                          "address_one": $scope.users[i].address_one,
-                                          "address_two": $scope.users[i].address_two,
-                                          "city": $scope.users[i].city,
-                                          "state": $scope.users[i].state,
-                                          "country":$scope.users[i].country,
-                                          "pin_code": $scope.users[i].pin_code,
-                                          "role_id":$scope.users[i].role_id,                                         
-                                          "approval_status":$scope.users[i].approval_status,
-                                          "tenant_id": $scope.users[i].tenant_id,    
-                                          "adhar_card_no": $scope.users[i].user_detail.adhar_card_no,
-                                          "driving_license_no": $scope.users[i].user_detail.driving_license_no,
-                                          "acc_no": $scope.users[i].user_detail.acc_no,
-                                          "acc_name": $scope.users[i].user_detail.acc_name,
-                                          "bank_name": $scope.users[i].user_detail.bank_name,
-                                          "branch_name": $scope.users[i].user_detail.branch_name,
-                                          "ifsc_code": $scope.users[i].user_detail.ifsc_code
-                                          
-                                        }
+                                        $http({
 
-           }
+      method:'GET',
+      url:$rootScope.api_url+'user_role_edit?role_id='+$rootScope.users[i].role_id})
+    .then(function(response){
+    $scope.role_ids = response.data; 
+     $scope.role_type=$scope.role_ids[0].role_type_id
+    })
+           
         }
     }
  }   

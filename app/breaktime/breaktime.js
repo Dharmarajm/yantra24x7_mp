@@ -11,22 +11,30 @@ angular.module('breaktime', ['ngRoute','ngSanitize','ui.bootstrap', 'mgcrea.ngSt
 
 .controller('BreaktimeCtrl', ['$scope', '$http','$location','$window','$rootScope','$filter',
   function($scope, $http,$location,$window,$rootScope,$filter) {
-$scope.myLoader = true;
+
 
 $scope.breaktime_ids=localStorage.getItem("breaktime_id");
  
-$scope.breakregistration = {id: null,reasion:"",start_time:"",end_time:"",total_minutes:"",start_time_dummy:"",end_time_dumy:"",shifttransaction_id:$scope.breaktime_ids,tenant_id: $scope.tenant_id};
+$scope.breakregistration = {id: null,
+  reason:"",
+  start_time:"",
+  end_time:"",
+  start_time_dummy:"",
+  end_time_dummy:"",
+  shift_id:$scope.breaktime_ids,
+  };
 
 $scope.breakForm= function(){  
  $scope.daystart = $filter('date')($scope.breakregistration.start_time_dummy, "hh:mma");
-  $scope.dayend = $filter('date')($scope.breakregistration.end_time_dumy, "hh:mma");
+  $scope.dayend = $filter('date')($scope.breakregistration.end_time_dummy, "hh:mma");
 
-        var breakregistration = {"reasion":$scope.breakregistration.reasion,"start_time":$scope.daystart,"end_time":$scope.dayend,"total_minutes":$scope.breakregistration.total_minutes,"start_time_dummy":$scope.breakregistration.start_time_dummy,"end_time_dumy":$scope.breakregistration.end_time_dumy,"shifttransaction_id":$scope.breaktime_ids,"tenant_id": $scope.breakregistration.tenant_id};
+        var breakregistration = 
+        {"shift_break":{"reason":$scope.breakregistration.reason,"start_time":$scope.daystart,"end_time":$scope.dayend,"start_time_dummy":$scope.breakregistration.start_time_dummy,"end_time_dummy":$scope.breakregistration.end_time_dummy,"shift_id":$scope.breaktime_ids}};
   if ($scope.breakregistration.id== null){
       $http
       ({
         method: 'post',
-        url: $rootScope.api_url+'api/v1/break_times',
+        url: $rootScope.api_url+'shift_breaks_create',
         data: breakregistration  
       })
       
@@ -49,7 +57,7 @@ $scope.breakregistration="";
  $http
       ({
         method: 'put',
-        url: $rootScope.api_url+'api/v1/break_times/'+$scope.breakregistration.id,
+        url: $rootScope.api_url+'shift_break_update?id='+$scope.breakregistration.id,
         data: breakregistration  
       })
       
@@ -75,17 +83,24 @@ $scope.breaktimeinit=function(){
 $http({
 
     method:'GET',
-    url:$rootScope.api_url+'api/v1/break_times?shifttransaction_id='+$scope.breaktime_ids
+    url:$rootScope.api_url+'shift_break?shift_id='+$scope.breaktime_ids
   })
   .then(function(response){
-    $scope.myLoader = false;
+  
    $rootScope.breaks = response.data; 
    
     })
 }
   $scope.cleandata=function(){
 
-$scope.cleardata= {id: null,reasion:"",start_time:"",end_time:"",total_minutes:"",start_time_dummy:"",end_time_dumy:"",shifttransaction_id:$scope.breaktime_id,tenant_id: $scope.tenant_id};
+$scope.cleardata={id: null,
+  reason:"",
+  start_time:"",
+  end_time:"",
+  start_time_dummy:"",
+  end_time_dumy:"",
+  shift_id:$scope.breaktime_ids,
+  };
 $scope.breakregistration = angular.copy($scope.cleardata);
   }
 
@@ -104,7 +119,7 @@ $scope.breakregistration = angular.copy($scope.cleardata);
 
 $scope.delete = function(id) {
  if ($window.confirm("Please confirm?")) {
-$http.delete($rootScope.api_url+'api/v1/break_times/'+id).success(function(data) {
+$http.delete($rootScope.api_url+'shift_breaks_delete?id='+id).success(function(data) {
         
         if(data){
 

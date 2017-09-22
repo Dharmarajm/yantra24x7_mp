@@ -14,9 +14,6 @@ angular.module('preventive_maintenance_list', ['ngRoute','ui.calendar','ui.boots
   
   $scope.preCreation=["Weekly","Monthly","Quarterly","Half Yearly","Yearly"]; 
 
-
-
-
 $scope.slipinit=function(){
   
   $scope.SelectedEvent=null;
@@ -30,7 +27,7 @@ $scope.slipinit=function(){
  localStorage.removeItem("date");
  localStorage.removeItem("from_date");
  localStorage.removeItem("to_date");
- localStorage.removeItem("machine_idName");
+ localStorage.removeItem("Machine_idName");
 
  /*localStorage.clear();*/
 

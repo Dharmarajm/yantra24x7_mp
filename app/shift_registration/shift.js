@@ -29,7 +29,7 @@ $scope.shiftform= function(){ // $scope.ntime="9:00 am"
  "end_time": $scope.dayend,
  "total_working_hours": $scope.work,
  "day_start_time": $scope.day,
- "unit_id": 3,
+ "unit_id": $scope.reference_id,
  "start_time_dummy": $scope.shiftregistration.start_time_dummy,
  "end_time_dummy": $scope.shiftregistration.end_time_dummy,
  "total_time_dummy": $scope.shiftregistration.total_time_dummy,
@@ -93,7 +93,7 @@ $http({
   $http({
 
     method:'GET',
-    url:$rootScope.api_url+'unit_shift_current_time?unit_id='+3
+    url:$rootScope.api_url+'unit_shift_current_time?unit_id='+$scope.reference_id
   })
   .then(function(response){    
    $scope.shift = response.data; 

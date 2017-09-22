@@ -13,7 +13,7 @@
            <div class="row d-flex align-items-stretch">
             <div class="col-lg-8">
               <div class="container">
-                <form name="bwoCreates" ng-submit="bwoCreation()" method="post" novalidate>
+                <form name="bwoCreates"  method="post" novalidate>
                  <div class="row">
                  </div><br>
                  <!-- <div class="row">
@@ -36,7 +36,7 @@
                        <span><b>Section</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                            <select name="section" class="form-control selectpicker" ng-options="section.id as section.name for section in bwoSections" ng-model="bwocreation.section_id" ng-required="true" class="btn btn-default select-width selectpicker form-control" style="height:94%;" ng-change="change(bwocreation.section_id)">
+                            <select name="section" class="form-control selectpicker" ng-options="section.id as section.name for section in bwoSections" ng-model="bwocreation.section_id" class="btn btn-default select-width selectpicker form-control" style="height:94%;" ng-change="change(bwocreation.section_id)">
                             <option value="">Select Section</option>
                             </select>
                      </div>
@@ -48,7 +48,7 @@
                        <span><b>Machine</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                            <select name="machine" class="form-control selectpicker" ng-options="machine.id as machine.name for machine in bwoMachines" ng-model="bwocreation.machine_id" ng-required="true" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
+                            <select name="machine" class="form-control selectpicker" ng-options="machine.id as machine.name for machine in bwoMachines" ng-model="bwocreation.machine_id" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
                             <option value="">Select Machine</option>
                             </select>
                      </div>
@@ -61,19 +61,19 @@
                      </div>
                      <div class="col-sm-5 col-md-5">
                      	<div class="form-group">
-                            <input type="text" name="mwoNumber" class="form-control" ng-model="bwocreation.maintenance_workorder_number" ng-required="true" placeholder="Machine Wrok Order Number">
+                            <input type="text" name="mwoNumber" class="form-control" ng-model="bwocreation.maintenance_workorder_number" placeholder="Machine Wrok Order Number">
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
-                 </div>
-                 <div class="row">
+                 </div> 
+                  <div class="row">
                      <div class="col-sm-1 col-md-1"></div> 
                      <div class="col-sm-5 col-md-5">
                        <span><b>Maintenance Date</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
                         <div class="form-group" moment-picker="bwocreation.maintenance_date"  format="YYYY-MM-DD">
-                            <input type="text" name="maintainDate" class="form-control" ng-model="bwocreation.maintenance_date" ng-Required="true" placeholder="Maintenance Date">
+                            <input type="text" name="mwoNumber" class="form-control" ng-model="bwocreation.maintenance_date" placeholder="Maintenance Date" ng-Required="true">
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
@@ -85,7 +85,7 @@
                      </div>
                      <div class="col-sm-5 col-md-5">
                      	<div class="form-group">
-                            <input type="text" name="startTime" class="form-control" ng-model="bwocreation.starttime_dummy" ng-required="true" placeholder="Start Time" size="8" bs-timepicker>
+                            <input type="text" name="startTime" class="form-control" ng-model="bwocreation.starttime_dummy" placeholder="Start Time" size="8"   bs-timepicker>
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
@@ -97,7 +97,7 @@
                      </div>
                       <div class="col-sm-5 col-md-5">
                      	<div class="form-group">
-                            <input type="text" name="endTime" class="form-control" ng-model="bwocreation.endtime_dummy" ng-required="true" placeholder="End Time" size="8" bs-timepicker>
+                            <input type="text" name="endTime" class="form-control" ng-model="bwocreation.endtime_dummy" placeholder="End Time" size="8"   bs-timepicker>
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
@@ -109,7 +109,7 @@
                      </div>
                       <div class="col-sm-5 col-md-5">
                      	<div class="form-group">
-                            <input type="text" name="alarm" class="form-control" ng-model="bwocreation.alarm" ng-required="true" placeholder="Alarm">
+                            <input type="text" name="alarm" class="form-control" ng-model="bwocreation.alarm" placeholder="Alarm">
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
@@ -121,7 +121,7 @@
                      </div>
                       <div class="col-sm-5 col-md-5">
                      	<div class="form-group">
-                            <input type="text" name="mwoType" class="form-control" ng-model="bwocreation.maintainence_workorder_type" ng-required="true" placeholder="Machine Work Order Type">
+                            <input type="text" name="mwoType" class="form-control" ng-model="bwocreation.maintainence_workorder_type" placeholder="Machine Work Order Type">
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
@@ -133,7 +133,7 @@
                      </div>
                       <div class="col-sm-5 col-md-5">
                      	<div class="form-group">
-                            <input type="text" name="mwoClosedby" class="form-control" ng-model="bwocreation.maintenance_workorder_closedby" ng-required="true" placeholder="Machine Wrok Order Closed by">
+                            <input type="text" name="mwoClosedby" class="form-control" ng-model="bwocreation.maintenance_workorder_closedby" placeholder="Machine Wrok Order Closed by">
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
@@ -145,7 +145,10 @@
                      </div>
                       <div class="col-sm-5 col-md-5">
                      	<div class="form-group">
-                            <input type="text" name="status" class="form-control" ng-model="bwocreation.status" ng-required="true" placeholder="Status">
+                         <select name="status" class="form-control" ng-options="state for state in ['Completed','Inprogress']" ng-model="bwocreation.status" ng-required="true" class="btn btn-default select-width selectpicker form-control">
+                                <option value="">Select Status</option>
+                            </select>
+                           <!--  <input type="text" name="status" class="form-control" ng-model="bwocreation.status" placeholder="Status"> -->
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
@@ -157,7 +160,7 @@
                      </div>
                      <div class="col-sm-5 col-md-5">
                      	<div class="form-group">
-                            <input type="text" name="awaiting" class="form-control" ng-model="bwocreation.awaiting" ng-required="true" placeholder="Awaiting">
+                            <input type="text" name="awaiting" class="form-control" ng-model="bwocreation.awaiting" placeholder="Awaiting">
                         </div>
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
@@ -168,7 +171,7 @@
                        <span><b>Required Brain Storming</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                            <select name="brainStorming" class="form-control selectpicker" ng-options="check.id as check.value for check in checklist.require_brain_storming" ng-model="bwocreation.require_brain_storming" ng-required="true" class="btn btn-default select-width selectpicker form-control" style="height:94%;" ng-change="create(bwocreation.require_brain_storming)">
+                            <select name="brainStorming" class="form-control selectpicker" ng-options="check.id as check.value for check in checklist.require_brain_storming" ng-model="bwocreation.require_brain_storming" class="btn btn-default select-width selectpicker form-control" style="height:94%;" ng-change="create(bwocreation.require_brain_storming)">
                             <option value="">Select Option</option>
                             </select>
                      </div>
@@ -180,7 +183,7 @@
                        <span><b>Need Service Support</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                            <select name="serviceSupport" class="form-control selectpicker" ng-options="check.id as check.value for check in checklist.need_servicesupport" ng-model="bwocreation.need_servicesupport" ng-required="true" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
+                            <select name="serviceSupport" class="form-control selectpicker" ng-options="check.id as check.value for check in checklist.need_servicesupport" ng-model="bwocreation.need_servicesupport" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
                             <option value="">Select Option</option>
                             </select>
                      </div>
@@ -192,7 +195,7 @@
                        <span><b>PSN Notification Mail</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                            <select name="notification_mail" class="form-control selectpicker" ng-options="check.id as check.value for check in checklist.psn_notificationmail" ng-model="bwocreation.psn_notificationmail" ng-required="true" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
+                            <select name="notification_mail" class="form-control selectpicker" ng-options="check.id as check.value for check in checklist.psn_notificationmail" ng-model="bwocreation.psn_notificationmail" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
                             <option value="">Select Option</option>
                             </select>
                      </div>
@@ -204,7 +207,7 @@
                        <span><b>Kaizen Status</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                            <select name="kaizen_status" class="form-control selectpicker" ng-options="check.id as check.value for check in checklist.kaizen_status" ng-model="bwocreation.kaizen_status" ng-required="true" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
+                            <select name="kaizen_status" class="form-control selectpicker" ng-options="check.id as check.value for check in checklist.kaizen_status" ng-model="bwocreation.kaizen_status" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
                             <option value="">Select Option</option>
                             </select>
                      </div>
@@ -216,7 +219,7 @@
                        <span><b>Nature of Breakdown</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                            <select name="nature_of_breakdown" class="form-control selectpicker" ng-options="nature.id as nature.breakdown_name for nature in natureBreakdownList" ng-model="bwocreation.nature_of_breakdown_id" ng-required="true" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
+                            <select name="nature_of_breakdown" class="form-control selectpicker" ng-options="nature.id as nature.breakdown_name for nature in natureBreakdownList" ng-model="bwocreation.nature_of_breakdown_id" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
                             <option value="">Select Option</option>
                             </select>
                      </div>
@@ -228,7 +231,7 @@
                        <span><b>Breakdown Type</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                            <select name="breakdown_type" class="form-control selectpicker" ng-options="breaklist.id as breaklist.type_name for breaklist in breakdownList" ng-model="bwocreation.breakdown_type_id" ng-required="true" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
+                            <select name="breakdown_type" class="form-control selectpicker" ng-options="breaklist.id as breaklist.type_name for breaklist in breakdownList" ng-model="bwocreation.breakdown_type_id" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
                             <option value="">Select Option</option>
                             </select>
                      </div>
@@ -240,7 +243,7 @@
                        <span><b>Maintenance Type</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                            <select name="maintenance_type" class="form-control selectpicker" ng-options="list.id as list.type_of_maintenance for list in maintenanceTypeList" ng-model="bwocreation.maintenance_type_id" ng-required="true" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
+                            <select name="maintenance_type" class="form-control selectpicker" ng-options="list.id as list.type_of_maintenance for list in maintenanceTypeList" ng-model="bwocreation.maintenance_type_id" class="btn btn-default select-width selectpicker form-control" style="height:94%;">
                             <option value="">Select Option</option>
                             </select>
                      </div>
@@ -252,7 +255,8 @@
                        <span><b>File Upload</b></span>
                      </div>
                      <div class="col-sm-5 col-md-5">
-                         <input id="inputFileToLoad" type="file" ng-model='file_path' onchange="encodeImageFileAsURL();" />   
+                         <!-- <input type = "file" file-model = "file_path"/> -->
+                         <input id="inputFileToLoad" type="file" ng-model='file_path' onchange="encodeImageFileAsURL();" />
                      </div>
                      <div class="col-sm-1 col-md-1"></div> 
                  </div>
@@ -260,12 +264,12 @@
                    <div class="col-lg-9 col-md-9"></div>
                      <div class="col-lg-2 col-md-2 text-right">
                         <div class="form-group">   
-                            <input type="submit" class="btn btn-primary btn-md" ng-disabled="bwoCreates.$invalid" Value="Save">
+                            <input type="submit" class="btn btn-primary btn-md" ng-disabled="bwoCreates.$invalid && bwoCreates.file_path.$invalid" Value="Save" ng-click="bwoCreation()">
                         </div>  
                      </div>
                    <div class="col-lg-1 col-md-1"></div>
                  </div><br>
-                </form>   
+              </form>   
             </div> 
            </div>  
           </div>
@@ -273,5 +277,3 @@
  </section>                               
    <div ng-include="'footer.html'"></div>
  </div>
-
- <!-- <div class="btn btn-primary btn-upload" url="/upload" param="file" data="formData" required="true" on-upload="onUpload(files)" on-success="onSuccess(response)" on-error="onError(response)" on-complete="onComplete(response)">File Upload<div> -->

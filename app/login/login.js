@@ -47,7 +47,7 @@ angular.module('login', ['ngRoute'])
        localStorage.setItem("reference_id",data.role.reference_id);
        localStorage.setItem("roletype_name",data.role.role_type.type_name);
        $scope.const();
-         $window.location='/#!/anual_maintenance_creation'; 
+         $window.location='/#!/dashboard'; 
         }else{      
            
         alert('The username or password is incorrect');   

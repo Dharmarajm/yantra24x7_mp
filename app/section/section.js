@@ -29,7 +29,7 @@ angular.module('section', ['ngRoute'])
 
 $scope.sectionForm= function(){  
 
-if(role_type_name=='Unit'){
+if($scope.role_type_name=='Unit'){
   $scope.sectionregistration.unit_id=$scope.reference_id;
 }
         var sectionregistration = {
@@ -129,8 +129,7 @@ if($scope.role_type_name=="Tenant"){
   })
   .then(function(response){
     
-   $rootScope.sections = response.data;
-   localStorage.setItem("unit_id",$rootScope.sections);
+   $rootScope.sections = response.data; 
    
     })
 
